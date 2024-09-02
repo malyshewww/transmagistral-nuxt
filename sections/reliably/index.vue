@@ -5,9 +5,22 @@
 				.reliably__heading 
 					h3.title-sm Трансмагистраль — это надёжно
 				.reliably-slider
+					.box 
+						.item.active
+						.item
+						.item
+						.item
+						.item
+						.item
+						.item
+						.item
+						svg(viewBox="0 0 300 300")
+							circle(ref="holder" id="holder" class="st0" cx="151" cy="151" r="150")
+					button(ref="prev" id="prev") Prev
+					button(ref="next" id="next") Next
 					.reliably-slider__box 
-						.reliably-slider__circle 
-							.reliably-slider__pagination 
+						.reliably-slider__circle
+							.reliably-slider__pagination(ref="reliablyCircle")
 								.performance-indicators-bullet 
 								.performance-indicators-bullet 
 								.performance-indicators-bullet 
@@ -32,15 +45,141 @@
 </template>
 
 <script setup>
-import { reactive } from "vue";
-
 import Swiper from "swiper";
-import { Navigation, Pagination } from "swiper/modules";
+import { Navigation, Pagination, EffectFade } from "swiper/modules";
 import "swiper/css";
+
+const { $gsap: gsap, $MotionPathPlugin: MotionPathPlugin } = useNuxtApp();
+
+const gsapSlider = () => {
+   gsap.registerPlugin(MotionPathPlugin);
+
+   const circlePath = MotionPathPlugin.convertToPath("#holder", false)[0];
+   circlePath.id = "circlePath";
+   document.querySelector("svg").prepend(circlePath);
+
+   let items = gsap.utils.toArray(".item"),
+      numItems = items.length,
+      itemStep = 1 / numItems,
+      wrapProgress = gsap.utils.wrap(0, 1),
+      snap = gsap.utils.snap(itemStep),
+      wrapTracker = gsap.utils.wrap(0, numItems),
+      tracker = { item: 0 };
+
+   gsap.set(items, {
+      motionPath: {
+         path: circlePath,
+         align: circlePath,
+         alignOrigin: [0.5, 0.5],
+         end: (i) => i / items.length,
+      },
+      scale: 0.9,
+   });
+
+   const tl = gsap.timeline({ paused: true, reversed: true });
+
+   tl.to(".box", {
+      rotation: 360,
+      transformOrigin: "center",
+      duration: 1,
+      ease: "none",
+   });
+
+   tl.to(
+      items,
+      {
+         rotation: "-=360",
+         transformOrigin: "center center",
+         duration: 1,
+         ease: "none",
+      },
+      0
+   );
+
+   tl.to(
+      tracker,
+      {
+         item: numItems,
+         duration: 1,
+         ease: "none",
+         modifiers: {
+            item: (value) => wrapTracker(numItems - Math.round(value)),
+         },
+      },
+      0
+   );
+
+   items.forEach(function (el, i) {
+      el.addEventListener("click", function () {
+         var current = tracker.item,
+            activeItem = i;
+
+         if (i === current) {
+            return;
+         }
+         document.querySelector(".item.active").classList.remove("active");
+         items[activeItem].classList.add("active");
+
+         var diff = current - i;
+
+         if (Math.abs(diff) < numItems / 2) {
+            moveWheel(diff * itemStep);
+         } else {
+            var amt = numItems - Math.abs(diff);
+
+            if (current > i) {
+               moveWheel(amt * -itemStep);
+            } else {
+               moveWheel(amt * itemStep);
+            }
+         }
+      });
+   });
+
+   document.getElementById("next").addEventListener("click", function () {
+      var i = 0;
+
+      var theArray = items;
+      var currentIndex = 0;
+      if (i === 0) {
+         console.log(theArray[currentIndex]);
+      } else if (i < 0) {
+         console.log(
+            theArray[(currentIndex + theArray.length + i) % theArray.length]
+         );
+      } else if (i > 0) {
+         console.log(theArray[(currentIndex + i) % theArray.length]);
+      }
+      return moveWheel(-(2 / numItems));
+   });
+
+   document.getElementById("prev").addEventListener("click", function () {
+      return moveWheel(2 / numItems);
+   });
+
+   function moveWheel(amount, i, index) {
+      let progress = tl.progress();
+      tl.progress(wrapProgress(snap(tl.progress() + amount)));
+      let next = tracker.item;
+      tl.progress(progress);
+
+      document.querySelector(".item.active").classList.remove("active");
+      items[next].classList.add("active");
+
+      gsap.to(tl, {
+         progress: snap(tl.progress() + amount),
+         modifiers: {
+            progress: wrapProgress,
+         },
+      });
+   }
+};
 
 const slider = ref(null);
 const buttonPrev = ref(null);
 const buttonNext = ref(null);
+const reliablySlider = ref("");
+const reliablyCircle = ref("");
 
 const reliablySliderData = [
    {
@@ -65,11 +204,11 @@ defineExpose({
    reliablySliderData,
 });
 
-const reliablySlider = ref("");
+const rotate = ref(0);
 
 const initSlider = () => {
    slider.value = new Swiper(reliablySlider.value, {
-      modules: [Navigation, Pagination],
+      modules: [Navigation, Pagination, EffectFade],
       effect: "fade",
       fadeEffect: {
          crossFade: true,
@@ -82,16 +221,54 @@ const initSlider = () => {
          prevEl: buttonPrev.value,
          nextEl: buttonNext.value,
       },
+      on: {
+         slideChange: function (swiper) {
+            rotate.value = +90;
+            reliablyCircle.value.style.transform = `rotate(-${rotate.value}deg)`;
+         },
+         progress: function (swiper) {
+            console.log(swiper);
+         },
+      },
    });
 };
 onMounted(() => {
    initSlider();
+   gsapSlider();
 });
-
-console.log(slider.value);
 </script>
 
 <style lang="scss">
+// experience
+.box {
+   max-width: 500px;
+   position: relative;
+   & .item {
+      width: 50px;
+      height: 50px;
+      color: white;
+      text-align: center;
+      line-height: 50px;
+      font-size: 24px;
+      border-radius: 100%;
+      background-color: red;
+      z-index: 1;
+      &:nth-child(even) {
+         opacity: 0;
+         pointer-events: none;
+      }
+   }
+   & svg {
+      height: 400px;
+      overflow: visible;
+      width: 400px;
+      z-index: -1;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+   }
+}
 .reliably {
    padding: 150px 0;
    &__body {
@@ -116,6 +293,7 @@ console.log(slider.value);
       display: flex;
       justify-content: center;
       align-items: center;
+      transition: transform $time * 2;
    }
    &__icon {
       position: relative;
@@ -134,6 +312,7 @@ console.log(slider.value);
       height: 100%;
       top: 0;
       left: 0;
+      transition: transform $time * 2;
    }
    &__body {
       width: 400px;
