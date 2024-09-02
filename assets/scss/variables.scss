@@ -1,0 +1,100 @@
+// Минимальная ширина страницы
+$minWidth: 320;
+// Ширина полотна (макета)
+$maxWidth: 1920;
+// Ширина ограничивающего контейнера (0 = нет ограничения)
+$maxWidthContainer: 1730;
+
+// Общий отступ у контейнера
+// (30 = по 15px слева и справа, 0 = нет отступа)
+$containerPadding: 30;
+
+// Тип адаптива:
+// 1 = отзывчивость (у контейнера нет брейкпоинтов),
+// 2 = по брейк-поинтам (контейнер меняет свою ширину по брейк-поинтам)
+$responsiveType: 1;
+
+// Ширина страбатывания первого брейкпоинта
+$containerWidth: $maxWidthContainer + $containerPadding;
+// Брейкпоинты
+$pc: $containerWidth + px;
+$xs: 479.98px;
+$sm: 576px;
+$md: 767.98px;
+$lg: 991.98px;
+$xl: 1024px;
+$xxl: 1200px;
+$xxxl: 1400px;
+
+// (i) Стили будут применяться ко всем классам содержащим *__container. Например header__container, footer__container и т.д.
+// @if ($responsiveType ==1) {
+// 	// Отзывчивая
+// 	.container {
+// 		@if ($maxWidthContainer > 0) {
+// 			max-width: $maxWidthContainer + px;
+// 			margin: 0 auto;
+// 		}
+// 		@if ($containerPadding > 0) {
+// 			padding: 0 math.div($containerPadding, 2) + px;
+// 		}
+// 	}
+// }
+// @else {
+// 	// По брейк-поинтам
+// 	.container {
+// 		margin: 0 auto;
+// 		@if ($maxWidthContainer > 0) {
+// 			max-width: $maxWidthContainer + px;
+// 		}
+// 		@if ($containerPadding > 0) {
+// 			padding: 0 math.div($containerPadding, 2) + px;
+// 		}
+// 		@media (max-width: $xxl) {
+// 			max-width: 980px;
+// 		}
+// 		@media (max-width: $lg) {
+// 			max-width: 750px;
+// 		}
+// 		@media (max-width: $md) {
+// 			max-width: 620px;
+// 		}
+// 		@media (max-width: $sm) {
+// 			max-width: 100%;
+// 		}
+// 	}
+// }
+
+// размеры шрифтов
+$font-size: 18px;
+
+// Основные Цвета
+$main-color: #000;
+$white-color: #ffffff;
+
+$black: #000;
+$white: #ffffff;
+
+$bg-bg-red: #ea2d43;
+$bg-bg-grey: #f4f6fc;
+$bg-bg-grey-dark: #eceff6;
+$bg-bg-white: #fff;
+$bg-bg-dark: #0d235a;
+$bg-bg-red-6: rgba(234, 45, 67, 0.06);
+$bg-bg-white-15: rgba(255, 255, 255, 0.15);
+$text-text-primary: #0d235a;
+$text-text-secondary: #31373b;
+$text-text-contrast: #fff;
+$text-text-accent: #ea2d43;
+$stroke-stroke-accent: #ea2d43;
+$stroke-line-dark: #eceff6;
+$stroke-line-white: #fff;
+$stroke-stroke-grey: #cfd3de;
+$stroke-stroke-dark: #0d235a;
+$stroke-stroke-grey-dark: #7f8284;
+
+// Шрифты
+$font-weight: 400;
+$font-family: "PT Root UI", sans-serif;
+$second-family: "Bebas Neue Cyrillic", sans-serif;
+
+$time: 0.25s;
