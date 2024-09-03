@@ -114,32 +114,12 @@ h6 {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-color: $bg-bg-dark;
 	border-radius: 50%;
 	overflow: hidden;
+	flex-shrink: 0;
 	transition: background-color $time;
-	&::before {
-		content: "";
-		display: block;
-		width: 20px;
-		height: 20px;
-		flex-shrink: 0;
-		background-color: $white;
-		mask-repeat: no-repeat;
-		mask-position: center;
-	}
 	.controls-white & {
 		background-color: $bg-bg-white;
-	}
-	&-prev {
-		&::before {
-			mask-image: url('/images/icons/arrow-prev.svg');
-		}
-	}
-	&-next {
-		&::before {
-			mask-image: url('/images/icons/arrow-next.svg');
-		}
 	}
 	&.swiper-button-disabled {
 		background-color: #b0b4bc;
@@ -149,17 +129,25 @@ h6 {
 			pointer-events: none;
 		}
 	}
+	& svg path {
+		transition: fill $time;
+		fill: $bg-bg-dark;
+	}
 	@media (any-hover: hover) {
 		&:hover {
-			background-color: #183377;
-			.controls-white & {
-				background-color: $bg-bg-grey-dark;
+			& svg path {
+				fill: #183377;
+			}
+			.controls-white & svg path {
+				fill: $bg-bg-grey-dark;
 			}
 		}
 		&:active {
-			background-color: #2c478b;
-			.controls-white & {
-				background-color: #d8dbe2;
+			& svg path {
+				fill: #2c478b;
+			}
+			.controls-white & svg path {
+				fill: #d8dbe2;
 			}
 		}
 	}

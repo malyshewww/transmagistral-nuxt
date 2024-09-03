@@ -1,0 +1,29 @@
+<template lang="pug">
+	section.main-autopark 
+		.container
+			.main-autopark__body 
+				.section-heading
+					.section-heading__caption Автопарк
+				h3.section-title.title-sm #[span >180] ЕДИНИЦ АВТОТРАНСПОРТА
+		MainAutoparkAccordeon
+
+</template>
+
+<script setup></script>
+
+<style lang="scss">
+.main-autopark {
+   padding: 120px 0;
+   display: grid;
+   gap: 100px;
+   overflow: hidden;
+   &__body {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      align-items: start;
+   }
+   & .section-title {
+      grid-column: span 2;
+   }
+}
+</style>

@@ -1,63 +1,46 @@
 <template lang="pug">
-	.reliably
+	section.reliably
 		.container
 			.reliably__body 
 				.reliably__heading 
 					h3.title-sm Трансмагистраль — это надёжно
 				.reliably-slider
-					.box 
-						.item.active
-						.item
-						.item
-						.item
-						.item
-						.item
-						.item
-						.item
-						svg(viewBox="0 0 300 300")
-							circle(ref="holder" id="holder" class="st0" cx="151" cy="151" r="150")
-					button(ref="prev" id="prev") Prev
-					button(ref="next" id="next") Next
-					.reliably-slider__box 
+					.reliably-slider__box
 						.reliably-slider__circle
-							.reliably-slider__pagination(ref="reliablyCircle")
-								.performance-indicators-bullet 
-								.performance-indicators-bullet 
-								.performance-indicators-bullet 
-								.performance-indicators-bullet 
-							.reliably-slider__body.swiper(ref="reliablySlider")
-								.reliably-slider__wrapper.swiper-wrapper 
-									.reliably-slider__item(v-for="item, index in reliablySliderData" :key="index")
-										.reliably-slider__image 
-											img(:src="`/images/reliably/slide-${index+1}.jpg`", :alt="item.title")
-							//- .reliably-slider__icon 
-							//- 	.imgBx(style="--i: 1;")
-							//- 	.imgBx(style="--i: 2;")
-							//- 	.imgBx(style="--i: 3;")
-							//- 	.imgBx(style="--i: 4;")
-						.reliably-slider__content-box
-							.reliably-slider__content.reliably-content(v-for="item, index in reliablySliderData" :key="index")
-								.reliably-content__caption {{item.title}}
-								.reliably-content__description(v-html="item.descr")
+							.item.active
+							.item
+							.item
+							.item
+							svg(viewBox="0 0 300 300")
+								circle(ref="holder" id="holder" class="st0" cx="151" cy="151" r="150")
+						.reliably-slider__images 
+							.reliably-slider__image(v-for="item, index in reliablySliderData" :key="index" :class="{active: index === 0}")
+								img(:src="`/images/reliably/slide-${index+1}.jpg`", :alt="item.title")
+					.reliably-slider__content-box
+						.reliably-slider__content.reliably-content(v-for="item, index in reliablySliderData" :key="index" :class="{active: index === 0}")
+							.reliably-content__caption {{item.title}}
+							.reliably-content__description(v-html="item.descr")
 				.slider-controls
-					button(ref="buttonPrev" type="button").slider-button.slider-button-prev 
-					button(ref="buttonNext" type="button").slider-button.slider-button-next 
+					button(ref="buttonPrev" id="prev" type="button").slider-button.slider-button-prev 
+						svg(width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg")
+							path(fill-rule="evenodd" clip-rule="evenodd" d="M36 0C16.1178 0 0 16.1178 0 36C0 55.8823 16.1178 72 36 72C55.8823 72 72 55.8823 72 36C72 16.1178 55.8823 0 36 0ZM36.2094 22.2596C36.6068 22.657 36.6068 23.3011 36.2094 23.6984L24.9645 34.9434H48.4718C49.0337 34.9434 49.4892 35.3989 49.4892 35.9608C49.4892 36.5227 49.0337 36.9782 48.4718 36.9782H24.9645L36.2094 48.2231C36.6068 48.6204 36.6068 49.2646 36.2094 49.6619C35.8121 50.0592 35.1679 50.0592 34.7706 49.6619L21.7889 36.6802C21.3916 36.2829 21.3916 35.6387 21.7889 35.2414L34.7706 22.2596C35.1679 21.8623 35.8121 21.8623 36.2094 22.2596Z" fill="white")
+					button(ref="buttonNext"  id="next" type="button").slider-button.slider-button-next 
+						svg(width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg")
+							path(fill-rule="evenodd" clip-rule="evenodd" d="M36 0C16.1178 0 0 16.1178 0 36C0 55.8823 16.1178 72 36 72C55.8823 72 72 55.8823 72 36C72 16.1178 55.8823 0 36 0ZM34.7706 22.2596C34.3733 22.657 34.3733 23.3011 34.7706 23.6984L46.0156 34.9434H22.5083C21.9464 34.9434 21.4909 35.3989 21.4909 35.9608C21.4909 36.5227 21.9464 36.9782 22.5083 36.9782H46.0156L34.7706 48.2231C34.3733 48.6204 34.3733 49.2646 34.7706 49.6619C35.1679 50.0592 35.8121 50.0592 36.2094 49.6619L49.1912 36.6802C49.5885 36.2829 49.5885 35.6387 49.1912 35.2414L36.2094 22.2596C35.8121 21.8623 35.1679 21.8623 34.7706 22.2596Z" fill="white")
+
 </template>
 
 <script setup>
-import Swiper from "swiper";
-import { Navigation, Pagination, EffectFade } from "swiper/modules";
-import "swiper/css";
-
 const { $gsap: gsap, $MotionPathPlugin: MotionPathPlugin } = useNuxtApp();
 
 const gsapSlider = () => {
    gsap.registerPlugin(MotionPathPlugin);
-
    const circlePath = MotionPathPlugin.convertToPath("#holder", false)[0];
    circlePath.id = "circlePath";
    document.querySelector("svg").prepend(circlePath);
 
+   let images = document.querySelectorAll(".reliably-slider__image");
+   let contentBlocks = document.querySelectorAll(".reliably-slider__content");
    let items = gsap.utils.toArray(".item"),
       numItems = items.length,
       itemStep = 1 / numItems,
@@ -78,13 +61,12 @@ const gsapSlider = () => {
 
    const tl = gsap.timeline({ paused: true, reversed: true });
 
-   tl.to(".box", {
+   tl.to(".reliably-slider__circle", {
       rotation: 360,
       transformOrigin: "center",
       duration: 1,
       ease: "none",
    });
-
    tl.to(
       items,
       {
@@ -95,7 +77,6 @@ const gsapSlider = () => {
       },
       0
    );
-
    tl.to(
       tracker,
       {
@@ -108,7 +89,6 @@ const gsapSlider = () => {
       },
       0
    );
-
    items.forEach(function (el, i) {
       el.addEventListener("click", function () {
          var current = tracker.item,
@@ -118,7 +98,15 @@ const gsapSlider = () => {
             return;
          }
          document.querySelector(".item.active").classList.remove("active");
+         document
+            .querySelector(".reliably-slider__image.active")
+            .classList.remove("active");
+         document
+            .querySelector(".reliably-slider__content.active")
+            .classList.remove("active");
          items[activeItem].classList.add("active");
+         images[activeItem].classList.add("active");
+         contentBlocks[activeItem].classList.add("active");
 
          var diff = current - i;
 
@@ -138,7 +126,6 @@ const gsapSlider = () => {
 
    document.getElementById("next").addEventListener("click", function () {
       var i = 0;
-
       var theArray = items;
       var currentIndex = 0;
       if (i === 0) {
@@ -150,11 +137,11 @@ const gsapSlider = () => {
       } else if (i > 0) {
          console.log(theArray[(currentIndex + i) % theArray.length]);
       }
-      return moveWheel(-(2 / numItems));
+      return moveWheel(-itemStep);
    });
 
    document.getElementById("prev").addEventListener("click", function () {
-      return moveWheel(2 / numItems);
+      return moveWheel(itemStep);
    });
 
    function moveWheel(amount, i, index) {
@@ -164,7 +151,15 @@ const gsapSlider = () => {
       tl.progress(progress);
 
       document.querySelector(".item.active").classList.remove("active");
+      document
+         .querySelector(".reliably-slider__image.active")
+         .classList.remove("active");
+      document
+         .querySelector(".reliably-slider__content.active")
+         .classList.remove("active");
       items[next].classList.add("active");
+      images[next].classList.add("active");
+      contentBlocks[next].classList.add("active");
 
       gsap.to(tl, {
          progress: snap(tl.progress() + amount),
@@ -174,12 +169,6 @@ const gsapSlider = () => {
       });
    }
 };
-
-const slider = ref(null);
-const buttonPrev = ref(null);
-const buttonNext = ref(null);
-const reliablySlider = ref("");
-const reliablyCircle = ref("");
 
 const reliablySliderData = [
    {
@@ -204,191 +193,180 @@ defineExpose({
    reliablySliderData,
 });
 
-const rotate = ref(0);
-
-const initSlider = () => {
-   slider.value = new Swiper(reliablySlider.value, {
-      modules: [Navigation, Pagination, EffectFade],
-      effect: "fade",
-      fadeEffect: {
-         crossFade: true,
-      },
-      slideClass: "reliably-slider__item",
-      speed: 800,
-      spaceBetween: 0,
-      slidesPerView: 1,
-      navigation: {
-         prevEl: buttonPrev.value,
-         nextEl: buttonNext.value,
-      },
-      on: {
-         slideChange: function (swiper) {
-            rotate.value = +90;
-            reliablyCircle.value.style.transform = `rotate(-${rotate.value}deg)`;
-         },
-         progress: function (swiper) {
-            console.log(swiper);
-         },
-      },
-   });
-};
 onMounted(() => {
-   initSlider();
    gsapSlider();
 });
 </script>
 
 <style lang="scss">
-// experience
-.box {
-   max-width: 500px;
+.reliably-slider__box {
+   max-width: 573px;
    position: relative;
+   &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translate(-100%, -50%);
+      height: 1px;
+      width: 100vw;
+      background-color: $stroke-stroke-grey;
+   }
    & .item {
       width: 50px;
       height: 50px;
-      color: white;
-      text-align: center;
-      line-height: 50px;
-      font-size: 24px;
-      border-radius: 100%;
-      background-color: red;
+      border-radius: 50%;
+      background-color: transparent;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       z-index: 1;
-      &:nth-child(even) {
-         opacity: 0;
-         pointer-events: none;
+      &::before {
+         content: "";
+         display: block;
+         width: 24px;
+         height: 24px;
+         background-color: $stroke-stroke-grey;
+         border-radius: 50%;
+         transition: width $time, height $time, background-color $time;
+      }
+      &.active {
+         &::before {
+            background-color: $bg-bg-dark;
+            width: 100%;
+            height: 100%;
+         }
       }
    }
    & svg {
-      height: 400px;
+      height: 573px;
       overflow: visible;
-      width: 400px;
+      width: 573px;
       z-index: -1;
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
+      fill: transparent;
+      & path {
+         fill: transparent;
+         stroke-width: 1px;
+         stroke: $stroke-stroke-grey;
+      }
    }
 }
 .reliably {
    padding: 150px 0;
    &__body {
+      display: grid;
+      gap: 12px;
    }
    &__heading {
       max-width: 560px;
    }
+   &__slider {
+   }
 }
 .reliably-slider {
+   display: flex;
+   align-items: center;
+   gap: 119px;
+   margin-left: auto;
+   margin-right: auto;
+   margin-top: -73px;
+   position: relative;
    &__box {
-      display: flex;
-      align-items: center;
-      gap: 119px;
-   }
-   &__circle {
+      display: grid;
+      place-items: center;
       width: 573px;
       height: 573px;
-      border: 1px solid $stroke-stroke-grey;
-      border-radius: 50%;
-      position: relative;
-      flex-shrink: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      transition: transform $time * 2;
    }
-   &__icon {
-      position: relative;
-      left: -50%;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-   }
-   &__content {
-   }
-   &__pagination {
+   &__circle {
       position: absolute;
+      inset: 0;
       width: 100%;
       height: 100%;
-      top: 0;
-      left: 0;
-      transition: transform $time * 2;
    }
-   &__body {
+   &__images {
       width: 400px;
       height: 400px;
-      overflow: hidden;
       border-radius: 50%;
+      overflow: hidden;
+      position: relative;
    }
-   &__wrapper {
-   }
-   &__item {
-      flex-shrink: 0;
+   &__image {
+      position: absolute;
+      border-radius: inherit;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
-      // position: absolute;
-      // top: 0;
-      // left: 0;
-      // opacity: 0;
-      &.swiper-slide-active {
+      transform: scale(0);
+      opacity: 0;
+      transition: transform $time * 2, opacity $time * 2;
+      z-index: -1;
+      & img {
+         border-radius: inherit;
+         width: 100%;
+         height: 100%;
+         object-fit: cover;
+      }
+      &.active {
+         transform: scale(1);
          opacity: 1;
+         z-index: 1;
+      }
+   }
+   &__content-box {
+      width: 319px;
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translate(calc(100% + 119px), -50%);
+   }
+   &__content {
+      opacity: 0;
+      transition: opacity $time;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 0;
+      width: 100%;
+      &.active {
+         opacity: 1;
+         & .reliably-content__caption {
+            opacity: 1;
+            transform: translateY(0px);
+         }
+         & .reliably-content__description {
+            transform: translateY(0px);
+            opacity: 1;
+         }
       }
    }
 }
-.performance-indicators-bullet {
-   position: absolute;
-   width: 40px;
-   height: 40px;
-   border-radius: 50%;
-   background-color: transparent;
-   transform: translate(-50%, -50%);
-   &::before {
-      content: "";
-      display: block;
-      width: 24px;
-      height: 24px;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      border-radius: 50%;
-      content: "";
-      background: $stroke-stroke-grey;
-   }
-   &:nth-child(1) {
-      top: 50%;
-   }
-   &:nth-child(2) {
-      right: 0;
-      transform: translate(50%, -50%);
-      top: 50%;
-   }
-   &:nth-child(3) {
-      bottom: 0;
-      transform: translate(-50%, 50%);
-      left: 50%;
-   }
-   &:nth-child(4) {
-      top: 0;
-      transform: translate(-50%, -50%);
-      left: 50%;
-   }
-}
-.reliably__content {
+.reliably-content {
+   display: grid;
+   gap: 12px;
+   color: $text-text-secondary;
    &__caption {
+      font-weight: 700;
+      font-size: 32px;
+      line-height: 35px;
+      opacity: 0;
+      transition: opacity $time * 2 ease-in-out 0.5s,
+         transform $time * 2 ease-in-out 0.5s;
+      transform: translateY(-20px);
+      overflow: hidden;
    }
    &__description {
+      font-size: 20px;
+      line-height: 28px;
+      opacity: 0;
+      transform: translateY(-20px);
+      overflow: hidden;
+      transition: opacity $time * 2 ease-in-out 0.8s,
+         transform $time * 2 ease-in-out 0.8s;
    }
-}
-.imgBx {
-   width: 24px;
-   height: 24px;
-   flex-shrink: 0;
-   border-radius: 100%;
-   background: $stroke-stroke-grey;
-   transform: rotate(calc(360deg / 4 * var(--i)));
-   transform-origin: 300px;
-   z-index: 100px;
-   overflow: hidden;
 }
 </style>
