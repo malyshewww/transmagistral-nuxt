@@ -6,4 +6,7 @@
 	Questions
 	Advantages
 	Persons
+	Work
+	Documents
+	Clients
 </template>

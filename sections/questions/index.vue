@@ -105,44 +105,4 @@ onMounted(() => {
    &__button {
    }
 }
-.form-item {
-   position: relative;
-   &__field {
-      position: relative;
-      border-bottom: 1px solid rgba($bg-bg-white, 0.5);
-      &::before {
-         content: "";
-         position: absolute;
-         bottom: 0;
-         left: 0;
-         width: 0px;
-         height: 1px;
-         background-color: $bg-bg-white;
-         transition: width $time * 2;
-         z-index: 2;
-      }
-      &.focus {
-         &::before {
-            width: 100%;
-         }
-      }
-   }
-}
-.form-input {
-   min-height: 50px;
-   width: 100%;
-   padding: 16px;
-   font-size: 16px;
-   line-height: 18px;
-   color: $bg-bg-white;
-   background-color: transparent;
-   &::placeholder {
-      font-size: 16px;
-      color: rgba($bg-bg-white, 0.5);
-      line-height: 18px;
-   }
-}
-.text-link {
-   border-bottom: 1px solid currentColor;
-}
 </style>

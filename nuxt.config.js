@@ -15,6 +15,75 @@ export default defineNuxtConfig({
       // Импорт компонентов из других директорий, помимо components
       { path: "~/sections", pathPrefix: true },
    ],
+   app: {
+      head: {
+         htmlAttrs: {
+            lang: "ru",
+         },
+         link: [
+            { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
+            { rel: "shortcut icon", href: "/favicon.ico" },
+            {
+               rel: "icon",
+               type: "image/png",
+               sizes: "32x32",
+               href: "/favicon-32x32.png",
+            },
+            {
+               rel: "icon",
+               type: "image/png",
+               sizes: "16x16",
+               href: "/favicon-16x16.png",
+            },
+            {
+               rel: "apple-touch-icon",
+               type: "image/png",
+               sizes: "180x180",
+               href: "/apple-icon-180x180.png",
+            },
+         ],
+         meta: [
+            { charset: "utf-8" },
+            {
+               name: "viewport",
+               content: "width=device-width, initial-scale=1",
+            },
+            {
+               "http-equiv": "X-UA-Compatible",
+               content: "IE=edge",
+            },
+            {
+               name: "viewport",
+               content: "width=device-width, initial-scale=1, user-scalable=no",
+            },
+            {
+               hid: "apple-mobile-web-app-capable",
+               name: "apple-mobile-web-app-capable",
+               content: "yes",
+            },
+            {
+               hid: "format-detection",
+               name: "format-detection",
+               content: "telephone=no",
+            },
+            {
+               hid: "format-detection",
+               name: "format-detection",
+               content: "address=no",
+            },
+            {
+               hid: "format-detection",
+               name: "format-detection",
+               content: "email=no",
+            },
+            {
+               hid: "format-detection",
+               name: "format-detection",
+               content: "date=no",
+            },
+         ],
+      },
+   },
    vite: {
       server: {
          port: 3000,

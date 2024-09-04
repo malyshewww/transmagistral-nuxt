@@ -65,26 +65,14 @@ const accordeonList = reactive({
       },
    ],
 });
-
-// const selected = () => {
-//    return accordeonList.data.map((item, index) => {
-//       return {
-//          ...item,
-//          key: index,
-//          isSelected: index === 0 ? true : false,
-//       };
-//    });
-// };
-
-function toggleSelection(key) {
+const toggleSelection = (key) => {
    console.log("toggle", key);
    const stepsItem = accordeonList.data.find((item) => item.key === key);
    console.log(stepsItem);
    if (stepsItem) {
       stepsItem.isSelected = !stepsItem.isSelected;
    }
-}
-
+};
 const select = (key) => {
    console.log(key);
    for (let i = 0; i < accordeonList.data.length; i++) {
@@ -95,11 +83,6 @@ const select = (key) => {
    toggleSelection(key);
 };
 
-// const toggleAccordeon = (e) => {
-//    const target = e.target;
-//    console.log(target);
-//    target.classList.add("active");
-// };
 defineExpose({
    select,
 });
@@ -203,13 +186,14 @@ defineExpose({
       gap: 40px;
       align-items: start;
       opacity: 0;
-      transition: opacity $time * 2 ease-out 0.5s;
+      transition: opacity 0s;
       position: absolute;
       left: 30px;
       bottom: 136px;
       height: 347px;
       .active & {
          opacity: 1;
+         transition: opacity $time * 2 ease-out 0.5s;
       }
       .notactive & {
          opacity: 0;

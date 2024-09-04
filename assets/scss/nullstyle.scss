@@ -120,10 +120,10 @@ img {
 }
 *::-webkit-scrollbar-thumb {
 	cursor: pointer;
-	background-color: rgba($white, .8);
+	background-color: rgba($bg-bg-dark, .8);
 	border-radius: 5px;
 	transition: all .5s;
 }
 *::-webkit-scrollbar-thumb:hover {
-	background-color: rgba($white, .5);
+	background-color: rgba($bg-bg-dark, .5);
 }

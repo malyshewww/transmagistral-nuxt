@@ -2,8 +2,7 @@
 	section.main-autopark 
 		.container
 			.main-autopark__body 
-				.section-heading
-					.section-heading__caption Автопарк
+				UiSectionHeading(caption="Автопарк")
 				h3.section-title.title-sm #[span >180] ЕДИНИЦ АВТОТРАНСПОРТА
 		MainAutoparkAccordeon
 

@@ -2,37 +2,17 @@
 	.header__menu.menu 
 		nav.menu__body 
 			ul.menu__list 
-				li.menu__item(v-for="item, index in headerMenu" :key="index")
+				li.menu__item(v-for="item, index in menu" :key="index")
 					NuxtLink(:to="`${item.path}`" @click.prevent).menu__link {{ item.title }}
 </template>
 
 <script setup>
-const headerMenu = [
-   {
-      title: "О компании",
-      path: "#about",
+defineProps({
+   menu: {
+      type: Object,
+      required: true,
    },
-   {
-      title: "Автопарк",
-      path: "#autopark",
-   },
-   {
-      title: "Работа",
-      path: "#work",
-   },
-   {
-      title: "Документы",
-      path: "#documents",
-   },
-   {
-      title: "Клиенты",
-      path: "#clients",
-   },
-   {
-      title: "Контакты",
-      path: "#contacts",
-   },
-];
+});
 </script>
 
 <style lang="scss">

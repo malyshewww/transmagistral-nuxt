@@ -1,14 +1,14 @@
 <template lang="pug">
 	.main-advantages__slider.slider-advantages
-		h2.section-title В чем секрет нашего успеха?
-		.slider-advantages__body 
-			.slider-advantages__item.item-advantages(v-for="item, index in advantagesList" :key="index")
-				.item-advantages__image.ibg
-					img(:src="`/images/advantages/image-${index+1}.jpg`", alt="")
-				.item-advantages__content 
-					.item-advantages__number
-					.item-advantages__title {{ item.title }}
-					.item-advantages__text(v-html="item.text")
+		.slider-advantages__track
+			.slider-advantages__body 
+				.slider-advantages__item.item-advantages(v-for="item, index in advantagesList" :key="index")
+					.item-advantages__image.ibg
+						img(:src="`/images/advantages/image-${index+1}.jpg`", alt="")
+					.item-advantages__content 
+						.item-advantages__number
+						.item-advantages__title {{ item.title }}
+						.item-advantages__text(v-html="item.text")
 </template>
 
 <script setup>
@@ -41,9 +41,13 @@ const advantagesList = [
 </script>
 
 <style lang="scss">
-.slider-advantages__body {
-   display: flex;
-   gap: 120px;
+.slider-advantages {
+   &__track {
+   }
+   &__body {
+      display: flex;
+      gap: 120px;
+   }
 }
 .item-advantages {
    flex-shrink: 0;

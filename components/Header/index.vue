@@ -7,9 +7,18 @@
 						source(:srcset="`/images/logo.svg`" media="(min-width: 767.98px)")
 						source(:srcset="`/images/logo.svg`" media="(min-width: 300px)")
 						img(src="/images/logo.svg", alt="логотип")
-				HeaderMenu
+				HeaderMenu(:menu="menu")
 				HeaderActions
 </template>
+
+<script setup>
+defineProps({
+   menu: {
+      type: Object,
+      required: true,
+   },
+});
+</script>
 
 <style lang="scss">
 .header {

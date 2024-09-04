@@ -117,13 +117,16 @@ h6 {
 	border-radius: 50%;
 	overflow: hidden;
 	flex-shrink: 0;
-	transition: background-color $time;
+	transition: background-color $time, fill $time;
 	.controls-white & {
 		background-color: $bg-bg-white;
 	}
 	&.swiper-button-disabled {
-		background-color: #b0b4bc;
 		pointer-events: none;
+		cursor: default;
+		& svg path {
+			fill: #b0b4bc;
+		}
 		.controls-white & {
 			background-color: rgba(255, 255, 255, 0.5);
 			pointer-events: none;
@@ -142,6 +145,11 @@ h6 {
 				fill: $bg-bg-grey-dark;
 			}
 		}
+		&.swiper-button-disabled:hover {
+			& svg path {
+				fill: #b0b4bc;
+			}
+		}
 		&:active {
 			& svg path {
 				fill: #2c478b;
@@ -151,4 +159,83 @@ h6 {
 			}
 		}
 	}
+}
+
+.text-link {
+	border-bottom: 1px solid currentColor;
+	transition: color $time, border-color $time;
+	@media (any-hover: hover) {
+		&:hover {
+			color: #1941a5;
+		}
+		&:active {
+			border-color: transparent;
+		}
+	}
+	&:visited {
+		border-color: transparent;
+
+	}
+}
+.form-item {
+	position: relative;
+	&__field {
+		position: relative;
+		border-bottom: 1px solid rgba($bg-bg-white, 0.5);
+		&::before {
+			content: "";
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 0px;
+			height: 1px;
+			background-color: $bg-bg-white;
+			transition: width $time * 2;
+			z-index: 2;
+		}
+		&.focus {
+			&::before {
+				width: 100%;
+			}
+		}
+		.popup & {
+			border-bottom: 1px solid rgba($stroke-stroke-grey-dark, 0.5);
+			&::before {
+				background-color: $stroke-stroke-grey-dark;
+			}
+		}
+	}
+	&__timelines {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 42px;
+		margin-top: 14px;
+	}
+}
+.form-input {
+	min-height: 50px;
+	width: 100%;
+	padding: 16px;
+	font-size: 16px;
+	line-height: 18px;
+	color: $bg-bg-white;
+	background-color: transparent;
+	&::placeholder {
+		font-size: 16px;
+		color: rgba($bg-bg-white, 0.5);
+		line-height: 18px;
+	}
+	.popup & {
+		color: $text-text-secondary;
+		&::placeholder {
+			color: rgba($text-text-secondary, .5);
+		}
+	}
+}
+
+.form-text {
+	font-size: 16px;
+	line-height: 18px;
+	color: rgba($text-text-secondary, .5);
+	padding: 0 16px;
 }

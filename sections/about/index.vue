@@ -4,8 +4,7 @@
 			.main-about__body
 				.main-about__item.start-heading
 					.main-about__content
-						.section-heading
-							.section-heading__caption О компании
+						UiSectionHeading(caption="О компании")
 						h2.section-title Мы дорожим #[br] своей репутацией
 				MainAboutCard(v-for="item, index in aboutCards" :key="index" :item="item" :idx="index")
 				.main-about__item.end-heading

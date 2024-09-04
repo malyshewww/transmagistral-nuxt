@@ -1,54 +1,19 @@
 <template lang="pug">
-	.person-card(v-for="item, index in personList" :key="index")
+	.person-card(v-for="card, index in cards" :key="index")
 		.person-card__body 
 			.person-card__image
-				img(:src="`/images/persons/person-${index+1}.jpg`", :alt="item.name")
-			.person-card__name {{ item.name }}
-			.person-card__post {{ item.post }}
+				img(:src="`/images/persons/person-${index+1}.jpg`", :alt="card.name")
+			.person-card__name {{ card.name }}
+			.person-card__post {{ card.post }}
 			.person-card__contacts.contacts-person
-				a(:href="item.email").contacts-person__link {{ item.email }}
-				a(:href="item.phone").contacts-person__link {{ item.phone }}
+				a(:href="card.email").contacts-person__link {{ card.email }}
+				a(:href="card.phone").contacts-person__link {{ card.phone }}
 </template>
 
 <script setup>
-const personList = [
-   {
-      name: "Литвинчук Сергей",
-      post: "Исполнительный директор",
-      email: "litvinchuk@transmagistral.ru",
-      phone: "+7 953 415-01-06",
-   },
-   {
-      name: "Гусева Наталья",
-      post: "Начальник отдела логистики",
-      email: "guseva@transmagistral.ru",
-      phone: "+7 915 958-75-68",
-   },
-   {
-      name: "Тощенкова Арина",
-      post: "Логист",
-      email: "toshenkova@transmagistral.ru",
-      phone: "+7 910 395-06-20",
-   },
-   {
-      name: "Доскинский Дмитрий",
-      post: "Логист",
-      email: "dima@transmagistral.ru",
-      phone: "+7 915 956-47-71",
-   },
-   {
-      name: "Свистунов Андрей",
-      post: "Логист",
-      email: "svistunov@transmagistral.ru",
-      phone: "+7 910 394-20-34",
-   },
-   {
-      name: "Перевалова Светлана",
-      post: "Логист",
-      email: "perevalova@transmagistral.ru",
-      phone: "+7 910 396-13-50",
-   },
-];
+defineProps({
+   cards: {},
+});
 </script>
 
 <style lang="scss">
@@ -92,6 +57,89 @@ const personList = [
       display: grid;
       gap: 8px;
    }
+   &__top {
+      display: flex;
+      align-items: center;
+      position: relative;
+      width: 324px;
+   }
+   &__bottom {
+      text-align: right;
+      color: $bg-bg-dark;
+   }
+   &__num {
+      font-size: 124px;
+      line-height: 136px;
+      text-align: right;
+      font-family: $second-family;
+      display: flex;
+      align-items: start;
+      justify-content: flex-end;
+      & span {
+         font-family: $font-family;
+         font-weight: 700;
+         font-size: 54px;
+         line-height: 76px;
+         text-align: right;
+         color: $bg-bg-red;
+      }
+   }
+
+   &__description {
+      font-weight: 700;
+      font-size: 32px;
+      text-align: right;
+      color: $bg-bg-dark;
+   }
+   &__small-image {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 117px;
+      height: 117px;
+      border-radius: 50%;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      border: 1px solid $stroke-stroke-grey;
+      & span {
+         width: 23px;
+         display: inline-block;
+         &::before {
+            content: "";
+            position: absolute;
+            display: block;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: $stroke-stroke-grey;
+            box-shadow: 0px 0px $stroke-stroke-grey,
+               10px 0px $stroke-stroke-grey, 20px 0px $stroke-stroke-grey;
+         }
+      }
+      &:not(:last-child) {
+      }
+      &:nth-child(1) {
+         left: 0;
+         z-index: 3;
+      }
+      &:nth-child(3) {
+         right: 69px;
+         z-index: 1;
+      }
+      &:nth-child(2) {
+         left: 69px;
+         z-index: 2;
+      }
+   }
+}
+.person-card-last {
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   align-items: flex-end;
+   gap: 20px;
 }
 .contacts-person {
    &__link {

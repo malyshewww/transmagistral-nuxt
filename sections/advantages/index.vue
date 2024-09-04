@@ -2,22 +2,26 @@
 	section.main-advantages
 		.container 
 			.main-advantages__body 
-				.section-heading
-					.section-heading__caption О компании
+				UiSectionHeading(caption="Преимущества")
+				h2.section-title В чем секрет нашего успеха?
 				UiSliderAdvantages
 </template>
 
 <style lang="scss">
 .main-advantages {
    padding: 120px 0;
+   overflow: hidden;
    &__body {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       align-items: start;
-      gap: 20px;
+      gap: 100px 20px;
+      & .section-title {
+         grid-column: span 2;
+      }
    }
    &__slider {
-      grid-column: span 2;
+      grid-column: span 3;
    }
 }
 .slider-advantages {

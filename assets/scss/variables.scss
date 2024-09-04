@@ -68,7 +68,7 @@ $xxxl: 1400px;
 $font-size: 18px;
 
 // Основные Цвета
-$main-color: #000;
+$main-color: #31373b;
 $white-color: #ffffff;
 
 $black: #000;
@@ -96,5 +96,9 @@ $stroke-stroke-grey-dark: #7f8284;
 $font-weight: 400;
 $font-family: "PT Root UI", sans-serif;
 $second-family: "Bebas Neue Cyrillic", sans-serif;
+
+$shadow: 0 2px 5px 0 rgba(25, 51, 99, 0.05);
+$gradient: linear-gradient(90deg, #255cae 0%, #b7d8e9 100%);
+
 
 $time: 0.25s;
