@@ -47,9 +47,9 @@ const documentList = [
    {
       name: "Карточка партнёра",
    },
-   {
-      name: "Карточка партнёра",
-   },
+   // {
+   //    name: "Карточка партнёра",
+   // },
 ];
 
 const fancyboxOptions = {

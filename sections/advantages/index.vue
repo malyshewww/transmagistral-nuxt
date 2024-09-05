@@ -9,7 +9,7 @@
 
 <style lang="scss">
 .main-advantages {
-   padding: 120px 0;
+   padding: 120px 0 114px;
    overflow: hidden;
    &__body {
       display: grid;

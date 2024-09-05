@@ -1,5 +1,6 @@
 <template lang="pug">
 	section.main-persons
+		LinePerson
 		.container 
 			.main-persons__body 
 				h3.section-title.title-sm Команда профессионалов, объединённых одной #[span целью]
@@ -14,6 +15,7 @@
 						.person-card__bottom
 							.person-card__num 200 #[span +]
 							.person-card__description Профессионалов в нашей команде
+						LineCard
 </template>
 
 <script setup>
@@ -59,7 +61,17 @@ const personList = [
 
 <style lang="scss">
 .main-persons {
-   padding-bottom: 156px;
+   padding: 75px 0 156px;
+   position: relative;
+   overflow: hidden;
+   & .line-person {
+      position: absolute;
+      top: 25px;
+      left: 0;
+      width: 100%;
+      z-index: -1;
+      pointer-events: none;
+   }
    &__body {
       display: grid;
       grid-template-columns: repeat(3, 1fr);

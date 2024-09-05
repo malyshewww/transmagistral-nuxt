@@ -9,12 +9,26 @@
 						p Мы всегда рады долгосрочному сотрудничеству. Клиенты — основная ценность нашей компании
 				.main-clients__cards 
 					ClientCard
-					UiButton(buttonText="Стать нашим клиентом" classNames="btn-red" buttonType="button")
-		PopupClient(@close-popup="closePopup" :is-open="isOpenPopupClient")
+					UiButton(buttonText="Стать нашим клиентом" classNames="btn-red" buttonType="button" @buttonClick="openPopupClient")
+		PopupClient(@close-popup="closePopupClient" :is-open="isOpenPopupClient")
+		PopupNotice(@close-popup="closeNoticePopupClient" :is-open="isOpenNoticePopupClient")
 </template>
 
 <script setup>
 const isOpenPopupClient = ref(false);
+const isOpenNoticePopupClient = ref(false);
+const openPopupClient = () => {
+   isOpenPopupClient.value = !isOpenPopupClient.value;
+};
+const closePopupClient = () => {
+   isOpenPopupClient.value = !isOpenPopupClient.value;
+};
+const openNoticePopupClient = () => {
+   isOpenNoticePopupClient.value = !isOpenNoticePopupClient.value;
+};
+const closeNoticePopupClient = () => {
+   isOpenNoticePopupClient.value = !isOpenNoticePopupClient.value;
+};
 </script>
 
 <style lang="scss">
@@ -24,7 +38,7 @@ const isOpenPopupClient = ref(false);
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       align-items: start;
-      gap: 20px;
+      gap: 96px 20px;
    }
    &__content {
       grid-column: span 2;
@@ -55,7 +69,13 @@ const isOpenPopupClient = ref(false);
             text-align: left;
          }
          &-icon {
+            width: 56px;
+            height: 56px;
             align-self: end;
+            & svg {
+               width: 100%;
+               height: 100%;
+            }
          }
       }
    }

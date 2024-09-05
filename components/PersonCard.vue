@@ -55,7 +55,7 @@ defineProps({
    }
    &__contacts {
       display: grid;
-      gap: 8px;
+      gap: 7px;
    }
    &__top {
       display: flex;
@@ -140,6 +140,16 @@ defineProps({
    justify-content: space-between;
    align-items: flex-end;
    gap: 20px;
+   position: relative;
+   overflow: hidden;
+   padding-top: 60px;
+   & .line-card {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: auto;
+      z-index: 2;
+   }
 }
 .contacts-person {
    &__link {

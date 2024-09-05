@@ -57,7 +57,7 @@
       line-height: 1;
       text-align: center;
       inset: 0;
-      top: 26%;
+      top: 26.5%;
       color: $bg-bg-white;
       @media screen and (max-width: 1919px) {
          font-size: 24vh;
@@ -87,6 +87,7 @@
    &__text {
       font-weight: 500;
       font-size: 32px;
+      line-height: 120%;
       color: $bg-bg-white;
       max-width: 460px;
    }

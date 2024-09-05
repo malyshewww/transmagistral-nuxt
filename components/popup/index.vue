@@ -26,7 +26,7 @@ const closePopup = () => {
    left: 0;
    width: 100vw;
    height: 100dvh;
-   background: rgba(51, 102, 153, 0.3);
+   background: rgba(16, 35, 70, 0.3);
    opacity: 0;
    visibility: hidden;
    overflow-y: auto;
@@ -69,6 +69,9 @@ const closePopup = () => {
       opacity: 0;
       transform: perspective(600px) translate(0px, -100%) rotateX(45deg);
       transition: all 0.5s ease 0s;
+      .popup-politic & {
+         max-width: 800px;
+      }
       @media screen and (max-width: $md) {
          padding: 30px 15px;
          border-radius: 16px;
@@ -114,11 +117,22 @@ const closePopup = () => {
       line-height: 26px;
       color: $text-text-secondary;
    }
-   &__sub-title {
+   &__sub-title,
+   &__description {
       font-size: 20px;
       line-height: 28px;
       color: $text-text-secondary;
    }
+   &__description {
+      & p {
+         &:not(:last-child) {
+            margin-bottom: 20px;
+         }
+      }
+   }
+}
+.popup-politic {
+   z-index: 40;
 }
 .popup-header {
    display: grid;

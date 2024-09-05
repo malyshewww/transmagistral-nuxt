@@ -17,17 +17,20 @@
 </template>
 
 <script setup>
+defineProps({
+   classNames: {},
+   buttonText: {},
+   buttonType: {},
+   iconName: {},
+});
 const emit = defineEmits(["buttonClick"]);
 
 const buttonClick = () => {
    emit("buttonClick");
 };
 
-defineProps({
-   classNames: {},
-   buttonText: {},
-   buttonType: {},
-   iconName: {},
+defineExpose({
+   buttonClick,
 });
 </script>
 

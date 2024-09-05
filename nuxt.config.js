@@ -15,6 +15,7 @@ export default defineNuxtConfig({
       // Импорт компонентов из других директорий, помимо components
       { path: "~/sections", pathPrefix: true },
    ],
+   plugins: ["~/plugins/click-outside.js"],
    app: {
       head: {
          htmlAttrs: {
@@ -84,6 +85,7 @@ export default defineNuxtConfig({
          ],
       },
    },
+   ssr: false,
    vite: {
       server: {
          port: 3000,

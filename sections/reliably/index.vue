@@ -33,11 +33,13 @@
 <script setup>
 const { $gsap: gsap, $MotionPathPlugin: MotionPathPlugin } = useNuxtApp();
 
+const reliablySliderCircle = ref("");
+
 const gsapSlider = () => {
-   gsap.registerPlugin(MotionPathPlugin);
+   // gsap.registerPlugin(MotionPathPlugin);
    const circlePath = MotionPathPlugin.convertToPath("#holder", false)[0];
    circlePath.id = "circlePath";
-   document.querySelector("svg").prepend(circlePath);
+   document.querySelector(".reliably-slider__box svg").prepend(circlePath);
 
    let images = document.querySelectorAll(".reliably-slider__image");
    let contentBlocks = document.querySelectorAll(".reliably-slider__content");
@@ -48,7 +50,6 @@ const gsapSlider = () => {
       snap = gsap.utils.snap(itemStep),
       wrapTracker = gsap.utils.wrap(0, numItems),
       tracker = { item: 0 };
-
    gsap.set(items, {
       motionPath: {
          path: circlePath,
@@ -56,11 +57,9 @@ const gsapSlider = () => {
          alignOrigin: [0.5, 0.5],
          end: (i) => i / items.length,
       },
-      scale: 0.9,
+      scale: 1,
    });
-
    const tl = gsap.timeline({ paused: true, reversed: true });
-
    tl.to(".reliably-slider__circle", {
       rotation: 360,
       transformOrigin: "center",
@@ -107,9 +106,7 @@ const gsapSlider = () => {
          items[activeItem].classList.add("active");
          images[activeItem].classList.add("active");
          contentBlocks[activeItem].classList.add("active");
-
          var diff = current - i;
-
          if (Math.abs(diff) < numItems / 2) {
             moveWheel(diff * itemStep);
          } else {
@@ -123,7 +120,6 @@ const gsapSlider = () => {
          }
       });
    });
-
    document.getElementById("next").addEventListener("click", function () {
       var i = 0;
       var theArray = items;
@@ -139,17 +135,14 @@ const gsapSlider = () => {
       }
       return moveWheel(-itemStep);
    });
-
    document.getElementById("prev").addEventListener("click", function () {
       return moveWheel(itemStep);
    });
-
    function moveWheel(amount, i, index) {
       let progress = tl.progress();
       tl.progress(wrapProgress(snap(tl.progress() + amount)));
       let next = tracker.item;
       tl.progress(progress);
-
       document.querySelector(".item.active").classList.remove("active");
       document
          .querySelector(".reliably-slider__image.active")
@@ -160,7 +153,6 @@ const gsapSlider = () => {
       items[next].classList.add("active");
       images[next].classList.add("active");
       contentBlocks[next].classList.add("active");
-
       gsap.to(tl, {
          progress: snap(tl.progress() + amount),
          modifiers: {
@@ -189,9 +181,9 @@ const reliablySliderData = [
    },
 ];
 
-defineExpose({
-   reliablySliderData,
-});
+// defineExpose({
+//    reliablySliderData,
+// });
 
 onMounted(() => {
    gsapSlider();
@@ -199,6 +191,18 @@ onMounted(() => {
 </script>
 
 <style lang="scss">
+.reliably {
+   padding: 152px 0 150px;
+   &__body {
+      display: grid;
+      gap: 12px;
+   }
+   &__heading {
+      max-width: 560px;
+   }
+   &__slider {
+   }
+}
 .reliably-slider__box {
    max-width: 573px;
    position: relative;
@@ -213,8 +217,8 @@ onMounted(() => {
       background-color: $stroke-stroke-grey;
    }
    & .item {
-      width: 50px;
-      height: 50px;
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
       background-color: transparent;
       display: flex;
@@ -228,7 +232,13 @@ onMounted(() => {
          height: 24px;
          background-color: $stroke-stroke-grey;
          border-radius: 50%;
-         transition: width $time, height $time, background-color $time;
+         transition: width $time ease-out 0.4s, height $time ease-out 0.4s,
+            background-color ease-out $time 0.4s;
+      }
+      @media (any-hover: hover) {
+         &:hover {
+            cursor: pointer;
+         }
       }
       &.active {
          &::before {
@@ -255,18 +265,7 @@ onMounted(() => {
       }
    }
 }
-.reliably {
-   padding: 150px 0;
-   &__body {
-      display: grid;
-      gap: 12px;
-   }
-   &__heading {
-      max-width: 560px;
-   }
-   &__slider {
-   }
-}
+
 .reliably-slider {
    display: flex;
    align-items: center;

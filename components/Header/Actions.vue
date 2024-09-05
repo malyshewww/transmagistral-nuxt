@@ -1,8 +1,16 @@
 <template lang="pug">
 	.header__actions 
 		a(href="tel:+78312748811").header__phone +7 831 274-88-11
-		button(type="button").header__button Позвоните мне 
+		button(type="button" @click="openPopupQuestions").header__button Позвоните мне 
 </template>
+
+<script setup>
+const emit = defineEmits(["openPopup"]);
+
+const openPopupQuestions = () => {
+   emit("openPopup");
+};
+</script>
 
 <style lang="scss">
 .header__actions {

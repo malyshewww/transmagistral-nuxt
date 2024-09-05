@@ -54,12 +54,14 @@ const advantagesList = [
    width: 594px;
    counter-increment: num;
    display: grid;
+   align-items: start;
    gap: 40px;
    color: $text-text-secondary;
    &__image {
       border-radius: 14px;
       overflow: hidden;
-      padding-bottom: math.div(394, 594) * 100%;
+      padding-bottom: 52.2%;
+      height: 100%;
    }
    &__content {
       display: flex;

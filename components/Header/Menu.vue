@@ -19,6 +19,7 @@ defineProps({
 .header__menu {
 }
 .menu {
+   padding-left: 70px;
    &__body {
       display: flex;
    }

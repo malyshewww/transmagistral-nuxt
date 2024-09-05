@@ -1,7 +1,7 @@
 <template lang="pug">
 	section.main-questions
 		.main-questions__wrapper 
-			span.main-questions__line
+			LineQuestion
 			.main-questions__body 
 				h2.main-questions__title Готовы к любым вопросам
 				.main-questions__sub-title Коммерческий отдел сможет вам ответить в рабочее время с 9:00 до 21:00
@@ -16,10 +16,11 @@
 						UiButton(buttonText="Заказать консультацию")
 						.form-text 
 							p Отправляя форму, я подтверждаю #[a(href="#").text-link своё согласие на обработку персональных данных]
+
 </template>
 
 <script setup>
-import maskPhone from "~/utils/maskPhone";
+import maskPhone from "~/utils/maskPhone.js";
 
 const onFocusInput = (e) => {
    const target = e.target;
@@ -52,24 +53,21 @@ onMounted(() => {
       pointer-events: none;
    }
    &__wrapper {
-      padding: 128px 0;
+      padding: 128px 0 152px;
       position: relative;
       isolation: isolate;
       background: linear-gradient(90deg, #255cae 0%, #b7d8e9 100%);
       overflow: hidden;
       border-radius: 14px;
-      &::before {
-         content: "";
+      & .line {
          position: absolute;
-         top: 0;
-         left: 0;
+         inset: 0;
          width: 100%;
          height: 100%;
-         mask-image: url("/images/questions/bg.png");
-         mask-repeat: no-repeat;
-         mask-position: center;
-         background-color: transparent;
-         z-index: -1;
+         pointer-events: none;
+         & svg {
+            width: 100%;
+         }
       }
    }
    &__body {
@@ -94,6 +92,16 @@ onMounted(() => {
    }
    &__form {
       grid-area: form;
+      padding-top: 16px;
+      & .form-text {
+         padding: 0;
+         color: $white;
+      }
+      & .text-link {
+         border-color: $white;
+      }
+   }
+   &__form {
    }
 }
 .form {

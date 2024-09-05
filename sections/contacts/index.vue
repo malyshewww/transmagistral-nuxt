@@ -13,12 +13,18 @@
 						.main-contacts__phones 
 							a(href="tel:+78312748833").main-contacts__phone +7 831 274-88-33
 							a(href="tel:+78312748811").main-contacts__phone +7 831 274-88-11
-						UiButton(buttonText="Позвоните мне" buttonType="button" classNames="btn-blue" iconName="phone")
+						UiButton(buttonText="Позвоните мне" buttonType="button" classNames="btn-blue" iconName="phone" @buttonClick="openPopupQuestions")
 					.main-contacts__item
 						UiSocialList
 			ContactsMap
-
 </template>
+
+<script setup>
+const emit = defineEmits(["openPopup"]);
+const openPopupQuestions = () => {
+   emit("openPopup");
+};
+</script>
 
 <style lang="scss">
 .main-contacts {

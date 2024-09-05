@@ -188,7 +188,7 @@ defineExpose({
       opacity: 0;
       transition: opacity 0s;
       position: absolute;
-      left: 30px;
+      left: 36px;
       bottom: 136px;
       height: 347px;
       .active & {

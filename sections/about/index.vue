@@ -12,8 +12,9 @@
 						h3.title-sm Поэтому #[span всегда ответственно] подходим к любому контракту
 				.main-about__item.video-block
 					.main-about__video.ibg
-						video(autoplay="autoplay" loop="loop" poster="/images/about/poster.jpg")
-							source(:src="`/video.mp4`" type="video/mp4")
+						img(src="/images/about/poster.jpg", alt="")
+						//- video(autoplay="autoplay" loop="loop" poster="/images/about/poster.jpg")
+						//- 	source(:src="``" type="video/mp4")
 </template>
 
 <script setup>
@@ -21,7 +22,7 @@ const aboutCards = [
    {
       title: "АСМАП",
       subTitle: "Действительный член АСМАП",
-      text: "Каждый год мы подтверждаем право быть лучшими и участвовать в Международных перевозках",
+      text: "Каждый год мы подтверждаем право быть лучшими и участвовать в&nbsp;Международных перевозках",
    },
    {
       title: "25",
@@ -33,7 +34,7 @@ const aboutCards = [
       title: "100",
       separator: "+",
       subTitle: "Грузовиков SCANIA",
-      text: "Наш автопарк постоянно обновляется в соответствии с современными стандартами качества",
+      text: "Наш автопарк постоянно обновляется в соответствии с&nbsp;современными стандартами качества",
    },
 ];
 defineExpose({
@@ -72,7 +73,8 @@ defineExpose({
       gap: 56px;
       .end-heading & {
          max-width: 670px;
-         padding-right: 53px;
+         padding-right: 52px;
+         transform: translateY(20px);
       }
    }
    &__video {
