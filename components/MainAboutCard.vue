@@ -10,9 +10,39 @@
 </template>
 
 <script setup>
+const { $gsap: gsap, $ScrollTrigger: ScrollTrigger } = useNuxtApp();
 const props = defineProps({
    item: {},
    idx: {},
+});
+
+const animation = () => {
+   const callback = (entries) => {
+      entries.forEach((entry) => {
+         if (entry.isIntersecting) {
+            // if (entry.intersectionRatio > 0.7) {
+            //    entry.target.classList.add("in-view");
+            // } else {
+            //    entry.target.classList.remove("in-view");
+            // }
+            if (entry.intersectionRatio >= 0.5) {
+               entry.target.classList.add("active");
+               // observer.unobserve(entry.target);
+            }
+         }
+      });
+   };
+   const options = {
+      threshold: [0, 0.5, 1],
+   };
+   const targetElements = document.querySelectorAll(".about-card");
+   const observer = new IntersectionObserver(callback, options);
+   targetElements.forEach((targetElement) => {
+      observer.observe(targetElement);
+   });
+};
+onMounted(() => {
+   animation();
 });
 </script>
 
@@ -21,7 +51,7 @@ const props = defineProps({
    border-radius: 14px;
    padding: 40px;
    min-height: 506px;
-   background: $bg-bg-grey;
+   background: var(--bg-bg-grey);
    display: grid;
    align-items: end;
    overflow: hidden;
@@ -32,17 +62,17 @@ const props = defineProps({
    }
    &__content {
       max-width: 370px;
-      color: $text-text-secondary;
+      color: var(--text-text-secondary);
    }
    &__title {
       margin-bottom: 14px;
-      color: $bg-bg-red;
+      color: var(--bg-bg-red);
       & span {
          font-weight: 700;
-         font-family: $font-family;
+         font-family: var(--font-family);
          font-size: 32px;
          line-height: 35px;
-         color: $bg-bg-red;
+         color: var(--bg-bg-red);
       }
    }
    &__sub-title {
@@ -50,7 +80,7 @@ const props = defineProps({
       font-weight: 700;
       font-size: 24px;
       line-height: 26px;
-      color: $text-text-secondary;
+      color: var(--text-text-secondary);
    }
    &__text {
       font-size: 20px;

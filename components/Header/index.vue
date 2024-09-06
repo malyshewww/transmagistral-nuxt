@@ -40,15 +40,15 @@ const openPopup = () => {
    display: grid;
    align-items: center;
    z-index: 10;
-   color: $bg-bg-white;
+   color: var(--bg-bg-white);
    padding: 10px 0;
    &.static {
       position: static;
    }
    &.header-white {
-      color: $text-text-secondary;
+      color: var(--text-text-secondary);
       box-shadow: 0 2px 5px 0 rgba(25, 51, 99, 0.05);
-      background: $bg-bg-white;
+      background: var(--bg-bg-white);
       min-height: 87px;
    }
    &__body {

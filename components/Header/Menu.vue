@@ -37,10 +37,10 @@ defineProps({
       transition: color $time;
       @media (any-hover: hover) {
          &:hover {
-            color: $bg-bg-dark;
+            color: var(--bg-bg-dark);
          }
          .header-white &:hover {
-            color: $bg-bg-red;
+            color: var(--bg-bg-red);
          }
       }
    }

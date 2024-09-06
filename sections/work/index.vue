@@ -34,7 +34,7 @@ const closeNoticePopupWork = () => {
 <style lang="scss">
 .main-work {
    padding: 0 20px;
-   color: $bg-bg-white;
+   color: var(--bg-bg-white);
    &__wrapper {
       background-image: url("/images/work/main-bg.svg");
       background-repeat: no-repeat;
@@ -61,7 +61,7 @@ const closeNoticePopupWork = () => {
       gap: 12px;
    }
    &__title {
-      color: $bg-bg-white;
+      color: var(--bg-bg-white);
    }
    &__sub-title {
       font-size: 32px;

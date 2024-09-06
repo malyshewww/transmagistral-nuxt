@@ -44,12 +44,12 @@ defineExpose({
    line-height: 23px;
    letter-spacing: -0.02em;
    text-align: center;
-   color: $bg-bg-dark;
+   color: var(--bg-bg-dark);
    border-radius: 100px;
    padding: 8px;
    padding-left: 24px;
    min-height: 62px;
-   background-color: $bg-bg-white;
+   background-color: var(--bg-bg-white);
    transition: background-color $time;
    &-text {
       flex-grow: 1;
@@ -63,26 +63,26 @@ defineExpose({
       display: grid;
       place-items: center;
       & svg path {
-         fill: $bg-bg-dark;
+         fill: var(--bg-bg-dark);
       }
       .btn-blue &,
       .btn-red & {
          svg path {
-            fill: $bg-bg-white;
+            fill: var(--bg-bg-white);
          }
       }
    }
    &.btn-blue {
-      background-color: $bg-bg-dark;
-      color: $bg-bg-white;
+      background-color: var(--bg-bg-dark);
+      color: var(--bg-bg-white);
    }
    &.btn-red {
-      background-color: $bg-bg-red;
-      color: $bg-bg-white;
+      background-color: var(--bg-bg-red);
+      color: var(--bg-bg-white);
    }
    @media (any-hover: hover) {
       &:hover {
-         background-color: $bg-bg-grey-dark;
+         background-color: var(--bg-bg-grey-dark);
       }
       &.btn-blue:hover {
          background-color: #183377;

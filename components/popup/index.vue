@@ -61,7 +61,7 @@ const closePopup = () => {
       border-radius: 0px;
       max-width: 460px;
       min-height: 174px;
-      background-color: $white;
+      background-color: var(--white);
       width: 100%;
       padding: 40px;
       position: relative;
@@ -95,13 +95,13 @@ const closePopup = () => {
          mask-image: url("/images/icons/icon-close.svg");
          mask-repeat: no-repeat;
          mask-position: center;
-         background-color: $stroke-stroke-grey-dark;
+         background-color: var(--stroke-stroke-grey-dark);
          transition: background-color 0.25s ease 0s;
       }
       @media (any-hover: hover) {
          &:hover {
             &::before {
-               background-color: $black;
+               background-color: var(--black);
             }
          }
       }
@@ -115,13 +115,11 @@ const closePopup = () => {
       font-weight: 700;
       font-size: 24px;
       line-height: 26px;
-      color: $text-text-secondary;
    }
    &__sub-title,
    &__description {
       font-size: 20px;
       line-height: 28px;
-      color: $text-text-secondary;
    }
    &__description {
       & p {

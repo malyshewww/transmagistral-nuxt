@@ -1,7 +1,7 @@
 <template lang="pug">
 	.main-advantages__slider.slider-advantages
 		.slider-advantages__track
-			.slider-advantages__body 
+			.slider-advantages__body
 				.slider-advantages__item.item-advantages(v-for="item, index in advantagesList" :key="index")
 					.item-advantages__image.ibg
 						img(:src="`/images/advantages/image-${index+1}.jpg`", alt="")
@@ -12,6 +12,7 @@
 </template>
 
 <script setup>
+const { $gsap: gsap, $ScrollTrigger: ScrollTrigger } = useNuxtApp();
 const advantagesList = [
    {
       title: "Мультирежимные перевозки",
@@ -38,11 +39,47 @@ const advantagesList = [
       text: "<p>Наш автопарк регулярно проходит полноценное ТО, чтобы соответствовать техническим и санитарным нормам.</p><p>Около 30% наших тягачей используют экологически чистое газовое топливо</p>",
    },
 ];
+
+const animation = () => {
+   let sections = gsap.utils.toArray(
+      ".slider-advantages__body .slider-advantages__item"
+   );
+   const horizontX = -100 * (sections.length - 1);
+   gsap.to(sections, {
+      xPercent: horizontX,
+      ease: "none",
+      scrollTrigger: {
+         trigger: ".slider-advantages__track",
+         pin: true,
+         start: "top",
+         scrub: 1,
+         end: () =>
+            "+=" +
+            document.querySelector(".slider-advantages__body").offsetWidth,
+      },
+   });
+};
+
+onMounted(() => {
+   animation();
+});
+// gsap.to(sliderTrack.value, {
+//    scrollTrigger: {
+//       trigger: ".slider-advantages__item",
+//       start: "top",
+//       end: () => "+=" + transform,
+//       pin: true,
+//       pinSpacing: true,
+//       scrub: true,
+//    },
+//    x: -transform,
+// });
 </script>
 
 <style lang="scss">
 .slider-advantages {
    &__track {
+      padding-top: 80px;
    }
    &__body {
       display: flex;
@@ -53,15 +90,16 @@ const advantagesList = [
    flex-shrink: 0;
    width: 594px;
    counter-increment: num;
-   display: grid;
+   display: flex;
+   flex-direction: column;
    align-items: start;
    gap: 40px;
-   color: $text-text-secondary;
    &__image {
       border-radius: 14px;
       overflow: hidden;
       padding-bottom: 52.2%;
-      height: 100%;
+      height: 334px;
+      align-self: stretch;
    }
    &__content {
       display: flex;
@@ -75,14 +113,13 @@ const advantagesList = [
       place-items: center;
       width: 56px;
       height: 56px;
-      background: $bg-bg-grey;
+      background: var(--bg-bg-grey);
       &::before {
          content: counter(num);
          display: block;
          font-weight: 700;
          font-size: 24px;
          line-height: 26px;
-         color: $text-text-secondary;
       }
    }
    &__title {

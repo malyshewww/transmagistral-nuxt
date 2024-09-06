@@ -15,7 +15,7 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       align-items: start;
-      gap: 100px 20px;
+      gap: 20px 20px;
       & .section-title {
          grid-column: span 2;
       }
@@ -27,12 +27,5 @@
 .slider-advantages {
    display: grid;
    gap: 100px 20px;
-   &__body {
-   }
-   &__item {
-   }
-}
-
-.title-sm {
 }
 </style>

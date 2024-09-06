@@ -43,7 +43,6 @@ const getFullYear = () => {
 
 <style lang="scss">
 .footer {
-   //    background: $gradient;
    padding: 80px 0 27px;
    position: relative;
    isolation: isolate;
@@ -57,7 +56,6 @@ const getFullYear = () => {
       mask-repeat: no-repeat;
       mask-size: cover;
       pointer-events: none;
-      //   background: $gradient;
    }
    &__body {
       display: grid;
@@ -68,7 +66,7 @@ const getFullYear = () => {
       justify-content: space-between;
       align-items: center;
       gap: 20px;
-      color: $text-text-secondary;
+      color: var(--text-text-secondary);
    }
    &__copy {
    }
@@ -79,7 +77,7 @@ const getFullYear = () => {
    min-height: 68px;
    border-radius: 100px;
    padding: 10px 10px 10px 40px;
-   background: $bg-bg-grey;
+   background: var(--bg-bg-grey);
    &__body {
       display: flex;
       justify-content: space-between;
@@ -97,13 +95,9 @@ const getFullYear = () => {
       transition: color $time;
       @media (any-hover: hover) {
          &:hover {
-            color: $bg-bg-red;
+            color: var(--bg-bg-red);
          }
       }
-   }
-   &__logo {
-   }
-   &__actions {
    }
 }
 .button-up {

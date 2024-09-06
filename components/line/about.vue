@@ -76,16 +76,24 @@ defineProps({
    .svg-one path {
       stroke-dasharray: 2000;
       stroke-dashoffset: 2000;
-      animation: dash 5s linear forwards;
    }
    & .svg-second path {
       stroke-dasharray: 2000;
       stroke-dashoffset: -1500;
-      animation: dash 5s linear forwards;
    }
    & .svg-three path {
       stroke-dasharray: 2000;
       stroke-dashoffset: -1500;
+   }
+}
+.about-card.active {
+   .svg-one path {
+      animation: dash 5s linear forwards;
+   }
+   .svg-second path {
+      animation: dash 5s linear forwards;
+   }
+   .svg-three path {
       animation: dash 5s linear forwards 2.8s;
    }
 }

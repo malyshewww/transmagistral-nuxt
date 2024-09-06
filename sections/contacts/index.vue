@@ -33,7 +33,7 @@ const openPopupQuestions = () => {
    }
    &__body {
       padding: 60px;
-      background: $bg-bg-grey;
+      background: var(--bg-bg-grey);
       border-radius: 14px;
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -64,7 +64,7 @@ const openPopupQuestions = () => {
       font-style: normal;
       font-size: 24px;
       line-height: 26px;
-      color: $bg-bg-dark;
+      color: var(--bg-bg-dark);
    }
    &__phones {
       display: grid;
@@ -74,7 +74,7 @@ const openPopupQuestions = () => {
       font-weight: 700;
       font-size: 32px;
       line-height: 35px;
-      color: $bg-bg-dark;
+      color: var(--bg-bg-dark);
       transition: color $time;
       @media (any-hover: hover) {
          &:hover {
@@ -91,10 +91,10 @@ const openPopupQuestions = () => {
    &__item {
       font-size: 24px;
       line-height: 26px;
-      color: $bg-bg-dark;
+      color: var(--bg-bg-dark);
       display: grid;
       place-items: center;
-      border: 1px solid $bg-bg-dark;
+      border: 1px solid var(--bg-bg-dark);
       border-radius: 50px;
       padding: 8px 16px;
       min-height: 42px;

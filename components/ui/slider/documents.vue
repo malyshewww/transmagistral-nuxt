@@ -105,7 +105,7 @@ onMounted(() => {
          &:hover {
             cursor: pointer;
             transform: translateY(-20px);
-            box-shadow: $shadow;
+            box-shadow: var(--shadow);
          }
       }
    }

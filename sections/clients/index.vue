@@ -9,7 +9,6 @@
 						p Мы всегда рады долгосрочному сотрудничеству. Клиенты — основная ценность нашей компании
 				.main-clients__cards 
 					ClientCard
-					UiButton(buttonText="Стать нашим клиентом" classNames="btn-red" buttonType="button" @buttonClick="openPopupClient")
 		PopupClient(@close-popup="closePopupClient" :is-open="isOpenPopupClient")
 		PopupNotice(@close-popup="closeNoticePopupClient" :is-open="isOpenNoticePopupClient")
 </template>
@@ -62,6 +61,7 @@ const closeNoticePopupClient = () => {
          line-height: 26px;
          padding: 40px;
          gap: 40px;
+         height: 100%;
          &-text {
             align-self: start;
             max-width: 90%;

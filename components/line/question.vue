@@ -32,7 +32,11 @@
    & svg path {
       stroke-dasharray: 4000;
       stroke-dashoffset: 5000;
-      animation: dash 10s linear forwards;
+   }
+}
+.main-questions.in-view {
+   & svg path {
+      animation: dash 7s linear forwards;
    }
 }
 @keyframes dash {

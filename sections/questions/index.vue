@@ -32,14 +32,31 @@ const onBlurInput = (e) => {
       target.parentNode.classList.remove("focus");
 };
 
+const animation = () => {
+   const callback = ([entry]) => {
+      if (entry.isIntersecting) {
+         if (entry.intersectionRatio >= 0.6) {
+            entry.target.classList.add("in-view");
+         }
+      }
+   };
+   const options = {
+      threshold: [0, 0.6, 1],
+   };
+   const targetElement = document.querySelector(".main-questions");
+   const observerQuestion = new IntersectionObserver(callback, options);
+   observerQuestion.observe(targetElement);
+};
+
 onMounted(() => {
    maskPhone();
+   animation();
 });
 </script>
 
 <style lang="scss">
 .main-questions {
-   color: $bg-bg-white;
+   color: var(--bg-bg-white);
    padding: 0 20px;
    &__line {
       position: absolute;
@@ -81,27 +98,25 @@ onMounted(() => {
       gap: 34px 100px;
    }
    &__title {
-      color: $bg-bg-white;
+      color: var(--bg-bg-white);
       grid-area: title;
    }
    &__sub-title {
       grid-area: subTitle;
       font-size: 24px;
       line-height: 26px;
-      color: $bg-bg-white;
+      color: var(--bg-bg-white);
    }
    &__form {
       grid-area: form;
       padding-top: 16px;
       & .form-text {
          padding: 0;
-         color: $white;
+         color: var(--white);
       }
       & .text-link {
-         border-color: $white;
+         border-color: var(--white);
       }
-   }
-   &__form {
    }
 }
 .form {
@@ -109,8 +124,6 @@ onMounted(() => {
       display: grid;
       grid-template-columns: 100%;
       gap: 24px;
-   }
-   &__button {
    }
 }
 </style>

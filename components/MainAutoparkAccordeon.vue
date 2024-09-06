@@ -99,7 +99,7 @@ defineExpose({
    &__items {
       display: flex;
       height: 100%;
-      border: 1px solid $stroke-stroke-grey;
+      border: 1px solid var(--stroke-stroke-grey);
       border-right: none;
       border-radius: 14px;
       overflow: hidden;
@@ -113,7 +113,7 @@ defineExpose({
    flex: 1;
    width: 5.3vw;
    transition: flex $time * 2 ease-out;
-   border-right: 1px solid $stroke-stroke-grey;
+   border-right: 1px solid var(--stroke-stroke-grey);
    border-top-right-radius: 14px;
    border-bottom-right-radius: 14px;
    overflow: hidden;
@@ -139,7 +139,7 @@ defineExpose({
    &__header-text {
       writing-mode: vertical-lr;
       transform: rotate(180deg);
-      color: $bg-bg-dark;
+      color: var(--bg-bg-dark);
       white-space: nowrap;
    }
    &__header-icon {
@@ -148,7 +148,7 @@ defineExpose({
       display: grid;
       place-items: center;
       border-radius: 50%;
-      background-color: $bg-bg-grey;
+      background-color: var(--bg-bg-grey);
       transition: background-color $time * 2;
       &::before {
          content: "";
@@ -158,13 +158,13 @@ defineExpose({
          mask-image: url("/images/icons/icon-info.svg");
          mask-repeat: no-repeat;
          mask-position: center;
-         background-color: $bg-bg-dark;
+         background-color: var(--bg-bg-dark);
          transition: background-color $time * 2;
       }
       .active & {
-         background-color: $bg-bg-dark;
+         background-color: var(--bg-bg-dark);
          &::before {
-            background-color: $bg-bg-white;
+            background-color: var(--bg-bg-white);
          }
       }
    }
@@ -209,12 +209,12 @@ defineExpose({
       gap: 12px;
    }
    &__title {
-      color: $text-text-secondary;
+      color: var(--text-text-secondary);
    }
    &__text {
       font-size: 20px;
       line-height: 28px;
-      color: $text-text-secondary;
+      color: var(--text-text-secondary);
       max-width: 95%;
       & p {
          &:not(:last-child) {

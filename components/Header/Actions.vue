@@ -27,10 +27,10 @@ const openPopupQuestions = () => {
       transition: color $time;
       @media (any-hover: hover) {
          &:hover {
-            color: $bg-bg-dark;
+            color: var(--bg-bg-dark);
          }
          .header-white &:hover {
-            color: $bg-bg-red;
+            color: var(--bg-bg-red);
          }
       }
    }
@@ -40,11 +40,11 @@ const openPopupQuestions = () => {
       color: currentColor;
       padding: 8px 32px;
       backdrop-filter: blur(20px);
-      background: $bg-bg-white-15;
+      background: var(--bg-bg-white-15);
       border-radius: 100px;
       transition: background-color $time;
       .header-white & {
-         background: $bg-bg-grey-dark;
+         background: var(--bg-bg-grey-dark);
       }
       @media (any-hover: hover) {
          &:hover {

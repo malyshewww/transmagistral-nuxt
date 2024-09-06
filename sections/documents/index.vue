@@ -19,6 +19,25 @@ const downloadLink = ref("");
 const downloadFile = () => {
    downloadLink.value.click();
 };
+
+const animation = () => {
+   const callback = ([entry]) => {
+      if (entry.isIntersecting) {
+         if (entry.intersectionRatio >= 0.2) {
+            entry.target.classList.add("in-view");
+         }
+      }
+   };
+   const options = {
+      threshold: [0, 0.2, 1],
+   };
+   const mainDocumentSection = document.querySelector(".main-documents");
+   const observerMainDocuments = new IntersectionObserver(callback, options);
+   observerMainDocuments.observe(mainDocumentSection);
+};
+onMounted(() => {
+   animation();
+});
 </script>
 
 <style lang="scss">

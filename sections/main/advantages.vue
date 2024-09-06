@@ -22,13 +22,13 @@ defineExpose({
       }
       &-item {
          backdrop-filter: blur(20px);
-         background: $bg-bg-white-15;
+         background: var(--bg-bg-white-15);
          padding: 8px 20px;
          border-radius: 100px;
          min-height: 46px;
          font-size: 20px;
          line-height: 28px;
-         color: $bg-bg-white;
+         color: var(--bg-bg-white);
       }
    }
 }

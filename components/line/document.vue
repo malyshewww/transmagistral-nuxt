@@ -26,7 +26,11 @@
    & svg path {
       stroke-dasharray: 4000;
       stroke-dashoffset: 5000;
-      animation: dash 10s linear forwards;
+   }
+}
+.main-documents.in-view {
+   & svg path {
+      animation: dash 8s linear forwards;
    }
 }
 @keyframes dash {

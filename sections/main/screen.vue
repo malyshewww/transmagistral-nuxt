@@ -52,13 +52,13 @@
    &__title {
       position: absolute;
       z-index: 6;
-      font-family: $second-family;
+      font-family: var(--second-family);
       font-size: 280px;
       line-height: 1;
       text-align: center;
       inset: 0;
       top: 26.5%;
-      color: $bg-bg-white;
+      color: var(--bg-bg-white);
       @media screen and (max-width: 1919px) {
          font-size: 24vh;
       }
@@ -82,13 +82,13 @@
       width: 100px;
       height: 100px;
       box-shadow: 0 4px 4px 0 rgba(25, 51, 99, 0.2);
-      background-color: $stroke-stroke-accent;
+      background-color: var(--stroke-stroke-accent);
    }
    &__text {
       font-weight: 500;
       font-size: 32px;
       line-height: 120%;
-      color: $bg-bg-white;
+      color: var(--bg-bg-white);
       max-width: 460px;
    }
 }

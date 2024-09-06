@@ -1,5 +1,5 @@
 <template lang="pug">
-	section.reliably
+	section.reliably.section-gradient(data-bgcolor="#255cae" data-bgcolor-leave="white" data-textcolor="#536fae")
 		.container
 			.reliably__body 
 				.reliably__heading 
@@ -181,10 +181,6 @@ const reliablySliderData = [
    },
 ];
 
-// defineExpose({
-//    reliablySliderData,
-// });
-
 onMounted(() => {
    gsapSlider();
 });
@@ -196,11 +192,11 @@ onMounted(() => {
    &__body {
       display: grid;
       gap: 12px;
+      position: relative;
+      z-index: 10;
    }
    &__heading {
       max-width: 560px;
-   }
-   &__slider {
    }
 }
 .reliably-slider__box {
@@ -214,7 +210,7 @@ onMounted(() => {
       transform: translate(-100%, -50%);
       height: 1px;
       width: 100vw;
-      background-color: $stroke-stroke-grey;
+      background-color: var(--stroke-stroke-grey);
    }
    & .item {
       width: 40px;
@@ -230,7 +226,7 @@ onMounted(() => {
          display: block;
          width: 24px;
          height: 24px;
-         background-color: $stroke-stroke-grey;
+         background-color: var(--stroke-stroke-grey);
          border-radius: 50%;
          transition: width $time ease-out 0.4s, height $time ease-out 0.4s,
             background-color ease-out $time 0.4s;
@@ -242,7 +238,7 @@ onMounted(() => {
       }
       &.active {
          &::before {
-            background-color: $bg-bg-dark;
+            background-color: var(--bg-bg-dark);
             width: 100%;
             height: 100%;
          }
@@ -261,7 +257,7 @@ onMounted(() => {
       & path {
          fill: transparent;
          stroke-width: 1px;
-         stroke: $stroke-stroke-grey;
+         stroke: var(--stroke-stroke-grey);
       }
    }
 }
@@ -347,7 +343,7 @@ onMounted(() => {
 .reliably-content {
    display: grid;
    gap: 12px;
-   color: $text-text-secondary;
+   color: var(--text-text-secondary);
    &__caption {
       font-weight: 700;
       font-size: 32px;

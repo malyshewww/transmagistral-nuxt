@@ -1,6 +1,15 @@
 body {
-	background-color: $bg-bg-grey-dark;
+	background-color: var(--bg-bg-white);
 }
+
+.wrapper {
+	background-color: var(--bg-bg-white);
+}
+
+// #__nuxt {
+// 	background: inherit;
+// 	color: inherit;
+// }
 
 .wrapper {
 	display: flex;
@@ -15,11 +24,11 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-	color: $bg-bg-dark;
+	color: var(--bg-bg-dark);
 }
 h1, h2, h3, h4 {
 	font-weight: 400;
-	font-family: $second-family;
+	font-family: var(--second-family);
 }
 h1 {
 	font-size: 280px;
@@ -66,22 +75,8 @@ h6 {
 	}
 }
 
-.section-heading {
-	border-radius: 100px;
-	padding: 8px 20px;
-	font-size: 20px;
-	line-height: 28px;
-	color: $bg-bg-red;
-	min-height: 46px;
-	background: $bg-bg-red-6;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: fit-content;
-}
-
 .section-title {
-	color: $bg-bg-dark;
+	color: var(--bg-bg-dark);
 }
 .title-sm {
 	& span {
@@ -119,7 +114,7 @@ h6 {
 	flex-shrink: 0;
 	transition: background-color $time, fill $time;
 	.controls-white & {
-		background-color: $bg-bg-white;
+		background-color: var(--bg-bg-white);
 	}
 	&.swiper-button-disabled {
 		pointer-events: none;
@@ -134,7 +129,7 @@ h6 {
 	}
 	& svg path {
 		transition: fill $time;
-		fill: $bg-bg-dark;
+		fill: var(--bg-bg-dark);
 	}
 	@media (any-hover: hover) {
 		&:hover {
@@ -142,7 +137,7 @@ h6 {
 				fill: #183377;
 			}
 			.controls-white & svg path {
-				fill: $bg-bg-grey-dark;
+				fill: var(--bg-bg-grey-dark);
 			}
 		}
 		&.swiper-button-disabled:hover {
@@ -181,7 +176,7 @@ h6 {
 	position: relative;
 	&__field {
 		position: relative;
-		border-bottom: 1px solid rgba($bg-bg-white, 0.5);
+		border-bottom: 1px solid rgba(var(--bg-bg-white-rgb), 0.5);
 		&::before {
 			content: "";
 			position: absolute;
@@ -189,7 +184,7 @@ h6 {
 			left: 0;
 			width: 0px;
 			height: 1px;
-			background-color: $bg-bg-white;
+			background-color: var(--bg-bg-white);
 			transition: width $time * 2;
 			z-index: 2;
 		}
@@ -199,9 +194,9 @@ h6 {
 			}
 		}
 		.popup & {
-			border-bottom: 1px solid rgba($stroke-stroke-grey-dark, 0.5);
+			border-bottom: 1px solid rgba(var(--stroke-stroke-grey-dark-rgb), 0.5);
 			&::before {
-				background-color: $stroke-stroke-grey-dark;
+				background-color: var(--stroke-stroke-grey-dark);
 			}
 		}
 	}
@@ -218,17 +213,17 @@ h6 {
 	padding: 16px;
 	font-size: 16px;
 	line-height: 18px;
-	color: $bg-bg-white;
+	color: var(--bg-bg-white);
 	background-color: transparent;
 	&::placeholder {
 		font-size: 16px;
-		color: rgba($bg-bg-white, 0.5);
+		color: rgba(var(--bg-bg-white-rgb), 0.5);
 		line-height: 18px;
 	}
 	.popup & {
-		color: $text-text-secondary;
+		color: var(--text-text-secondary);
 		&::placeholder {
-			color: rgba($text-text-secondary, .5);
+			color: rgba(var(--text-text-secondary-rgb), .5);
 		}
 	}
 }
@@ -236,6 +231,38 @@ h6 {
 .form-text {
 	font-size: 16px;
 	line-height: 18px;
-	color: rgba($text-text-secondary, .5);
+	color: rgba(var(--text-text-secondary-rgb), .5);
 	padding: 0 16px;
+}
+
+.section-gradient {
+	overflow: hidden;
+	position: relative;
+	isolation: isolate;
+	// background-image: url('/images/noise.png');
+	// background-repeat: no-repeat;
+	// background-position: center;
+	// background-size: cover;
+	&::before,
+	&::after {
+		content: "";
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		pointer-events: none;
+		opacity: 0;
+		transition: opacity 1s ease 0s;
+	}
+	&::after {
+		background-image: url('/images/noise.png');
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: cover;
+	}
+	&::before {
+		background: linear-gradient(90deg, #b7d8e9 0%, #255cae 100%);
+		mix-blend-mode: overlay;
+		z-index: 1;
+	}
 }

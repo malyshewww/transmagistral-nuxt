@@ -13,7 +13,7 @@ onMounted(() => {
    const mapElem = document.getElementById("mapElem");
    const script = document.createElement("script");
    script.src =
-      "https://api-maps.yandex.ru/v3/?apikey=ea2f2b8f-a553-4e78-bbd3-fbfd203217aa&lang=ru_RU";
+      "https://api-maps.yandex.ru/v3/?apikey=c87eadb5-9e35-48d6-8175-3e770edb04e0&lang=ru_RU";
    document.body.appendChild(script);
    script.onload = function () {
       initMap();
@@ -64,7 +64,7 @@ onMounted(() => {
       height: 780px;
       border-radius: 14px;
       overflow: hidden;
-      background-color: gray;
+      background-color: var(--bg-bg-white);
       display: flex;
       justify-content: center;
       & .map {

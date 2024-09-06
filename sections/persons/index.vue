@@ -57,6 +57,31 @@ const personList = [
       phone: "+7 910 396-13-50",
    },
 ];
+
+const animation = () => {
+   const callback = ([entry]) => {
+      if (entry.isIntersecting) {
+         entry.target.classList.add("in-view");
+      }
+   };
+   const options = {};
+   const mainPersonSection = document.querySelector(".main-persons");
+   const observerMainPerson = new IntersectionObserver(callback, options);
+   observerMainPerson.observe(mainPersonSection);
+
+   const callbackCard = ([entry]) => {
+      if (entry.isIntersecting) {
+         entry.target.classList.add("in-view");
+      }
+   };
+   const personCardElement = document.querySelector(".person-card-last");
+   const observerPersonCard = new IntersectionObserver(callbackCard, options);
+   observerPersonCard.observe(personCardElement);
+};
+
+onMounted(() => {
+   animation();
+});
 </script>
 
 <style lang="scss">

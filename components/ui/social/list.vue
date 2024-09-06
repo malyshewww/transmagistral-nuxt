@@ -33,7 +33,7 @@
       width: 64px;
       height: 64px;
       border-radius: 50%;
-      background-color: $bg-bg-white;
+      background-color: var(--bg-bg-white);
       transition: background-color $time * 1.5;
       & svg {
          width: 38px;
@@ -42,9 +42,9 @@
       }
       @media (any-hover: hover) {
          &:hover {
-            background-color: $bg-bg-grey-dark;
+            background-color: var(--bg-bg-grey-dark);
             & svg {
-               fill: $bg-bg-grey-dark;
+               fill: var(--bg-bg-grey-dark);
             }
          }
          &:active {

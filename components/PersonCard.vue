@@ -20,8 +20,8 @@ defineProps({
 .person-card {
    padding: 40px;
    border-radius: 14px;
-   background-color: $bg-bg-grey;
-   color: $text-text-secondary;
+   background-color: var(--bg-bg-grey);
+   color: var(--text-text-secondary);
    &:last-child {
       grid-column: span 2;
    }
@@ -49,7 +49,7 @@ defineProps({
       display: flex;
       justify-content: center;
       min-height: 35px;
-      background: $bg-bg-grey-dark;
+      background: var(--bg-bg-grey-dark);
       font-size: 20px;
       line-height: 28px;
    }
@@ -65,23 +65,23 @@ defineProps({
    }
    &__bottom {
       text-align: right;
-      color: $bg-bg-dark;
+      color: var(--bg-bg-dark);
    }
    &__num {
       font-size: 124px;
       line-height: 136px;
       text-align: right;
-      font-family: $second-family;
+      font-family: var(--second-family);
       display: flex;
       align-items: start;
       justify-content: flex-end;
       & span {
-         font-family: $font-family;
+         font-family: var(--font-family);
          font-weight: 700;
          font-size: 54px;
          line-height: 76px;
          text-align: right;
-         color: $bg-bg-red;
+         color: var(--bg-bg-red);
       }
    }
 
@@ -89,7 +89,7 @@ defineProps({
       font-weight: 700;
       font-size: 32px;
       text-align: right;
-      color: $bg-bg-dark;
+      color: var(--bg-bg-dark);
    }
    &__small-image {
       position: absolute;
@@ -102,7 +102,7 @@ defineProps({
       display: grid;
       place-items: center;
       flex-shrink: 0;
-      border: 1px solid $stroke-stroke-grey;
+      border: 1px solid var(--stroke-stroke-grey);
       & span {
          width: 23px;
          display: inline-block;
@@ -113,9 +113,10 @@ defineProps({
             width: 5px;
             height: 5px;
             border-radius: 50%;
-            background: $stroke-stroke-grey;
-            box-shadow: 0px 0px $stroke-stroke-grey,
-               10px 0px $stroke-stroke-grey, 20px 0px $stroke-stroke-grey;
+            background: var(--stroke-stroke-grey);
+            box-shadow: 0px 0px var(--stroke-stroke-grey),
+               10px 0px var(--stroke-stroke-grey),
+               20px 0px var(--stroke-stroke-grey);
          }
       }
       &:not(:last-child) {

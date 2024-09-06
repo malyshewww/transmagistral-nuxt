@@ -3,7 +3,7 @@
 		Header(:menu="menu" @openPopup="openPopupQuestions")
 		main
 			slot 
-		Footer(:menu="menu" @openPopup="openPopupQuestions" @openPopupPolitic="openPopupPolitic")
+		//- Footer(:menu="menu" @openPopup="openPopupQuestions" @openPopupPolitic="openPopupPolitic")
 		PopupQuestions(@close-popup="closePopupQuestions" :is-open="isOpenPopupQuestions" @openPopupPolitic="openPopupPolitic")
 		PopupNotice(@close-popup="closeNoticePopupQuestions" :is-open="isOpenNoticePopupQuestions")
 		PopupPolitic(@close-popup="closePopupPolitic" :is-open="isOpenPopupPolitic")

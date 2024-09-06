@@ -31,8 +31,10 @@
    & svg path {
       stroke-dasharray: 2000;
       stroke-dashoffset: 2000;
-      animation: dash 5s linear forwards 0s;
    }
+}
+.person-card.in-view {
+   animation: dash 5s linear forwards 0s;
 }
 @keyframes dash {
    to {
