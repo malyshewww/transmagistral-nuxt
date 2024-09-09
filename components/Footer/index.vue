@@ -44,19 +44,6 @@ const getFullYear = () => {
 <style lang="scss">
 .footer {
    padding: 80px 0 27px;
-   position: relative;
-   isolation: isolate;
-   &::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      mask-image: url("/images/noise.svg");
-      mask-repeat: no-repeat;
-      mask-size: cover;
-      pointer-events: none;
-   }
    &__body {
       display: grid;
       gap: 80px;

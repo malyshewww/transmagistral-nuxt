@@ -3,13 +3,40 @@ body {
 }
 
 .wrapper {
+	--bgOpacity: 0;
+	position: relative;
 	background-color: var(--bg-bg-white);
+	isolation: isolate;
+	// &::before {
+	// 	content: "";
+	// 	position: absolute;
+	// 	inset: 0;
+	// 	background-image: url("/images/noise.png");
+	// 	background-repeat: no-repeat;
+	// 	background-size: cover;
+	// 	// background-blend-mode: soft-light;
+	// 	width: 100%;
+	// 	height: 100%;
+	// }
+	&::after {
+		// content: "";
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		opacity: var(--bgOpacity);
+		transition: opacity 1s ease-in-out 0s;
+		background: var(--gradient);
+		z-index: -1;
+	}
 }
 
-// #__nuxt {
-// 	background: inherit;
-// 	color: inherit;
-// }
+
+#__nuxt,
+.scroller {
+	background: inherit;
+	color: inherit;
+}
 
 .wrapper {
 	display: flex;

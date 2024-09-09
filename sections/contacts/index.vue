@@ -1,5 +1,5 @@
 <template lang="pug">
-	section.main-contacts
+	section.main-contacts#contacts
 		.main-contacts__body 
 			.main-contacts__content
 				h2.section-title Контакты

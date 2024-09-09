@@ -1,5 +1,5 @@
 <template lang="pug">
-	header.header(:class="classNames")
+	header.header(:class="[classNames, {'hide': isHiddenHeader}]")
 		.container 
 			.header__body 
 				NuxtLink(to="/").header__logo.logo
@@ -19,6 +19,9 @@ defineProps({
    },
    classNames: {
       type: String,
+   },
+   isHiddenHeader: {
+      type: Boolean,
    },
 });
 
@@ -42,14 +45,17 @@ const openPopup = () => {
    z-index: 10;
    color: var(--bg-bg-white);
    padding: 10px 0;
-   &.static {
-      position: static;
-   }
    &.header-white {
+      position: sticky;
       color: var(--text-text-secondary);
       box-shadow: 0 2px 5px 0 rgba(25, 51, 99, 0.05);
       background: var(--bg-bg-white);
       min-height: 87px;
+      transition: opacity $time * 2;
+      &.hide {
+         opacity: 0;
+         pointer-events: none;
+      }
    }
    &__body {
       display: flex;

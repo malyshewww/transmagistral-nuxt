@@ -1,5 +1,5 @@
 <template lang="pug">
-	section.main-work
+	section.main-work#work
 		.main-work__wrapper 
 			.main-work__image.ibg 
 				img(:src="`/images/work/main-img.jpg`", alt="фото")

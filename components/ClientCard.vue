@@ -1,13 +1,14 @@
 <template lang="pug">
-	.client-card.anim-client-card(v-for="item, index in 7")
+	.client-card.anim-client-card(ref="animClientCard" v-for="item, index in 7")
 		.client-card__image
 			img(:src="`/images/clients/client-${item}.svg`", alt="лого клиента")
-	.anim-client-card
+	.anim-client-card(ref="animClientCard")
 		UiButton(buttonText="Стать нашим клиентом" classNames="btn-red" buttonType="button" @buttonClick="openPopupClient")
 </template>
 
 <script setup>
 const { $gsap: gsap, $ScrollTrigger: ScrollTrigger } = useNuxtApp();
+// const animClientCard = ref('')
 const animation = () => {
    gsap.defaults({ ease: "power3" });
    gsap.set(".anim-client-card", { y: 100 });
@@ -35,7 +36,7 @@ const animation = () => {
    );
 };
 onMounted(() => {
-   animation();
+   // animation();
 });
 </script>
 

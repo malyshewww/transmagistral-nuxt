@@ -1,5 +1,5 @@
 <template lang="pug">
-	section.main-clients
+	section.main-clients#clients
 		.container 
 			.main-clients__body 
 				UiSectionHeading(caption="Клиенты")

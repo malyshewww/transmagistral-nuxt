@@ -1,5 +1,5 @@
 <template lang="pug">
-	section.main-autopark(data-bgcolor="#255cae" data-bgcolor-leave="white" data-textcolor="#eacbd1")
+	section.main-autopark#autopark(data-bgcolor="#255cae" data-bgcolor-leave="white" data-textcolor="#eacbd1")
 		.container
 			.main-autopark__body 
 				UiSectionHeading(caption="Автопарк")

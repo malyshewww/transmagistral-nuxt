@@ -1,5 +1,5 @@
 <template lang="pug">
-	section.main-documents
+	section.main-documents#documents
 		.container 
 			.main-documents__body 
 				UiSectionHeading(caption="Документы")

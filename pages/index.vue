@@ -1,6 +1,4 @@
 <template lang="pug">
-	MainScreen
-	//- Header(classNames="static header-white")
 	About
 	Reliably
 	Autopark
@@ -20,6 +18,7 @@ onMounted(() => {
    scrollColorElems.forEach((colorSection, i) => {
       const prevBg = i === 0 ? "" : scrollColorElems[i - 1].dataset.bgcolor;
       const prevText = i === 0 ? "" : scrollColorElems[i - 1].dataset.textcolor;
+      const bgOpacity = i === 0 ? 0 : 1;
       // ScrollTrigger.create({
       //    trigger: colorSection,
       //    scroller: ".wrapper",
@@ -51,24 +50,22 @@ onMounted(() => {
          trigger: colorSection,
          start: "top 50%",
          //  triggerActions: "restart none reset none",
-         onEnter: () =>
+         onEnter: () => {
             gsap.to(".wrapper", {
-               backgroundColor: colorSection.dataset.bgcolor,
+               "--bgOpacity": bgOpacity,
+               background: colorSection.dataset.bgcolor,
                color: colorSection.dataset.textcolor,
                overwrite: "auto",
-            }),
-         onLeaveBack: () =>
+            });
+         },
+         onLeaveBack: () => {
             gsap.to(".wrapper", {
-               backgroundColor: prevBg,
+               "--bgOpacity": bgOpacity,
+               background: prevBg,
                color: prevText,
                overwrite: "auto",
-            }),
-         //  onLeave: () =>
-         //     gsap.to(colorSection, {
-         //        backgroundColor: "white",
-         //        color: prevText,
-         //        overwrite: "auto",
-         //     }),
+            });
+         },
          onUpdate: (self) => console.log(self),
       });
    });

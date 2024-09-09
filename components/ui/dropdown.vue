@@ -38,7 +38,7 @@ const openDropdown = () => {
    }
    &__button {
       width: 100%;
-      border-bottom: 1px solid rgba(var(--stroke-stroke-grey-dark), 0.5);
+      border-bottom: 1px solid rgba(var(--stroke-stroke-grey-dark-rgb), 0.5);
       padding: 16px;
       min-height: 52px;
       opacity: 0.5;

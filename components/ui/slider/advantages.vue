@@ -41,6 +41,17 @@ const advantagesList = [
 ];
 
 const animation = () => {
+   const { bodyScrollBar, scroller } = useScrollbar();
+   ScrollTrigger.scrollerProxy(".scroller", {
+      scrollTop(value) {
+         if (arguments.length) {
+            bodyScrollBar.scrollTop = value;
+         }
+         return bodyScrollBar.scrollTop;
+      },
+   });
+   bodyScrollBar.addListener(ScrollTrigger.update);
+   ScrollTrigger.defaults({ scroller });
    let sections = gsap.utils.toArray(
       ".slider-advantages__body .slider-advantages__item"
    );
@@ -55,7 +66,7 @@ const animation = () => {
          scrub: 1,
          end: () =>
             "+=" +
-            document.querySelector(".slider-advantages__body").offsetWidth,
+            document.querySelector(".slider-advantages__body")?.offsetWidth,
       },
    });
 };
