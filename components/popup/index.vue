@@ -95,7 +95,7 @@ const closePopup = () => {
          mask-image: url("/images/icons/icon-close.svg");
          mask-repeat: no-repeat;
          mask-position: center;
-         background-color: var(--stroke-stroke-grey-dark);
+         background-color: #7f8284;
          transition: background-color 0.25s ease 0s;
       }
       @media (any-hover: hover) {

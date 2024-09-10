@@ -119,6 +119,7 @@ defineExpose({
    overflow: hidden;
    &.active {
       flex: 61.3vw;
+      pointer-events: none;
    }
    &__header {
       padding: 40px 30px;
@@ -207,6 +208,10 @@ defineExpose({
    &__inner {
       display: grid;
       gap: 12px;
+   }
+   &__title,
+   &__text {
+      transition: color $time * 2;
    }
    &__title {
       color: var(--text-text-secondary);

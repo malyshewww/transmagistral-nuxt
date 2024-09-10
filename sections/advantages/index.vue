@@ -4,7 +4,7 @@
 			.main-advantages__body 
 				UiSectionHeading(caption="Преимущества")
 				h2.section-title В чем секрет нашего успеха?
-				UiSliderAdvantages
+			UiSliderAdvantages
 </template>
 
 <style lang="scss">

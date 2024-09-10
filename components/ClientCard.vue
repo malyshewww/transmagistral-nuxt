@@ -2,16 +2,25 @@
 	.client-card.anim-client-card(ref="animClientCard" v-for="item, index in 7")
 		.client-card__image
 			img(:src="`/images/clients/client-${item}.svg`", alt="лого клиента")
-	.anim-client-card(ref="animClientCard")
-		UiButton(buttonText="Стать нашим клиентом" classNames="btn-red" buttonType="button" @buttonClick="openPopupClient")
 </template>
 
 <script setup>
 const { $gsap: gsap, $ScrollTrigger: ScrollTrigger } = useNuxtApp();
 // const animClientCard = ref('')
 const animation = () => {
+   const { bodyScrollBar, scroller } = useScrollbar();
+   ScrollTrigger.scrollerProxy(".scroller", {
+      scrollTop(value) {
+         if (arguments.length) {
+            bodyScrollBar.scrollTop = value;
+         }
+         return bodyScrollBar.scrollTop;
+      },
+   });
+   bodyScrollBar.addListener(ScrollTrigger.update);
+   ScrollTrigger.defaults({ scroller });
    gsap.defaults({ ease: "power3" });
-   gsap.set(".anim-client-card", { y: 100 });
+   gsap.set(".anim-client-card", { y: 100, opacity: 0 });
    ScrollTrigger.batch(".anim-client-card", {
       interval: 0.1,
       batchMax: 3,
@@ -22,12 +31,12 @@ const animation = () => {
             stagger: { each: 0.15, grid: [1, 3] },
             overwrite: true,
          }),
-      onLeave: (batch) =>
-         gsap.set(batch, { opacity: 0, y: -100, overwrite: true }),
+      // onLeave: (batch) =>
+      //    gsap.set(batch, { opacity: 0, y: -100, overwrite: true }),
       onEnterBack: (batch) =>
          gsap.to(batch, { opacity: 1, y: 0, stagger: 0.15, overwrite: true }),
-      onLeaveBack: (batch) =>
-         gsap.set(batch, { opacity: 0, y: 100, overwrite: true }),
+      // onLeaveBack: (batch) =>
+      //    gsap.set(batch, { opacity: 0, y: 100, overwrite: true }),
       start: "20px bottom",
       end: "top top",
    });
@@ -36,7 +45,7 @@ const animation = () => {
    );
 };
 onMounted(() => {
-   // animation();
+   animation();
 });
 </script>
 

@@ -8,7 +8,7 @@
 						source(:srcset="`/images/logo.svg`" media="(min-width: 300px)")
 						img(src="/images/logo.svg", alt="логотип")
 				HeaderMenu(:menu="menu")
-				HeaderActions(@openPopup="openPopup")
+				HeaderActions
 </template>
 
 <script setup>
@@ -47,7 +47,7 @@ const openPopup = () => {
    padding: 10px 0;
    &.header-white {
       position: sticky;
-      color: var(--text-text-secondary);
+      color: #31373b;
       box-shadow: 0 2px 5px 0 rgba(25, 51, 99, 0.05);
       background: var(--bg-bg-white);
       min-height: 87px;

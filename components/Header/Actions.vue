@@ -5,10 +5,10 @@
 </template>
 
 <script setup>
-const emit = defineEmits(["openPopup"]);
-
+import { usePopupStore } from "~/stores/popup";
+const store = usePopupStore();
 const openPopupQuestions = () => {
-   emit("openPopup");
+   store.openPopupQuestions();
 };
 </script>
 

@@ -1,5 +1,5 @@
 <template lang="pug">
-	section.reliably.section-gradient(data-bgcolor="#255cae" data-bgcolor-leave="white" data-textcolor="#536fae")
+	section.reliably.section-gradient(data-bgcolor="linear-gradient(90deg, #b7d8e9 0%, #255cae 100%)" data-theme="dark" data-textcolor="white")
 		.container
 			.reliably__body 
 				.reliably__heading 
@@ -229,7 +229,7 @@ onMounted(() => {
          background-color: var(--stroke-stroke-grey);
          border-radius: 50%;
          transition: width $time ease-out 0.4s, height $time ease-out 0.4s,
-            background-color ease-out $time 0.4s;
+            background-color $time ease-out 0.4s;
       }
       @media (any-hover: hover) {
          &:hover {
@@ -239,8 +239,11 @@ onMounted(() => {
       &.active {
          &::before {
             background-color: var(--bg-bg-dark);
+            transition: background-color $time ease-out 0s;
             width: 100%;
             height: 100%;
+            .dark {
+            }
          }
       }
    }

@@ -1,21 +1,24 @@
 <template lang="pug">
+	.page-gradient(ref="pageGradient")
 	.scroller(ref="scroller")
 		.wrapper
-			.page-gradient
-			Header(:menu="menu" @openPopup="openPopupQuestions")
+			Header(:menu="menu")
 			MainScreen
 			main
 				.main-content
-					Header(:menu="menu" @openPopup="openPopupQuestions" classNames="header-white" :isHiddenHeader="isHiddenHeader")
+					Header(:menu="menu" classNames="header-white" :isHiddenHeader="isHiddenHeader")
 					slot 
-					Footer(:menu="menu" @openPopup="openPopupQuestions" @openPopupPolitic="openPopupPolitic")
-	PopupQuestions(@close-popup="closePopupQuestions" :is-open="isOpenPopupQuestions" @openPopupPolitic="openPopupPolitic")
+					Footer(:menu="menu")
+	PopupQuestions(@close-popup="store.closePopupQuestions" :is-open="store.isPopupQuestionsActive")
 	PopupNotice(@close-popup="closeNoticePopupQuestions" :is-open="isOpenNoticePopupQuestions")
-	PopupPolitic(@close-popup="closePopupPolitic" :is-open="isOpenPopupPolitic")
+	PopupPolitic(@close-popup="store.closePopupPolitic" :is-open="store.isPopupPoliticActive")
 </template>
 
 <script setup>
-const { $ScrollTrigger: ScrollTrigger } = useNuxtApp();
+import { usePopupStore } from "~/stores/popup";
+const { $gsap: gsap, $ScrollTrigger: ScrollTrigger } = useNuxtApp();
+
+const store = usePopupStore();
 
 const isHiddenHeader = ref(true);
 
@@ -42,6 +45,7 @@ onMounted(() => {
    let prevScrollPosition = bodyScrollBar.scrollTop;
    bodyScrollBar.addListener(({ offset }) => {
       let scrollPosition = bodyScrollBar.offset.y;
+      // pageGradient.value.top = scrollPosition;
       if (mainScreen && offset.y > mainScreenHeight) {
          isHiddenHeader.value = false;
          if (prevScrollPosition < scrollPosition) {
@@ -63,25 +67,62 @@ onMounted(() => {
       prevScrollPosition = scrollPosition;
    });
 
-   const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-         const id = entry.target.getAttribute("id");
-         if (entry.intersectionRatio > 0) {
-            document
-               .querySelector(`.header li a[href="#${id}"]`)
-               .parentElement.classList.add("active");
-         } else {
-            document
-               .querySelector(`.header li a[href="#${id}"]`)
-               .parentElement.classList.remove("active");
-         }
+   /* COLOR CHANGER */
+   const scrollColorElems = document.querySelectorAll("[data-bgcolor]");
+   scrollColorElems.forEach((colorSection, i) => {
+      const prevBg = i === 0 ? "" : scrollColorElems[i - 1].dataset.bgcolor;
+      const prevText = i === 0 ? "" : scrollColorElems[i - 1].dataset.textcolor;
+      const bgOpacity = i === 0 ? 0 : 1;
+      const theme = i === 0 ? "white" : scrollColorElems[i - 1].dataset.theme;
+      ScrollTrigger.create({
+         trigger: colorSection,
+         start: "top 50%",
+         onEnter: () => {
+            gsap.to(".wrapper", {
+               // "--bgOpacity": bgOpacity,
+               "--color": colorSection.dataset.textcolor,
+               backgroundImage: colorSection.dataset.bgcolor,
+               color: colorSection.dataset.textcolor,
+               overwrite: "auto",
+               duration: 0.4,
+            });
+            document.querySelector(
+               ".wrapper"
+            ).className = `wrapper ${colorSection.dataset.theme}`;
+            document.documentElement.className = `${colorSection.dataset.theme}`;
+         },
+         onLeaveBack: () => {
+            gsap.to(".wrapper", {
+               // "--bgOpacity": bgOpacity,
+               "--color": prevText,
+               backgroundImage: prevBg,
+               color: prevText,
+               overwrite: "auto",
+               duration: 0.4,
+            });
+            document.documentElement.className = `${theme}`;
+            document.querySelector(".wrapper").className = `wrapper ${theme}`;
+         },
       });
    });
 
-   // Track all sections that have an `id` applied
-   document.querySelectorAll("section[id]").forEach((section) => {
-      observer.observe(section);
-   });
+   // const observer = new IntersectionObserver((entries) => {
+   //    entries.forEach((entry) => {
+   //       const id = entry.target.getAttribute("id");
+   //       if (entry.intersectionRatio > 0) {
+   //          document
+   //             .querySelector(`.header li a[href="#${id}"]`)
+   //             .parentElement.classList.add("active");
+   //       } else {
+   //          document
+   //             .querySelector(`.header li a[href="#${id}"]`)
+   //             .parentElement.classList.remove("active");
+   //       }
+   //    });
+   // });
+   // document.querySelectorAll("section[id]").forEach((section) => {
+   //    observer.observe(section);
+   // });
 });
 
 const isOpenPopupQuestions = ref(false);

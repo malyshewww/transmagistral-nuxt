@@ -12,7 +12,10 @@ nuxtApp.hook("page:start", () => {
    ScrollTrigger.update();
 });
 
-onMounted(() => {});
+onMounted(() => {
+   nuxtApp.provide("hello", (name) => `Hello ${name}!`);
+   console.log(nuxtApp.$hello("name"));
+});
 
 useHead({
    title: "Трансмагистраль",
@@ -27,4 +30,37 @@ useHead({
 @import "~/assets/scss/keyframes.scss";
 @import "~/assets/scss/common.scss";
 @import "~/assets/scss/fonts.scss";
+.wrapper.dark {
+   --bg-bg-dark: #ffffff;
+   --bg-red-title: #ffffff;
+   --text-text-secondary: #ffffff;
+   --button-hover-dark: #eceff6;
+   --button-active-dark: #d8dbe2;
+   --bg-footer-nav: #f4f6fc;
+   &::before {
+      opacity: 1;
+   }
+   & .main-contacts {
+      & .section-title {
+         color: var(--bg-bg-dark-contacts);
+      }
+      & .btn {
+         background-color: var(--bg-bg-dark-contacts);
+         @media (any-hover: hover) {
+            &.btn-blue:hover,
+            &:hover {
+               background-color: #183377;
+            }
+            &.btn-blue:active,
+            &:active {
+               background-color: #2c478b;
+            }
+            &:disabled,
+            &.disabled {
+               background: #e6e6e6;
+            }
+         }
+      }
+   }
+}
 </style>

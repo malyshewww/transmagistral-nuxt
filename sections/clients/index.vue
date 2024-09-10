@@ -1,5 +1,5 @@
 <template lang="pug">
-	section.main-clients#clients
+	section.main-clients#clients(data-bgcolor="linear-gradient(90deg, #ffffff 0%, #ffffff 100%)" data-theme="white" data-textcolor="white")
 		.container 
 			.main-clients__body 
 				UiSectionHeading(caption="Клиенты")
@@ -7,8 +7,10 @@
 					h2.section-title Нас выбирают лидеры
 					.main-clients__description 
 						p Мы всегда рады долгосрочному сотрудничеству. Клиенты — основная ценность нашей компании
-				.main-clients__cards 
+				.main-clients__cards
 					ClientCard
+					.anim-client-card
+						UiButton(buttonText="Стать нашим клиентом" classNames="btn-red" buttonType="button" @buttonClick="openPopupClient")
 		PopupClient(@close-popup="closePopupClient" :is-open="isOpenPopupClient")
 		PopupNotice(@close-popup="closeNoticePopupClient" :is-open="isOpenNoticePopupClient")
 </template>
@@ -48,6 +50,7 @@ const closeNoticePopupClient = () => {
    &__description {
       font-size: 24px;
       line-height: 26px;
+      color: #31373b;
    }
    &__cards {
       grid-column: span 3;

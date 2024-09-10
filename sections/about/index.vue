@@ -1,5 +1,5 @@
 <template lang="pug">
-	section.section.main-about#about(data-bgcolor="white" data-textcolor="#032f35")
+	section.section.main-about#about(data-bgcolor="linear-gradient(90deg, transparent 0%, transparent 100%)" data-theme="white" data-textcolor="#31373b")
 		.container 
 			.main-about__body
 				.main-about__item.start-heading

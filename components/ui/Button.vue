@@ -71,21 +71,26 @@ defineExpose({
             fill: var(--bg-bg-white);
          }
       }
+      .btn-red & {
+         svg path {
+            fill: var(--white);
+         }
+      }
    }
    &.btn-blue {
       background-color: var(--bg-bg-dark);
       color: var(--bg-bg-white);
    }
    &.btn-red {
-      background-color: var(--bg-bg-red);
-      color: var(--bg-bg-white);
+      background-color: #ea2d43;
+      color: var(--white);
    }
    @media (any-hover: hover) {
       &:hover {
          background-color: var(--bg-bg-grey-dark);
       }
       &.btn-blue:hover {
-         background-color: #183377;
+         background-color: var(--button-hover-dark);
       }
       &.btn-red:hover {
          background-color: #d6192f;
@@ -94,7 +99,7 @@ defineExpose({
          background-color: #d8dbe2;
       }
       &.btn-blue:active {
-         background-color: #2c478b;
+         background-color: var(--button-active-dark);
       }
       &.btn-red:active {
          background-color: #c2051b;

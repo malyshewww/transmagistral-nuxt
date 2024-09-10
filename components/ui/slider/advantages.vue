@@ -67,6 +67,10 @@ const animation = () => {
          end: () =>
             "+=" +
             document.querySelector(".slider-advantages__body")?.offsetWidth,
+         onUpdate: (self) => {
+            console.log(self);
+            console.log(self.direction);
+         },
       },
    });
 };

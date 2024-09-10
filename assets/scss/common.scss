@@ -1,42 +1,65 @@
 body {
-	background-color: var(--bg-bg-white);
+	background-color: var(--white);
+}
+.main-content {
+	position: relative;
+	z-index: 2;
+}
+
+html.dark {
+	.page-gradient {
+		opacity: 1;
+	}
+}
+
+.page-gradient {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: url('/images/noise.png'), linear-gradient(90deg, #b7d8e9 0%, #255cae 100%);
+	mix-blend-mode: overlay;
+	opacity: 0;
+	transition: opacity 1s;
+	pointer-events: none;
+	z-index: 2;
+	// &::before {
+	// 	content: "";
+	// 	position: absolute;
+	// 	inset: 0;
+	// 	width: 100%;
+	// 	height: 100%;
+	// 	background: var(--gradient);
+	// }
 }
 
 .wrapper {
 	--bgOpacity: 0;
 	position: relative;
-	background-color: var(--bg-bg-white);
+	background: var(--white);
 	isolation: isolate;
-	// &::before {
-	// 	content: "";
-	// 	position: absolute;
-	// 	inset: 0;
-	// 	background-image: url("/images/noise.png");
-	// 	background-repeat: no-repeat;
-	// 	background-size: cover;
-	// 	// background-blend-mode: soft-light;
-	// 	width: 100%;
-	// 	height: 100%;
-	// }
-	&::after {
+	&::before {
 		// content: "";
 		position: absolute;
 		inset: 0;
 		width: 100%;
 		height: 100%;
-		opacity: var(--bgOpacity);
-		transition: opacity 1s ease-in-out 0s;
-		background: var(--gradient);
+		background-image: url("/images/noise.png");
+		background-repeat: no-repeat;
+		background-size: cover;
+		mix-blend-mode: overlay;
 		z-index: -1;
+		opacity: 0;
+		transition: opacity 1s;
 	}
 }
 
-
-#__nuxt,
-.scroller {
-	background: inherit;
-	color: inherit;
-}
+// #__nuxt,
+// .scroller {
+// 	background: inherit;
+// 	color: inherit;
+// }
 
 .wrapper {
 	display: flex;
@@ -52,6 +75,7 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
 	color: var(--bg-bg-dark);
+	transition: color $time * 2;
 }
 h1, h2, h3, h4 {
 	font-weight: 400;
@@ -104,10 +128,19 @@ h6 {
 
 .section-title {
 	color: var(--bg-bg-dark);
+	& span {
+		transition: color $time * 2;
+	}
 }
 .title-sm {
 	& span {
 		color: #eb2e44;
+	}
+}
+
+.main-autopark .title-sm {
+	& span {
+		color: var(--bg-red-title);
 	}
 }
 
@@ -140,9 +173,6 @@ h6 {
 	overflow: hidden;
 	flex-shrink: 0;
 	transition: background-color $time, fill $time;
-	.controls-white & {
-		background-color: var(--bg-bg-white);
-	}
 	&.swiper-button-disabled {
 		pointer-events: none;
 		cursor: default;
@@ -161,7 +191,7 @@ h6 {
 	@media (any-hover: hover) {
 		&:hover {
 			& svg path {
-				fill: #183377;
+				fill: var(--button-hover-dark);
 			}
 			.controls-white & svg path {
 				fill: var(--bg-bg-grey-dark);
@@ -174,7 +204,7 @@ h6 {
 		}
 		&:active {
 			& svg path {
-				fill: #2c478b;
+				fill: var(--button-active-dark);
 			}
 			.controls-white & svg path {
 				fill: #d8dbe2;
@@ -221,9 +251,9 @@ h6 {
 			}
 		}
 		.popup & {
-			border-bottom: 1px solid rgba(var(--stroke-stroke-grey-dark-rgb), 0.5);
+			border-bottom: 1px solid rgba(#7f8284, 0.5);
 			&::before {
-				background-color: var(--stroke-stroke-grey-dark);
+				background-color: #7f8284;
 			}
 		}
 	}

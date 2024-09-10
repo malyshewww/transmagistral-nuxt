@@ -26,8 +26,14 @@
 </template>
 
 <script setup>
+import { usePopupStore } from "~/stores/popup";
 import IMask from "imask";
 import maskPhone from "~/utils/maskPhone.js";
+
+const store = usePopupStore();
+const openPopupPolitic = () => {
+   store.openPopupPolitic();
+};
 
 const props = defineProps({
    isOpen: {

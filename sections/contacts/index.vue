@@ -14,15 +14,17 @@
 							a(href="tel:+78312748833").main-contacts__phone +7 831 274-88-33
 							a(href="tel:+78312748811").main-contacts__phone +7 831 274-88-11
 						UiButton(buttonText="Позвоните мне" buttonType="button" classNames="btn-blue" iconName="phone" @buttonClick="openPopupQuestions")
-					.main-contacts__item
+					//- .main-contacts__item
 						UiSocialList
 			ContactsMap
 </template>
 
 <script setup>
-const emit = defineEmits(["openPopup"]);
+import { usePopupStore } from "~/stores/popup";
+
+const store = usePopupStore();
 const openPopupQuestions = () => {
-   emit("openPopup");
+   store.openPopupQuestions();
 };
 </script>
 
@@ -64,7 +66,7 @@ const openPopupQuestions = () => {
       font-style: normal;
       font-size: 24px;
       line-height: 26px;
-      color: var(--bg-bg-dark);
+      color: var(--bg-bg-dark-contacts);
    }
    &__phones {
       display: grid;
@@ -74,7 +76,7 @@ const openPopupQuestions = () => {
       font-weight: 700;
       font-size: 32px;
       line-height: 35px;
-      color: var(--bg-bg-dark);
+      color: var(--bg-bg-dark-contacts);
       transition: color $time;
       @media (any-hover: hover) {
          &:hover {
@@ -91,10 +93,10 @@ const openPopupQuestions = () => {
    &__item {
       font-size: 24px;
       line-height: 26px;
-      color: var(--bg-bg-dark);
+      color: var(--bg-bg-dark-contacts);
       display: grid;
       place-items: center;
-      border: 1px solid var(--bg-bg-dark);
+      border: 1px solid var(--bg-bg-dark-contacts);
       border-radius: 50px;
       padding: 8px 16px;
       min-height: 42px;

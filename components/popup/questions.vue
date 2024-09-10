@@ -23,18 +23,23 @@
 <script setup>
 import maskPhone from "~/utils/maskPhone.js";
 
+import { usePopupStore } from "~/stores/popup";
+
+const store = usePopupStore();
+
+const openPopupPolitic = () => {
+   store.openPopupPolitic();
+};
+
 const props = defineProps({
    isOpen: {
       type: Boolean,
    },
 });
-const emit = defineEmits(["closePopup", "openPopupPolitic"]);
+const emit = defineEmits(["closePopup"]);
 
 const closePopup = () => {
    emit("closePopup");
-};
-const openPopupPolitic = () => {
-   emit("openPopupPolitic");
 };
 
 onMounted(() => {

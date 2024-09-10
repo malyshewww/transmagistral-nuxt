@@ -100,17 +100,25 @@ $second-family: "Bebas Neue Cyrillic", sans-serif;
 $shadow: 0 2px 5px 0 rgba(25, 51, 99, 0.05);
 $gradient: linear-gradient(90deg, #255cae 0%, #b7d8e9 100%);
 
-// CSS Variables
 :root {
 	--font-size: 18px;
-
 	// Основные Цвета
 	--main-color: #31373b;
 	--white-color: #ffffff;
-
 	--black: #000;
 	--white: #ffffff;
 
+	// Шрифты
+	--font-weight: 400;
+	--font-family: "PT Root UI", sans-serif;
+	--second-family: "Bebas Neue Cyrillic", sans-serif;
+	--shadow: 0 2px 5px 0 rgba(25, 51, 99, 0.05);
+	--gradient: linear-gradient(90deg, #255cae 0%, #b7d8e9 100%);
+}
+
+// CSS Variables
+.wrapper {
+	--bg-red-title: #eb2e44;
 	--bg-bg-red: #ea2d43;
 	--bg-bg-grey: #f4f6fc;
 	--bg-bg-grey-dark: #eceff6;
@@ -131,12 +139,13 @@ $gradient: linear-gradient(90deg, #255cae 0%, #b7d8e9 100%);
 	--stroke-stroke-dark: #0d235a;
 	--stroke-stroke-grey-dark: #7f8284;
 	--stroke-stroke-grey-dark-rgb: 127, 130, 132;
-	// Шрифты
-	--font-weight: 400;
-	--font-family: "PT Root UI", sans-serif;
-	--second-family: "Bebas Neue Cyrillic", sans-serif;
-	--shadow: 0 2px 5px 0 rgba(25, 51, 99, 0.05);
-	--gradient: linear-gradient(90deg, #255cae 0%, #b7d8e9 100%);
+	--button-hover-dark: #183377;
+	--button-active-dark: #2c478b;
+	--button-disabled-dark: #b0b4bc;
+	--button-hover-white: #eceff6;
+	--button-active-white: #d8dbe2;
+	--button-disabled-white: 255, 255, 255;
+	--bg-bg-dark-contacts: #0d235a;
+	--bg-footer-nav: #ffffff;
 }
-
 $time: 0.25s;

@@ -73,9 +73,25 @@ onMounted(() => {
       padding: 128px 0 152px;
       position: relative;
       isolation: isolate;
-      background: linear-gradient(90deg, #255cae 0%, #b7d8e9 100%);
+      background: var(--gradient);
       overflow: hidden;
       border-radius: 14px;
+      isolation: isolate;
+      &::before {
+         content: "";
+         position: absolute;
+         inset: 0;
+         width: 100%;
+         height: 100%;
+         background-image: url("/images/noise.png");
+         background-repeat: no-repeat;
+         background-size: cover;
+         mix-blend-mode: overlay;
+         z-index: -1;
+         // mix-blend-mode: overlay;
+         // background-repeat: no-repeat;
+         // background-size: cover;
+      }
       & .line {
          position: absolute;
          inset: 0;
@@ -116,6 +132,12 @@ onMounted(() => {
       }
       & .text-link {
          border-color: var(--white);
+         @media (any-hover) {
+            &:hover {
+               color: #31373b;
+               border-color: #31373b;
+            }
+         }
       }
    }
 }
