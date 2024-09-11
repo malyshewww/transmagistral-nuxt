@@ -17,13 +17,15 @@
 <script setup>
 const { $gsap: gsap, $ScrollTrigger: ScrollTrigger } = useNuxtApp();
 onMounted(() => {
-   const { bodyScrollBar } = useScrollbar();
-   bodyScrollBar.addListener(({ offset }) => {
-      document.documentElement.style.setProperty(
-         "--scrollTop",
-         `${offset.y}px`
-      );
-   });
+   if (window.innerWidth > 1024) {
+      const { bodyScrollBar } = useScrollbar();
+      bodyScrollBar.addListener(({ offset }) => {
+         document.documentElement.style.setProperty(
+            "--scrollTop",
+            `${offset.y}px`
+         );
+      });
+   }
 });
 </script>
 
@@ -89,8 +91,15 @@ onMounted(() => {
       inset: 0;
       top: 23.5%;
       color: var(--bg-bg-white);
-      @media screen and (max-width: 1919px) {
-         font-size: 24vh;
+      @media (max-width: 1919px) {
+         font-size: 15vw;
+      }
+      @media screen and (max-width: $xl) {
+         z-index: 7;
+      }
+      @media screen and (max-width: $md) {
+         font-size: 15vw;
+         top: 36vh;
       }
    }
    &__body {
@@ -107,20 +116,41 @@ onMounted(() => {
       transform: translate3d(0, calc(var(--scrollTop) / 6), 0);
       will-change: transform;
       // padding-bottom: 100px;
+      @media (max-height: 1080px) {
+         bottom: 20%;
+      }
+      @media screen and (max-width: $md) {
+         bottom: 15%;
+         padding-right: 15px;
+      }
+      @media screen and (max-width: $sm) {
+         bottom: auto;
+      }
    }
    &__heading {
       display: flex;
       align-items: center;
       gap: 24px;
+      @media screen and (max-width: $md) {
+         gap: 8px;
+         flex-direction: column;
+         align-items: flex-start;
+      }
    }
    &__icon {
       border-radius: 50%;
       display: grid;
+      flex-shrink: 0;
       place-items: center;
       width: 100px;
       height: 100px;
       box-shadow: 0 4px 4px 0 rgba(25, 51, 99, 0.2);
       background-color: var(--stroke-stroke-accent);
+      @media screen and (max-width: $md) {
+         width: 54px;
+         height: 54px;
+         padding: 10px;
+      }
    }
    &__text {
       font-weight: 500;
@@ -129,6 +159,10 @@ onMounted(() => {
       color: var(--bg-bg-white);
       max-width: 460px;
       text-align: left;
+      @media screen and (max-width: $md) {
+         font-size: 20px;
+         line-height: 1;
+      }
    }
 }
 </style>

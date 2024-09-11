@@ -189,11 +189,20 @@ onMounted(() => {
 <style lang="scss">
 .reliably {
    padding: 152px 0 150px;
+   @media screen and (max-width: $xl) {
+      padding: 100px 0;
+   }
+   @media screen and (max-width: $md) {
+      padding: 54px 0;
+   }
    &__body {
       display: grid;
       gap: 12px;
       position: relative;
       z-index: 10;
+      @media screen and (max-width: $xxl) {
+         gap: 24px;
+      }
    }
    &__heading {
       max-width: 560px;
@@ -246,11 +255,19 @@ onMounted(() => {
             }
          }
       }
+      @media screen and (max-width: $md) {
+         width: 16px;
+         height: 16px;
+         &::before {
+            width: 9px;
+            height: 9px;
+         }
+      }
    }
    & svg {
-      height: 573px;
+      height: 100%;
       overflow: visible;
-      width: 573px;
+      width: 100%;
       z-index: -1;
       position: absolute;
       top: 50%;
@@ -273,11 +290,30 @@ onMounted(() => {
    margin-right: auto;
    margin-top: -73px;
    position: relative;
+   @media screen and (max-width: $xxl) {
+      margin-top: 0;
+   }
+   @media screen and (max-width: $xl) {
+      flex-direction: column;
+      gap: 28px;
+      width: 100%;
+   }
+   @media screen and (max-width: $md) {
+      margin-top: 12px;
+   }
    &__box {
       display: grid;
       place-items: center;
       width: 573px;
       height: 573px;
+      @media screen and (max-width: 1600px) {
+         width: 400px;
+         height: 400px;
+      }
+      @media screen and (max-width: $md) {
+         width: 213px;
+         height: 213px;
+      }
    }
    &__circle {
       position: absolute;
@@ -291,6 +327,14 @@ onMounted(() => {
       border-radius: 50%;
       overflow: hidden;
       position: relative;
+      @media screen and (max-width: 1600px) {
+         width: 280px;
+         height: 280px;
+      }
+      @media screen and (max-width: $md) {
+         width: 166px;
+         height: 166px;
+      }
    }
    &__image {
       position: absolute;
@@ -321,6 +365,18 @@ onMounted(() => {
       right: 0;
       top: 50%;
       transform: translate(calc(100% + 119px), -50%);
+      @media screen and (max-width: 1600px) {
+         transform: translate(calc(100% + 40px), -50%);
+         width: 245px;
+      }
+      @media screen and (max-width: $xl) {
+         position: relative;
+         width: 100%;
+         top: 0;
+         transform: none;
+         right: 0;
+         min-height: 102px;
+      }
    }
    &__content {
       opacity: 0;
@@ -347,6 +403,9 @@ onMounted(() => {
    display: grid;
    gap: 12px;
    color: var(--text-text-secondary);
+   @media screen and (max-width: $md) {
+      gap: 10px;
+   }
    &__caption {
       font-weight: 700;
       font-size: 32px;
@@ -356,6 +415,10 @@ onMounted(() => {
          transform $time * 2 ease-in-out 0.5s;
       transform: translateY(-20px);
       overflow: hidden;
+      @media screen and (max-width: $md) {
+         font-size: 18px;
+         line-height: 20px;
+      }
    }
    &__description {
       font-size: 20px;
@@ -365,6 +428,10 @@ onMounted(() => {
       overflow: hidden;
       transition: opacity $time * 2 ease-in-out 0.8s,
          transform $time * 2 ease-in-out 0.8s;
+      @media screen and (max-width: $md) {
+         font-size: 17px;
+         line-height: 24px;
+      }
    }
 }
 </style>

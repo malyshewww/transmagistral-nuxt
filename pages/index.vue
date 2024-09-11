@@ -2,12 +2,12 @@
 	About
 	Reliably
 	Autopark
-	Questions
-	Advantages
-	Persons
-	Work
-	Documents
-	Clients
+	//- Questions
+	//- Advantages
+	//- Persons
+	//- Work
+	//- Documents
+	//- Clients
 </template>
 
 <script setup>

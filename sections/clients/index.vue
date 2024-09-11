@@ -16,13 +16,19 @@
 </template>
 
 <script setup>
+// const { bodyScrollBar } = useScrollbar();
+
 const isOpenPopupClient = ref(false);
 const isOpenNoticePopupClient = ref(false);
 const openPopupClient = () => {
    isOpenPopupClient.value = !isOpenPopupClient.value;
+   const { bodyScrollBar } = useScrollbar();
+   bodyScrollBar.updatePluginOptions("lock", { lock: true });
 };
 const closePopupClient = () => {
    isOpenPopupClient.value = !isOpenPopupClient.value;
+   const { bodyScrollBar } = useScrollbar();
+   bodyScrollBar.updatePluginOptions("lock", { lock: false });
 };
 const openNoticePopupClient = () => {
    isOpenNoticePopupClient.value = !isOpenNoticePopupClient.value;

@@ -26,5 +26,11 @@ defineProps({
    justify-content: center;
    align-items: center;
    width: fit-content;
+   @media screen and (max-width: $md) {
+      padding: 4px 10px;
+      font-size: 15px;
+      line-height: 21px;
+      min-height: 32px;
+   }
 }
 </style>

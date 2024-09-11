@@ -57,12 +57,34 @@ onMounted(() => {
    overflow: hidden;
    position: relative;
    isolation: isolate;
+   @media screen and (max-width: $xl) {
+      min-height: 212px;
+      height: 100%;
+   }
+   @media screen and (max-width: $md) {
+      padding: 20px;
+   }
    &--1 {
       grid-column: span 2;
+      @media screen and (max-width: $md) {
+         grid-column: initial;
+      }
+   }
+   &--2,
+   &--3 {
+      @media screen and (max-width: $xxxl) {
+         grid-column: span 2;
+      }
+      @media screen and (max-width: $md) {
+         grid-column: initial;
+      }
    }
    &__content {
       max-width: 370px;
       color: var(--text-text-secondary);
+      @media screen and (max-width: $md) {
+         max-width: 100%;
+      }
    }
    &__title {
       margin-bottom: 14px;
@@ -73,6 +95,14 @@ onMounted(() => {
          font-size: 32px;
          line-height: 35px;
          color: var(--bg-bg-red);
+         @media screen and (max-width: $xl) {
+            font-size: 18px;
+            line-height: 20px;
+            margin-left: 4px;
+         }
+      }
+      @media screen and (max-width: $md) {
+         margin-bottom: 10px;
       }
    }
    &__sub-title {
@@ -81,10 +111,19 @@ onMounted(() => {
       font-size: 24px;
       line-height: 26px;
       color: var(--text-text-secondary);
+      @media screen and (max-width: $md) {
+         margin-bottom: 10px;
+         font-size: 18px;
+         line-height: 20px;
+      }
    }
    &__text {
       font-size: 20px;
       line-height: 28px;
+      @media screen and (max-width: $md) {
+         font-size: 17px;
+         line-height: 24px;
+      }
    }
    & .line {
       position: absolute;
@@ -93,6 +132,9 @@ onMounted(() => {
       width: 100%;
       z-index: -1;
       pointer-events: none;
+      @media screen and (max-width: $xxxl) {
+         display: none;
+      }
    }
    &--1 {
       & .line {

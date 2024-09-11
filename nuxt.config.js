@@ -91,10 +91,16 @@ export default defineNuxtConfig({
 
    vite: {
       server: {
-         port: 3000,
+         port: 3001,
          strictPort: true,
          hmr: {
-            port: 3000,
+            port: 3001,
+         },
+      },
+      vue: {
+         script: {
+            defineModel: true,
+            propsDestructure: true,
          },
       },
       css: {

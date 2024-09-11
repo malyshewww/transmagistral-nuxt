@@ -1,20 +1,30 @@
 <template lang="pug">
-	.dropdown(ref="dropdown" :class="{active: isDropdownActive}" v-on:focusout="isDropdownActive === false")
-		button(type="button").dropdown__button(@click="openDropdown") Тема вопроса
+	.dropdown(:class="{active: isDropdownActive}")
+		button(type="button" @click="openDropdown").dropdown__button {{ dropdownButtonText }}
 		.dropdown__wrapper(@click.stop)
-			ul.dropdown__list 
-				li.dropdown__item Название темы
-				li.dropdown__item Название темы
-				li.dropdown__item Название темы
+			ul.dropdown__list(@click="selectedList($event)")
+				li.dropdown__item Название темы 2
+				li.dropdown__item Название темы 3
+				li.dropdown__item Название темы 4
 				li.dropdown__item.selected Название темы
 </template>
 
 <script setup>
 const isDropdownActive = ref(false);
-const dropdown = ref("");
+const dropdownInput = ref("");
+const dropdownButtonText = ref("Тема вопроса");
+
+const emit = defineEmits(["dataFromInput"]);
 
 const openDropdown = () => {
    isDropdownActive.value = !isDropdownActive.value;
+};
+const selectedList = (e) => {
+   const target = e.target;
+   if (target.tagName !== "LI") return;
+   dropdownButtonText.value = target.textContent;
+   isDropdownActive.value = false;
+   emit("dataFromDropdown", target.textContent);
 };
 </script>
 
@@ -75,7 +85,7 @@ const openDropdown = () => {
    &__wrapper {
       position: absolute;
       top: 100%;
-      background-color: var(--bg-bg-white);
+      background-color: var(--white);
       z-index: 5;
       opacity: 0;
       transform: translateY(20px);

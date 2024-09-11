@@ -2,13 +2,13 @@
 	.page-gradient(ref="pageGradient")
 	.scroller(ref="scroller")
 		.wrapper
-			Header(:menu="menu")
+			//- Header(:menu="menu")
 			MainScreen
 			main
 				.main-content
 					Header(:menu="menu" classNames="header-white" :isHiddenHeader="isHiddenHeader")
 					slot 
-					Footer(:menu="menu")
+					//- Footer(:menu="menu")
 	PopupQuestions(@close-popup="store.closePopupQuestions" :is-open="store.isPopupQuestionsActive")
 	PopupNotice(@close-popup="closeNoticePopupQuestions" :is-open="isOpenNoticePopupQuestions")
 	PopupPolitic(@close-popup="store.closePopupPolitic" :is-open="store.isPopupPoliticActive")
@@ -16,6 +16,7 @@
 
 <script setup>
 import { usePopupStore } from "~/stores/popup";
+
 const { $gsap: gsap, $ScrollTrigger: ScrollTrigger } = useNuxtApp();
 
 const store = usePopupStore();
@@ -36,7 +37,12 @@ onMounted(() => {
       },
    });
    bodyScrollBar.addListener(ScrollTrigger.update);
+
    ScrollTrigger.defaults({ scroller: scroller });
+   // if (window.innerWidth > 1024) {
+   // } else {
+   //    ScrollTrigger.defaults({ scroller: ".wrapper" });
+   // }
 
    const mainScreen = document.querySelector(".main-screen");
    const mainContent = document.querySelector(".main-content");
@@ -45,19 +51,17 @@ onMounted(() => {
    let prevScrollPosition = bodyScrollBar.scrollTop;
    bodyScrollBar.addListener(({ offset }) => {
       let scrollPosition = bodyScrollBar.offset.y;
+      headerWhite.style.top = `${offset.y}px`;
       // pageGradient.value.top = scrollPosition;
       if (mainScreen && offset.y > mainScreenHeight) {
          isHiddenHeader.value = false;
          if (prevScrollPosition < scrollPosition) {
-            console.log("false");
             isHiddenHeader.value = true;
-            headerWhite.style.top = `0px`;
-            headerWhite.style.opacity = `1`;
             headerWhite.style.pointerEvents = `all`;
+            headerWhite.style.opacity = `0`;
          } else {
+            headerWhite.style.opacity = `1`;
             isHiddenHeader.value = false;
-            console.log("true");
-            headerWhite.style.top = `${offset.y}px`;
          }
       } else if (mainScreen && offset.y == 0) {
          isHiddenHeader.value = true;
@@ -125,27 +129,15 @@ onMounted(() => {
    // });
 });
 
-const isOpenPopupQuestions = ref(false);
 const isOpenNoticePopupQuestions = ref(false);
-const isOpenPopupPolitic = ref(false);
-const openPopupQuestions = () => {
-   isOpenPopupQuestions.value = !isOpenPopupQuestions.value;
-};
-const closePopupQuestions = () => {
-   isOpenPopupQuestions.value = !isOpenPopupQuestions.value;
-};
+
 const openNoticePopupQuestions = () => {
    isOpenNoticePopupQuestions.value = !isOpenNoticePopupQuestions.value;
 };
 const closeNoticePopupQuestions = () => {
    isOpenNoticePopupQuestions.value = !isOpenNoticePopupQuestions.value;
 };
-const openPopupPolitic = () => {
-   isOpenPopupPolitic.value = !isOpenPopupPolitic.value;
-};
-const closePopupPolitic = () => {
-   isOpenPopupPolitic.value = !isOpenPopupPolitic.value;
-};
+
 const menu = [
    {
       title: "О компании",
@@ -195,8 +187,8 @@ const menu = [
 }
 @media screen and (max-width: 1024px) {
    .scroller {
-      // overflow: unset;
-      // height: auto;
+      overflow: hidden;
+      height: auto;
       & .scrollbar-track {
          width: 0;
       }

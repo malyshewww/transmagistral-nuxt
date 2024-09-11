@@ -19,6 +19,9 @@ defineExpose({
          display: flex;
          align-items: center;
          gap: 14px;
+         @media screen and (max-width: $md) {
+            gap: 8px;
+         }
       }
       &-item {
          backdrop-filter: blur(20px);
@@ -28,7 +31,16 @@ defineExpose({
          min-height: 46px;
          font-size: 20px;
          line-height: 28px;
-         color: var(--bg-bg-white);
+         color: var(--white);
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         @media screen and (max-width: $md) {
+            min-height: 32px;
+            padding: 4px 10px;
+            font-size: 15px;
+            line-height: 21px;
+         }
       }
    }
 }

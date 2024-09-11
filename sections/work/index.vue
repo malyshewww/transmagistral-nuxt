@@ -17,11 +17,14 @@ const isOpenPopupWork = ref(false);
 const isOpenNoticePopupWork = ref(false);
 
 const openPopupWork = () => {
-   console.log("click");
    isOpenPopupWork.value = !isOpenPopupWork.value;
+   const { bodyScrollBar } = useScrollbar();
+   bodyScrollBar.updatePluginOptions("lock", { lock: true });
 };
 const closePopupWork = () => {
    isOpenPopupWork.value = !isOpenPopupWork.value;
+   const { bodyScrollBar } = useScrollbar();
+   bodyScrollBar.updatePluginOptions("lock", { lock: false });
 };
 const openNoticePopupWork = () => {
    isOpenNoticePopupWork.value = !isOpenNoticePopupWork.value;

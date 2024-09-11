@@ -136,6 +136,9 @@ defineExpose({
             cursor: pointer;
          }
       }
+      @media screen and (max-width: 1600px) {
+         padding: 40px 10px;
+      }
    }
    &__header-text {
       writing-mode: vertical-lr;
@@ -199,6 +202,11 @@ defineExpose({
       .notactive & {
          opacity: 0;
       }
+      @media screen and (max-width: 1600px) {
+         bottom: auto;
+         top: 36px;
+         grid-template-columns: 400px 1fr;
+      }
    }
    &__image {
       border-radius: 14px;
@@ -221,9 +229,16 @@ defineExpose({
       line-height: 28px;
       color: var(--text-text-secondary);
       max-width: 95%;
+      @media screen and (max-width: 1600px) {
+         font-size: 17px;
+         line-height: 24px;
+      }
       & p {
          &:not(:last-child) {
             margin-bottom: 20px;
+            @media screen and (max-width: 1600px) {
+               margin-bottom: 10px;
+            }
          }
       }
    }

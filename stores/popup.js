@@ -11,9 +11,13 @@ export const usePopupStore = defineStore("popup", {
          this.isPopupPoliticActive = false;
       },
       openPopupQuestions() {
+         const { bodyScrollBar } = useScrollbar();
+         bodyScrollBar.updatePluginOptions("lock", { lock: true });
          this.isPopupQuestionsActive = true;
       },
       closePopupQuestions() {
+         const { bodyScrollBar } = useScrollbar();
+         bodyScrollBar.updatePluginOptions("lock", { lock: false });
          this.isPopupQuestionsActive = false;
       },
    },
