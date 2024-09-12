@@ -22,8 +22,8 @@ defineProps({
    border-radius: 14px;
    background-color: var(--bg-bg-grey);
    color: var(--text-text-secondary);
-   &:last-child {
-      grid-column: span 2;
+   @media screen and (max-width: $xxl) {
+      padding: 20px;
    }
    &__image {
       width: 275px;
@@ -31,17 +31,28 @@ defineProps({
       border-radius: 50%;
       overflow: hidden;
       align-self: center;
+      @media screen and (max-width: $xxl) {
+         width: 183px;
+         height: 183px;
+      }
    }
    &__body {
       display: flex;
       flex-direction: column;
       gap: 20px;
       text-align: center;
+      @media screen and (max-width: $md) {
+         gap: 12px;
+      }
    }
    &__name {
       font-weight: 700;
       font-size: 24px;
       line-height: 26px;
+      @media screen and (max-width: $md) {
+         font-size: 18px;
+         line-height: 20px;
+      }
    }
    &__post {
       border-radius: 100px;
@@ -52,16 +63,30 @@ defineProps({
       background: var(--bg-bg-grey-dark);
       font-size: 20px;
       line-height: 28px;
+      @media screen and (max-width: $md) {
+         font-size: 15px;
+         line-height: 21px;
+      }
    }
    &__contacts {
-      display: grid;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       gap: 7px;
+      @media screen and (max-width: $md) {
+         gap: 4px;
+      }
    }
    &__top {
       display: flex;
       align-items: center;
       position: relative;
       width: 324px;
+      height: 115px;
+      @media screen and (max-width: $md) {
+         width: 156px;
+         height: 54px;
+      }
    }
    &__bottom {
       text-align: right;
@@ -82,6 +107,16 @@ defineProps({
          line-height: 76px;
          text-align: right;
          color: var(--bg-bg-red);
+         @media screen and (max-width: $md) {
+            font-size: 32px;
+            line-height: 110%;
+         }
+      }
+      @media screen and (max-width: $md) {
+         font-size: 42px;
+         line-height: 140%;
+         letter-spacing: 0.04em;
+         align-items: center;
       }
    }
 
@@ -90,6 +125,10 @@ defineProps({
       font-size: 32px;
       text-align: right;
       color: var(--bg-bg-dark);
+      @media screen and (max-width: $md) {
+         font-size: 18px;
+         line-height: 110%;
+      }
    }
    &__small-image {
       position: absolute;
@@ -119,7 +158,9 @@ defineProps({
                20px 0px var(--stroke-stroke-grey);
          }
       }
-      &:not(:last-child) {
+      @media screen and (max-width: $md) {
+         width: 54px;
+         height: 54px;
       }
       &:nth-child(1) {
          left: 0;
@@ -128,6 +169,9 @@ defineProps({
       &:nth-child(3) {
          right: 69px;
          z-index: 1;
+         @media screen and (max-width: $md) {
+            z-index: 2;
+         }
       }
       &:nth-child(2) {
          left: 69px;
@@ -144,18 +188,41 @@ defineProps({
    position: relative;
    overflow: hidden;
    padding-top: 60px;
+   min-height: 546px;
+   grid-column: span 2;
    & .line-card {
       position: absolute;
       top: 0;
       left: 0;
       width: auto;
-      z-index: 2;
+      z-index: 1;
+      pointer-events: none;
+      @media screen and (max-width: $xl) {
+         display: none;
+      }
+   }
+   @media screen and (max-width: 1600px) {
+      grid-column: span 3;
+   }
+   @media screen and (max-width: $xxl) {
+      min-height: auto;
+   }
+   @media screen and (max-width: $xl) {
+      grid-column: span 2;
+   }
+   @media screen and (max-width: $md) {
+      grid-column: initial;
+      min-height: 247px;
    }
 }
 .contacts-person {
    &__link {
       font-size: 20px;
       line-height: 28px;
+      @media screen and (max-width: $md) {
+         font-size: 17px;
+         line-height: 24px;
+      }
    }
 }
 </style>

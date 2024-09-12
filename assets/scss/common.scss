@@ -53,6 +53,9 @@ html.dark {
 		opacity: 0;
 		transition: opacity 1s;
 	}
+	@media screen and (max-width: 1024px) {
+		overflow: clip;
+	}
 }
 
 // #__nuxt,
@@ -297,6 +300,9 @@ h6 {
 		&::placeholder {
 			color: rgba(var(--text-text-secondary-rgb), .5);
 		}
+	}
+	@media screen and (max-width: $xl) {
+		min-height: 53px;
 	}
 }
 

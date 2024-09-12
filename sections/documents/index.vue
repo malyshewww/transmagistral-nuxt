@@ -10,7 +10,7 @@
 						p #[strong Ознакомьтесь с комплектом документов] для оформления сотрудничества
 					UiButton(buttonText="Скачать документы" classNames="btn-blue" iconName="document" @buttonClick="downloadFile")
 					a(ref="downloadLink" href="transmagistral.zip" download="transmagistral" style="display: none;")
-					UiSliderDocuments
+			UiSliderDocuments
 		LineDocument
 </template>
 
@@ -42,16 +42,23 @@ onMounted(() => {
 
 <style lang="scss">
 .main-documents {
-   padding: 148px 0 60px;
+   padding: 74px 0 60px;
    overflow: hidden;
    position: relative;
+   @media screen and (max-width: $xl) {
+      padding: 36px 0;
+   }
    & .line {
       position: absolute;
       top: 0;
       left: 0;
-      top: 150px;
+      top: 74px;
       width: 100%;
       pointer-events: none;
+      z-index: -1;
+      @media screen and (max-width: $xl) {
+         display: none;
+      }
    }
    &__body {
       display: grid;
@@ -59,6 +66,10 @@ onMounted(() => {
       gap: 8px;
       align-items: start;
       position: relative;
+      @media screen and (max-width: $xl) {
+         grid-template-columns: 100%;
+         gap: 24px;
+      }
    }
    &__content {
       grid-column: span 2;
@@ -68,12 +79,26 @@ onMounted(() => {
       gap: 40px;
       & .btn {
          margin-top: 17px;
+         @media screen and (max-width: $xl) {
+            margin: 0;
+         }
+      }
+      @media screen and (max-width: $xl) {
+         grid-column: initial;
+         gap: 20px;
       }
    }
    &__description {
       max-width: 700px;
       font-size: 24px;
       line-height: 26px;
+      @media screen and (max-width: $xl) {
+         max-width: 100%;
+      }
+      @media screen and (max-width: $md) {
+         font-size: 17px;
+         line-height: 140%;
+      }
       & p {
          &:not(:last-child) {
             margin-bottom: 13px;

@@ -72,43 +72,43 @@ onMounted(() => {
    });
 
    /* COLOR CHANGER */
-   const scrollColorElems = document.querySelectorAll("[data-bgcolor]");
-   scrollColorElems.forEach((colorSection, i) => {
-      const prevBg = i === 0 ? "" : scrollColorElems[i - 1].dataset.bgcolor;
-      const prevText = i === 0 ? "" : scrollColorElems[i - 1].dataset.textcolor;
-      const bgOpacity = i === 0 ? 0 : 1;
-      const theme = i === 0 ? "white" : scrollColorElems[i - 1].dataset.theme;
-      ScrollTrigger.create({
-         trigger: colorSection,
-         start: "top 50%",
-         onEnter: () => {
-            gsap.to(".wrapper", {
-               // "--bgOpacity": bgOpacity,
-               "--color": colorSection.dataset.textcolor,
-               backgroundImage: colorSection.dataset.bgcolor,
-               color: colorSection.dataset.textcolor,
-               overwrite: "auto",
-               duration: 0.4,
-            });
-            document.querySelector(
-               ".wrapper"
-            ).className = `wrapper ${colorSection.dataset.theme}`;
-            document.documentElement.className = `${colorSection.dataset.theme}`;
-         },
-         onLeaveBack: () => {
-            gsap.to(".wrapper", {
-               // "--bgOpacity": bgOpacity,
-               "--color": prevText,
-               backgroundImage: prevBg,
-               color: prevText,
-               overwrite: "auto",
-               duration: 0.4,
-            });
-            document.documentElement.className = `${theme}`;
-            document.querySelector(".wrapper").className = `wrapper ${theme}`;
-         },
-      });
-   });
+   // const scrollColorElems = document.querySelectorAll("[data-bgcolor]");
+   // scrollColorElems.forEach((colorSection, i) => {
+   //    const prevBg = i === 0 ? "" : scrollColorElems[i - 1].dataset.bgcolor;
+   //    const prevText = i === 0 ? "" : scrollColorElems[i - 1].dataset.textcolor;
+   //    const bgOpacity = i === 0 ? 0 : 1;
+   //    const theme = i === 0 ? "white" : scrollColorElems[i - 1].dataset.theme;
+   //    ScrollTrigger.create({
+   //       trigger: colorSection,
+   //       start: "top 50%",
+   //       onEnter: () => {
+   //          gsap.to(".wrapper", {
+   //             // "--bgOpacity": bgOpacity,
+   //             "--color": colorSection.dataset.textcolor,
+   //             backgroundImage: colorSection.dataset.bgcolor,
+   //             color: colorSection.dataset.textcolor,
+   //             overwrite: "auto",
+   //             duration: 0.4,
+   //          });
+   //          document.querySelector(
+   //             ".wrapper"
+   //          ).className = `wrapper ${colorSection.dataset.theme}`;
+   //          document.documentElement.className = `${colorSection.dataset.theme}`;
+   //       },
+   //       onLeaveBack: () => {
+   //          gsap.to(".wrapper", {
+   //             // "--bgOpacity": bgOpacity,
+   //             "--color": prevText,
+   //             backgroundImage: prevBg,
+   //             color: prevText,
+   //             overwrite: "auto",
+   //             duration: 0.4,
+   //          });
+   //          document.documentElement.className = `${theme}`;
+   //          document.querySelector(".wrapper").className = `wrapper ${theme}`;
+   //       },
+   //    });
+   // });
 
    // const observer = new IntersectionObserver((entries) => {
    //    entries.forEach((entry) => {
@@ -187,7 +187,8 @@ const menu = [
 }
 @media screen and (max-width: 1024px) {
    .scroller {
-      overflow: hidden;
+      overflow: clip;
+      width: auto;
       height: auto;
       & .scrollbar-track {
          width: 0;

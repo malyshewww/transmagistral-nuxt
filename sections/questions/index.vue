@@ -77,6 +77,12 @@ onMounted(() => {
       overflow: hidden;
       border-radius: 14px;
       isolation: isolate;
+      @media screen and (max-width: $xl) {
+         padding: 100px 0;
+      }
+      @media screen and (max-width: $md) {
+         padding: 24px;
+      }
       &::before {
          content: "";
          position: absolute;
@@ -101,10 +107,14 @@ onMounted(() => {
          & svg {
             width: 100%;
          }
+         @media screen and (max-width: $xl) {
+            display: none;
+         }
       }
    }
    &__body {
-      max-width: 1312px;
+      max-width: 1332px;
+      padding: 0 10px;
       margin: 0 auto;
       display: grid;
       grid-template-columns: 1fr 0.84fr;
@@ -112,6 +122,17 @@ onMounted(() => {
          "title form"
          "subTitle form";
       gap: 34px 100px;
+      @media screen and (max-width: $xl) {
+         grid-template-columns: 100%;
+         gap: 12px;
+         grid-template-areas:
+            "title"
+            "subTitle"
+            "form";
+      }
+      @media screen and (max-width: $md) {
+         padding: 0;
+      }
    }
    &__title {
       color: var(--bg-bg-white);
@@ -122,6 +143,10 @@ onMounted(() => {
       font-size: 24px;
       line-height: 26px;
       color: var(--bg-bg-white);
+      @media screen and (max-width: $md) {
+         font-size: 17px;
+         line-height: 23px;
+      }
    }
    &__form {
       grid-area: form;

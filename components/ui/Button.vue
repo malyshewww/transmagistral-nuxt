@@ -52,8 +52,7 @@ defineExpose({
    background-color: var(--bg-bg-white);
    transition: background-color $time;
    &-text {
-      flex-grow: 1;
-      flex-shrink: 0;
+      flex: 1 1 auto;
       text-align: center;
    }
    &-icon {

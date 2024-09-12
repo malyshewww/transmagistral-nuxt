@@ -36,10 +36,13 @@ const closeNoticePopupWork = () => {
 
 <style lang="scss">
 .main-work {
-   padding: 0 20px;
+   padding: 79px 20px 74px;
    color: var(--bg-bg-white);
+   @media screen and (max-width: $xl) {
+      padding: 36px 20px 36px;
+   }
    &__wrapper {
-      background-image: url("/images/work/main-bg.svg");
+      background: var(--gradient);
       background-repeat: no-repeat;
       background-size: cover;
       display: grid;
@@ -47,6 +50,14 @@ const closeNoticePopupWork = () => {
       align-items: center;
       overflow: hidden;
       border-radius: 14px;
+      @media screen and (max-width: $xl) {
+         padding: 24px 15px;
+         grid-template-columns: 100%;
+         gap: 36px;
+      }
+      @media screen and (max-width: $md) {
+         background: var(--gradient);
+      }
    }
    &__image {
       padding-bottom: math.div(830, 930) * 100%;
@@ -56,12 +67,23 @@ const closeNoticePopupWork = () => {
    &__body {
       display: grid;
       align-items: center;
+      padding: 20px;
+      @media screen and (max-width: $xl) {
+         align-items: stretch;
+         width: 100%;
+         padding: 0;
+      }
    }
    &__content {
       margin: 0 auto;
       display: grid;
       justify-items: start;
       gap: 12px;
+      @media screen and (max-width: $xl) {
+         width: 100%;
+         justify-items: stretch;
+         gap: 8px;
+      }
    }
    &__title {
       color: var(--bg-bg-white);
@@ -70,9 +92,20 @@ const closeNoticePopupWork = () => {
       font-size: 32px;
       line-height: 35px;
       max-width: 616px;
+      @media screen and (max-width: $xl) {
+         font-size: 24px;
+         line-height: 140%;
+         max-width: 100%;
+      }
+      @media screen and (max-width: $md) {
+         font-size: 17px;
+      }
    }
    & .btn {
       margin-top: 28px;
+      @media screen and (max-width: $xl) {
+         margin-top: 12px;
+      }
    }
 }
 </style>
