@@ -72,17 +72,60 @@ const toggleSelection = (key) => {
    }
 };
 const select = (key) => {
-   console.log(key);
-   for (let i = 0; i < accordeonList.data.length; i++) {
-      if (accordeonList.data[i].key !== key) {
-         accordeonList.data[i].isSelected = false;
+   if (window.innerWidth > 1024) {
+      for (let i = 0; i < accordeonList.data.length; i++) {
+         if (accordeonList.data[i].key !== key) {
+            accordeonList.data[i].isSelected = false;
+         }
+      }
+      toggleSelection(key);
+   }
+};
+
+const initAccordeonMobile = () => {
+   if (window.innerWidth < 1024) {
+      const accordeons = document.querySelectorAll(".accordeon");
+      if (accordeons.length) {
+         [...accordeons].forEach((accordeon) => {
+            if (accordeon) {
+               const accordeonItems =
+                  accordeon.querySelectorAll(".item-accordeon");
+               [...accordeonItems].forEach((item, index) => {
+                  const header = item.querySelector(".item-accordeon__header");
+                  let content = item.querySelector(".item-accordeon__body");
+                  header.addEventListener("click", () => {
+                     item.classList.toggle("active");
+                     if (item.classList.contains("active")) {
+                        content.style.height = `${content.scrollHeight}px`;
+                     } else {
+                        content.style.height = "0px";
+                     }
+                     removeAccordeonOpen(index);
+                  });
+               });
+               function removeAccordeonOpen(index1) {
+                  [...accordeonItems].forEach((item2, index2) => {
+                     if (index1 != index2) {
+                        item2.classList.remove("active");
+                        let contentTwo = item2.querySelector(
+                           ".item-accordeon__body"
+                        );
+                        contentTwo.style.height = "0px";
+                     }
+                  });
+               }
+            }
+         });
       }
    }
-   toggleSelection(key);
 };
 
 defineExpose({
    select,
+});
+
+onMounted(() => {
+   initAccordeonMobile();
 });
 </script>
 
@@ -90,6 +133,9 @@ defineExpose({
 .main-autopark {
    &__accordeon {
       padding: 0 20px;
+      @media screen and (max-width: $xl) {
+         padding: 0 15px;
+      }
    }
 }
 .accordeon {
@@ -187,8 +233,9 @@ defineExpose({
       @media screen and (max-width: $xl) {
          writing-mode: horizontal-tb;
          transform: none;
-         font-size: 20px;
+         font-size: 18px;
          line-height: 100%;
+         white-space: normal;
       }
    }
    &__header-icon {
@@ -241,15 +288,14 @@ defineExpose({
       @media screen and (max-width: $xl) {
          padding: 0;
          display: block;
-         height: auto;
-         max-height: 0;
-         transition: max-height $time * 3, margin $time * 2;
+         height: 0;
+         transition: height $time * 3, margin $time * 2;
          overflow: hidden;
          padding: 0px 20px 0;
          width: 100%;
          .active & {
-            max-height: 2000px;
             margin-top: 20px;
+            height: auto;
          }
       }
    }
@@ -264,12 +310,16 @@ defineExpose({
       left: 36px;
       bottom: 136px;
       height: 347px;
+      @media screen and (max-width: $xl) {
+         transition: opacity 0.5s;
+      }
       .active & {
          opacity: 1;
          transition: opacity $time * 2 ease-out 0.5s;
          @media screen and (max-width: $xl) {
             max-height: 100%;
             transition: opacity $time * 2 ease-out 0s;
+            opacity: 1;
          }
       }
       .notactive & {
