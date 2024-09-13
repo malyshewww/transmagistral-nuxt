@@ -2,13 +2,13 @@
 	.page-gradient(ref="pageGradient")
 	.scroller(ref="scroller")
 		.wrapper
-			//- Header(:menu="menu")
+			Header(:menu="menu" :isMainMenu="isMainMenu === true")
 			MainScreen
 			main
 				.main-content
-					Header(:menu="menu" classNames="header-white" :isHiddenHeader="isHiddenHeader")
+					Header(:menu="menu" classNames="header-white" :isHiddenHeader="isHiddenHeader" :isMainMenu="isMainMenu")
 					slot 
-					//- Footer(:menu="menu")
+					Footer(:menu="menu")
 	PopupQuestions(@close-popup="store.closePopupQuestions" :is-open="store.isPopupQuestionsActive")
 	PopupNotice(@close-popup="closeNoticePopupQuestions" :is-open="isOpenNoticePopupQuestions")
 	PopupPolitic(@close-popup="store.closePopupPolitic" :is-open="store.isPopupPoliticActive")
@@ -22,6 +22,8 @@ const { $gsap: gsap, $ScrollTrigger: ScrollTrigger } = useNuxtApp();
 const store = usePopupStore();
 
 const isHiddenHeader = ref(true);
+
+const isMainMenu = ref(false);
 
 onMounted(() => {
    const { bodyScrollBar, scroller } = useScrollbar();

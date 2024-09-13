@@ -57,7 +57,10 @@ onMounted(() => {
 <style lang="scss">
 .main-questions {
    color: var(--bg-bg-white);
-   padding: 0 20px;
+   padding: 60px 20px 0;
+   @media screen and (max-width: $xl) {
+      padding: 36px 15px 0;
+   }
    &__line {
       position: absolute;
       width: 100%;

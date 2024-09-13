@@ -188,12 +188,12 @@ onMounted(() => {
 
 <style lang="scss">
 .reliably {
-   padding: 152px 0 150px;
+   padding: 152px 0 60px;
    @media screen and (max-width: $xl) {
-      padding: 100px 0;
+      padding: 100px 0 36px;
    }
    @media screen and (max-width: $md) {
-      padding: 54px 0;
+      padding: 36px 0;
    }
    &__body {
       display: grid;

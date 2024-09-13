@@ -40,29 +40,53 @@ const closeNoticePopupClient = () => {
 
 <style lang="scss">
 .main-clients {
-   padding: 60px 0 120px;
+   padding: 60px 0 60px;
+   @media screen and (max-width: $xl) {
+      padding: 36px 0 36px;
+   }
    &__body {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       align-items: start;
       gap: 96px 20px;
+      @media screen and (max-width: $xl) {
+         grid-template-columns: 100%;
+         gap: 27px;
+      }
    }
    &__content {
       grid-column: span 2;
       max-width: 640px;
       display: grid;
       gap: 40px;
+      @media screen and (max-width: $xl) {
+         grid-column: initial;
+         gap: 14px;
+         margin-bottom: 9px;
+         max-width: 98%;
+      }
    }
    &__description {
       font-size: 24px;
       line-height: 26px;
       color: #31373b;
+      @media screen and (max-width: $md) {
+         font-size: 17px;
+         line-height: 140%;
+      }
    }
    &__cards {
       grid-column: span 3;
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 20px;
+      @media screen and (max-width: $xl) {
+         grid-template-columns: repeat(2, 1fr);
+         grid-column: initial;
+      }
+      @media screen and (max-width: $md) {
+         grid-template-columns: 100%;
+      }
       & .btn {
          border-radius: 14px;
          font-weight: 700;
@@ -71,6 +95,13 @@ const closeNoticePopupClient = () => {
          padding: 40px;
          gap: 40px;
          height: 100%;
+         @media screen and (max-width: $xxl) {
+            padding: 20px;
+            width: 100%;
+         }
+         @media screen and (max-width: $md) {
+            min-height: 150px;
+         }
          &-text {
             align-self: start;
             max-width: 90%;

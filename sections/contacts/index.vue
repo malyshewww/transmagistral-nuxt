@@ -32,6 +32,12 @@ const openPopupQuestions = () => {
 .main-contacts {
    & .section-title {
       margin-bottom: 40px;
+      @media screen and (max-width: $md) {
+         margin-bottom: 16px;
+      }
+   }
+   @media screen and (max-width: $md) {
+      margin-bottom: 18px;
    }
    &__body {
       padding: 60px;
@@ -41,6 +47,11 @@ const openPopupQuestions = () => {
       grid-template-columns: repeat(2, 1fr);
       align-items: center;
       gap: 20px;
+      @media screen and (max-width: $xl) {
+         padding: 20px;
+         grid-template-columns: 100%;
+         gap: 54px;
+      }
    }
    &__content {
       text-align: center;
@@ -52,25 +63,47 @@ const openPopupQuestions = () => {
       & .btn {
          width: 100%;
       }
+      @media screen and (max-width: $md) {
+         max-width: 100%;
+         width: 100%;
+      }
    }
    &__items {
       display: grid;
       width: 100%;
       gap: 56px;
+      @media screen and (max-width: $md) {
+         gap: 20px;
+      }
    }
    &__item {
       display: grid;
       gap: 20px;
+      @media screen and (max-width: $md) {
+         gap: 12px;
+         &:nth-child(2) {
+            gap: 24px;
+         }
+      }
    }
    &__address {
       font-style: normal;
       font-size: 24px;
       line-height: 26px;
       color: var(--bg-bg-dark-contacts);
+      @media screen and (max-width: $md) {
+         font-size: 17px;
+         line-height: 140%;
+      }
    }
    &__phones {
-      display: grid;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       gap: 8px;
+      @media screen and (max-width: $md) {
+         gap: 12px;
+      }
    }
    &__phone {
       font-weight: 700;
@@ -78,6 +111,10 @@ const openPopupQuestions = () => {
       line-height: 35px;
       color: var(--bg-bg-dark-contacts);
       transition: color $time;
+      @media screen and (max-width: $md) {
+         font-size: 18px;
+         line-height: 110%;
+      }
       @media (any-hover: hover) {
          &:hover {
             color: #183377;
@@ -89,7 +126,11 @@ const openPopupQuestions = () => {
    display: flex;
    align-items: center;
    justify-content: center;
+   flex-wrap: wrap;
    gap: 8px;
+   @media screen and (max-width: $md) {
+      gap: 4px;
+   }
    &__item {
       font-size: 24px;
       line-height: 26px;
@@ -100,6 +141,12 @@ const openPopupQuestions = () => {
       border-radius: 50px;
       padding: 8px 16px;
       min-height: 42px;
+      @media screen and (max-width: $md) {
+         padding: 4px 16px;
+         min-height: 36px;
+         font-size: 20px;
+         line-height: 140%;
+      }
    }
 }
 </style>

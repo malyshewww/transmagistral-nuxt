@@ -162,6 +162,9 @@ onMounted(() => {
    &__image {
       overflow: hidden;
       padding-bottom: math.div(405, 287) * 100%;
+      // @media screen and (max-width: $md) {
+      //    padding-bottom: math.div(154, 218) * 100%;
+      // }
    }
    &__name {
       font-size: 20px;

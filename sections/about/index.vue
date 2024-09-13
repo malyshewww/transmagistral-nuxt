@@ -46,7 +46,7 @@ defineExpose({
 .main-about {
    padding: 120px 0 120px;
    @media screen and (max-width: $xl) {
-      padding: 72px 0;
+      padding: 72px 0 36px;
    }
    &__body {
       display: grid;

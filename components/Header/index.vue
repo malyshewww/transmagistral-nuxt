@@ -5,10 +5,13 @@
 				NuxtLink(to="/").header__logo.logo
 					picture 
 						source(:srcset="`/images/logo.svg`" media="(min-width: 767.98px)")
-						source(:srcset="`/images/logo.svg`" media="(min-width: 300px)")
+						source(:srcset="`/images/logo-small.svg`" media="(min-width: 300px)")
 						img(src="/images/logo.svg", alt="логотип")
-				HeaderMenu(:menu="menu")
+				HeaderMenu(:menu="menu" :is-menu-open="isMenuOpen")
 				HeaderActions
+				button(type="button" @click="openMenu($event)" :class="{active: isMenuOpen}").burger
+					.burger__icon
+						span
 </template>
 
 <script setup>
@@ -23,7 +26,19 @@ defineProps({
    isHiddenHeader: {
       type: Boolean,
    },
+   isMainMenu: {
+      type: Boolean,
+   },
 });
+
+const isMenuOpen = ref(false);
+
+const openMenu = (e) => {
+   const target = e.target;
+   const parent = target.closest(".header");
+   parent.classList.toggle("menu-open");
+   target.classList.toggle("active");
+};
 
 const emit = defineEmits(["openPopup"]);
 
@@ -43,25 +58,123 @@ const openPopup = () => {
    display: grid;
    align-items: center;
    z-index: 10;
-   color: var(--bg-bg-white);
+   color: var(--white);
    padding: 10px 0;
    &.header-white {
       position: sticky;
       color: #31373b;
       box-shadow: 0 2px 5px 0 rgba(25, 51, 99, 0.05);
-      background: var(--bg-bg-white);
+      background: var(--white);
       min-height: 87px;
       transition: opacity $time * 2;
       &.hide {
          opacity: 0;
          pointer-events: none;
       }
+      @media screen and (max-width: $md) {
+         min-height: 52px;
+      }
+   }
+   @media screen and (max-width: $md) {
+      min-height: 52px;
+      color: var(--main-color);
    }
    &__body {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 20px;
+      gap: 10px 20px;
+      @media screen and (max-width: $xxl) {
+         flex-wrap: wrap;
+      }
+   }
+   &__logo {
+      flex-shrink: 0;
+      max-width: 267px;
+      @media screen and (max-width: $xxxl) {
+         max-width: 200px;
+      }
+      @media screen and (max-width: $md) {
+         z-index: 25;
+      }
+   }
+}
+.burger {
+   display: none;
+   @media screen and (max-width: $md) {
+      display: block;
+      position: relative;
+      padding: 8px 5px;
+      width: 32px;
+      height: 32px;
+      flex-shrink: 0;
+      z-index: 25;
+      &.active {
+         & .burger__icon {
+            & span,
+            &::before,
+            &::after {
+               background-color: #0d235a;
+            }
+            & span {
+               transform: scale(0);
+               background-color: transparent;
+               transition: transform 0.5s ease, background-color 0.5s ease,
+                  background-color 0.3s ease;
+            }
+            &::before {
+               top: calc(50%);
+               transform: rotate(45deg);
+               transition: top 0.3s ease, transform 0.3s ease-out 0.3s,
+                  background-color 0.3s ease;
+            }
+            &::after {
+               bottom: calc(50% - 1px);
+               transform: rotate(-45deg);
+               transition: bottom 0.3s ease, transform 0.3s ease-out 0.3s,
+                  background-color 0.3s ease;
+            }
+         }
+      }
+      &__icon {
+         width: 21px;
+         height: 14px;
+         position: relative;
+         display: grid;
+         place-items: center;
+         pointer-events: none;
+         & span,
+         &::before,
+         &::after {
+            position: absolute;
+            display: block;
+            transition: all ease-in 0s;
+            background-color: var(--white);
+            height: 1px;
+            width: 100%;
+            .header-white & {
+               background-color: #0d235a;
+            }
+         }
+         & span {
+            position: static;
+         }
+         &::before,
+         &::after {
+            content: "";
+         }
+         &::before {
+            top: 0;
+            transition: top 0.3s ease 0.5s, transform 0.3s ease-out,
+               background-color 0.3s ease;
+         }
+
+         &::after {
+            bottom: 0;
+            transition: bottom 0.3s ease 0.5s, transform 0.3s ease-out,
+               background-color 0.3s ease;
+         }
+      }
    }
 }
 </style>

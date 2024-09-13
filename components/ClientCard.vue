@@ -1,7 +1,10 @@
 <template lang="pug">
 	.client-card.anim-client-card(ref="animClientCard" v-for="item, index in 7")
 		.client-card__image
-			img(:src="`/images/clients/client-${item}.svg`", alt="лого клиента")
+			picture 
+				source(:srcset="`/images/clients/client-${item}.svg`" media="(min-width: 767.98px)")
+				source(:srcset="`/images/clients/client-${item}-mobile.svg`" media="(min-width: 300px)")
+				img(:src="`/images/clients/client-${item}.svg`", alt="лого клиента")
 </template>
 
 <script setup>
@@ -56,8 +59,15 @@ onMounted(() => {
    place-items: center;
    border-radius: 14px;
    background: var(--bg-bg-grey);
+   padding: 20px;
    &:nth-child(4) {
       grid-column: 2 / 3;
+      @media screen and (max-width: $xxl) {
+         grid-column: initial;
+      }
+   }
+   @media screen and (max-width: $md) {
+      min-height: 150px;
    }
 }
 </style>

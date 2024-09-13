@@ -1,13 +1,13 @@
 <template lang="pug">
 	About
 	Reliably
-	//- Autopark
+	Autopark
 	Questions
 	Advantages
 	Persons
 	Work
 	Documents
-	//- Clients
+	Clients
 </template>
 
 <script setup>

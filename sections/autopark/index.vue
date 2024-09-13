@@ -12,18 +12,29 @@
 
 <style lang="scss">
 .main-autopark {
-   padding: 120px 0;
+   padding: 60px 0 60px;
    display: grid;
    gap: 100px;
    overflow: hidden;
+   @media screen and (max-width: $xl) {
+      padding: 36px 0;
+      gap: 36px;
+   }
    &__body {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 20px;
       align-items: start;
+      @media screen and (max-width: $xl) {
+         grid-template-columns: 100%;
+         gap: 24px;
+      }
    }
    & .section-title {
       grid-column: span 2;
+      @media screen and (max-width: $xl) {
+         grid-column: initial;
+      }
    }
 }
 </style>

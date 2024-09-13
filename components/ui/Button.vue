@@ -51,6 +51,9 @@ defineExpose({
    min-height: 62px;
    background-color: var(--bg-bg-white);
    transition: background-color $time;
+   @media screen and (max-width: $md) {
+      line-height: 130%;
+   }
    &-text {
       flex: 1 1 auto;
       text-align: center;

@@ -1,13 +1,24 @@
 <template lang="pug">
-	.header__menu.menu 
-		nav.menu__body 
-			ul.menu__list 
-				li.menu__item(v-for="item, index in menu" :key="index")
-					a(:href="item.path" @click.prevent="goToSection($event)").menu__link.anchor-link {{ item.title }}
-					//- NuxtLink(ref="anchorLink" :to="{ hash: `${item.path}`, path: '/'}" @click.prevent="goToSection($event)").menu__link.anchor-link {{ item.title }}
+	.header__menu.menu(:class="{active: isMenuOpen}" @click="isMenuOpen === false")
+		.menu__wrapper
+			nav.menu__body 
+				ul.menu__list 
+					li.menu__item(v-for="item, index in menu" :key="index")
+						a(:href="item.path" @click.prevent="goToSection($event)").menu__link.anchor-link {{ item.title }}
+				.header-actions-mobile
+					HeaderActions
 </template>
 
 <script setup>
+defineProps({
+   menu: {
+      type: Object,
+      required: true,
+   },
+   isMenuOpen: {
+      type: Boolean,
+   },
+});
 const { $Scrollbar: Scrollbar, $ScrollbarPlugin: ScrollbarPlugin } =
    useNuxtApp();
 
@@ -115,28 +126,92 @@ onMounted(() => {
    }
    Scrollbar.use(AnchorPlugin);
 });
-
-defineProps({
-   menu: {
-      type: Object,
-      required: true,
-   },
-});
 </script>
 
 <style lang="scss">
-.header__menu {
-}
 .menu {
    padding-left: 70px;
+   @media screen and (max-width: 1600px) {
+      padding: 0;
+   }
+   @media screen and (max-width: $xxl) {
+      order: 1;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+   }
+   @media screen and (max-width: $md) {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100vh;
+      box-shadow: 0 2px 5px 0 rgba(25, 51, 99, 0.05);
+      z-index: 20;
+      order: 0;
+      display: block;
+      background: rgba(16, 35, 70, 0.3);
+      opacity: 0;
+      transition: opacity $time * 2;
+      .menu-open & {
+         opacity: 1;
+      }
+   }
+   &__wrapper {
+      position: relative;
+      &::before {
+         content: "";
+         display: none;
+         position: absolute;
+         inset: 0;
+         width: 100%;
+         height: 52px;
+         background-color: var(--white);
+         z-index: 25;
+         @media screen and (max-width: $md) {
+            display: block;
+         }
+      }
+   }
    &__body {
       display: flex;
+      @media screen and (max-width: $md) {
+         background: var(--white);
+         height: calc(100vh - 162px);
+         padding: 78px 15px 20px;
+         overflow-x: hidden;
+         overflow-y: auto;
+         display: flex;
+         flex-direction: column;
+         align-items: flex-start;
+         justify-content: space-between;
+         gap: 36px;
+         transform: translateX(-100%);
+         transition: transform $time * 2 ease-in-out 0s;
+         &::-webkit-scrollbar,
+         &::-webkit-scrollbar-track,
+         &::-webkit-scrollbar-thumb {
+            width: 0;
+            height: 0;
+            display: none;
+            background-color: transparent;
+         }
+         .menu-open & {
+            transform: translateX(0);
+         }
+      }
    }
    &__list {
       @include reset-list;
       display: flex;
       align-items: center;
       gap: 54px;
+      @media screen and (max-width: 1600px) {
+         gap: 20px;
+      }
+      @media screen and (max-width: $md) {
+         flex-direction: column;
+         align-items: flex-start;
+      }
    }
    &__item {
    }

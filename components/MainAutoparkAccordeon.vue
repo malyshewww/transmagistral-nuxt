@@ -2,7 +2,7 @@
 	.main-autopark__accordeon.accordeon
 		.accordeon__items 
 			.accordeon__item.item-accordeon(v-for="item,index in accordeonList.data" :key="index" @click="select(index)" :class="{ active : item.isSelected, notactive : !item.isSelected }")
-				.item-accordeon__header
+				.item-accordeon__header(ref="headerAccordeonTrigger")
 					h4.item-accordeon__header-text
 						| {{ item.header }}
 					.item-accordeon__header-icon
@@ -66,9 +66,7 @@ const accordeonList = reactive({
    ],
 });
 const toggleSelection = (key) => {
-   console.log("toggle", key);
    const stepsItem = accordeonList.data.find((item) => item.key === key);
-   console.log(stepsItem);
    if (stepsItem) {
       stepsItem.isSelected = !stepsItem.isSelected;
    }
@@ -95,7 +93,10 @@ defineExpose({
    }
 }
 .accordeon {
-   height: 737px;
+   min-height: 737px;
+   @media screen and (max-width: $xl) {
+      min-height: auto;
+   }
    &__items {
       display: flex;
       height: 100%;
@@ -103,9 +104,17 @@ defineExpose({
       border-right: none;
       border-radius: 14px;
       overflow: hidden;
+      @media screen and (max-width: $xl) {
+         flex-direction: column;
+         height: auto;
+         border-right: 1px solid var(--stroke-stroke-grey);
+      }
    }
    &__item {
       min-height: 100%;
+      @media screen and (max-width: $xl) {
+         min-height: auto;
+      }
    }
 }
 .item-accordeon {
@@ -117,9 +126,26 @@ defineExpose({
    border-top-right-radius: 14px;
    border-bottom-right-radius: 14px;
    overflow: hidden;
+   @media screen and (max-width: $xl) {
+      transition: none;
+      flex-direction: column;
+      align-items: flex-start;
+      width: 100%;
+      padding-bottom: 20px;
+      border-radius: 0 0 14px 14px;
+      border-right: none;
+      &:not(:last-child) {
+         border-bottom: 1px solid var(--stroke-stroke-grey);
+      }
+   }
    &.active {
       flex: 61.3vw;
       pointer-events: none;
+      @media screen and (max-width: $xl) {
+         flex: 1 1 auto;
+         pointer-events: all;
+         grid-template-rows: auto auto;
+      }
    }
    &__header {
       padding: 40px 30px;
@@ -130,6 +156,9 @@ defineExpose({
       gap: 40px;
       .active & {
          pointer-events: none;
+         @media screen and (max-width: $xl) {
+            pointer-events: all;
+         }
       }
       @media (any-hover: hover) {
          &:hover {
@@ -139,12 +168,28 @@ defineExpose({
       @media screen and (max-width: 1600px) {
          padding: 40px 10px;
       }
+      @media screen and (max-width: $xl) {
+         padding: 20px;
+         padding-bottom: 0;
+         width: 100%;
+         flex-direction: row;
+         justify-content: flex-start;
+      }
    }
    &__header-text {
       writing-mode: vertical-lr;
       transform: rotate(180deg);
       color: var(--bg-bg-dark);
       white-space: nowrap;
+      @media screen and (max-width: $xxxl) {
+         font-size: 32px;
+      }
+      @media screen and (max-width: $xl) {
+         writing-mode: horizontal-tb;
+         transform: none;
+         font-size: 20px;
+         line-height: 100%;
+      }
    }
    &__header-icon {
       width: 56px;
@@ -165,6 +210,13 @@ defineExpose({
          background-color: var(--bg-bg-dark);
          transition: background-color $time * 2;
       }
+      @media screen and (max-width: $xxxl) {
+         width: 40px;
+         height: 40px;
+      }
+      @media screen and (max-width: $xl) {
+         display: none;
+      }
       .active & {
          background-color: var(--bg-bg-dark);
          &::before {
@@ -175,6 +227,9 @@ defineExpose({
    &__icon {
       display: block;
       margin-bottom: 12px;
+      @media screen and (max-width: $xl) {
+         margin-bottom: 6px;
+      }
    }
    &__body {
       display: grid;
@@ -183,6 +238,20 @@ defineExpose({
       position: relative;
       flex-shrink: 0;
       flex-grow: 1;
+      @media screen and (max-width: $xl) {
+         padding: 0;
+         display: block;
+         height: auto;
+         max-height: 0;
+         transition: max-height $time * 3, margin $time * 2;
+         overflow: hidden;
+         padding: 0px 20px 0;
+         width: 100%;
+         .active & {
+            max-height: 2000px;
+            margin-top: 20px;
+         }
+      }
    }
    &__content {
       display: grid;
@@ -198,6 +267,10 @@ defineExpose({
       .active & {
          opacity: 1;
          transition: opacity $time * 2 ease-out 0.5s;
+         @media screen and (max-width: $xl) {
+            max-height: 100%;
+            transition: opacity $time * 2 ease-out 0s;
+         }
       }
       .notactive & {
          opacity: 0;
@@ -207,15 +280,33 @@ defineExpose({
          top: 36px;
          grid-template-columns: 400px 1fr;
       }
+      @media screen and (max-width: $xxxl) {
+         grid-template-columns: 100%;
+         right: 36px;
+      }
+      @media screen and (max-width: $xl) {
+         position: static;
+         height: auto;
+         gap: 24px;
+      }
    }
    &__image {
       border-radius: 14px;
       overflow: hidden;
       padding-bottom: 62%;
+      @media screen and (max-width: $xxxl) {
+         padding-bottom: 36%;
+      }
+      @media screen and (max-width: $xl) {
+         padding-bottom: math.div(154, 250) * 100%;
+      }
    }
    &__inner {
       display: grid;
       gap: 12px;
+      @media screen and (max-width: $xl) {
+         gap: 10px;
+      }
    }
    &__title,
    &__text {
@@ -223,6 +314,13 @@ defineExpose({
    }
    &__title {
       color: var(--text-text-secondary);
+      font-weight: 700;
+      font-size: 32px;
+      line-height: 110%;
+      @media screen and (max-width: $xl) {
+         font-size: 18px;
+         line-height: 110%;
+      }
    }
    &__text {
       font-size: 20px;
@@ -231,7 +329,10 @@ defineExpose({
       max-width: 95%;
       @media screen and (max-width: 1600px) {
          font-size: 17px;
-         line-height: 24px;
+         line-height: 140%;
+      }
+      @media screen and (max-width: $xl) {
+         max-width: 100%;
       }
       & p {
          &:not(:last-child) {

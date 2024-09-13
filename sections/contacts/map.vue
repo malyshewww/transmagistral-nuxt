@@ -71,6 +71,12 @@ onMounted(() => {
          width: 100%;
          height: 100%;
       }
+      @media screen and (max-width: $xl) {
+         height: 479px;
+      }
+      @media screen and (max-width: $md) {
+         margin: 0 -20px -20px;
+      }
    }
 }
 .map-button {
@@ -78,6 +84,10 @@ onMounted(() => {
    bottom: 42px;
    width: 100%;
    max-width: 355px;
+   @media screen and (max-width: $md) {
+      max-width: calc(100% - 30px);
+      bottom: 15px;
+   }
 }
 .map-contacts {
    &__point {

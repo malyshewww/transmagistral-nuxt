@@ -52,22 +52,33 @@ onMounted(() => {
 
 <style lang="scss">
 .footer {
-   padding: 80px 0 27px;
+   padding: 60px 0 27px;
    position: relative;
+   @media screen and (max-width: $xl) {
+      padding: 36px 0 24px;
+   }
    &__body {
       display: grid;
       gap: 80px;
+      @media screen and (max-width: $md) {
+         gap: 54px;
+      }
    }
    &__bottom {
       display: flex;
       justify-content: space-between;
+      flex-wrap: wrap;
       align-items: center;
       gap: 20px;
       color: var(--text-text-secondary);
-   }
-   &__copy {
-   }
-   &__button {
+      @media screen and (max-width: $md) {
+         flex-direction: column;
+         gap: 24px;
+      }
+      @media screen and (max-width: $md) {
+         line-height: 140%;
+         font-size: 18px;
+      }
    }
 }
 .menu-footer {
@@ -75,10 +86,31 @@ onMounted(() => {
    border-radius: 100px;
    padding: 10px 10px 10px 40px;
    background: var(--bg-footer-nav);
+   @media screen and (max-width: $xxxl) {
+      padding: 10px;
+   }
+   @media screen and (max-width: $xl) {
+      padding: 20px;
+   }
+   &__logo {
+      max-width: 290px;
+      @media screen and (max-width: $md) {
+         max-width: 242px;
+      }
+   }
    &__body {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 10px;
+      @media screen and (max-width: $xl) {
+         flex-direction: column;
+         align-items: center;
+         gap: 36px;
+      }
+      @media screen and (max-width: $md) {
+         align-items: flex-start;
+      }
    }
    &__list {
       @include reset-list;
@@ -86,6 +118,17 @@ onMounted(() => {
       align-items: center;
       gap: 61px;
       padding-right: 60px;
+      @media screen and (max-width: $xxxl) {
+         padding: 0;
+         gap: 20px;
+      }
+      @media screen and (max-width: $xl) {
+         flex-direction: column;
+         align-items: center;
+      }
+      @media screen and (max-width: $md) {
+         align-items: flex-start;
+      }
    }
    &__link {
       line-height: 25px;
@@ -94,6 +137,10 @@ onMounted(() => {
          &:hover {
             color: var(--bg-bg-red);
          }
+      }
+      @media screen and (max-width: $md) {
+         font-size: 18px;
+         line-height: 140%;
       }
    }
 }
