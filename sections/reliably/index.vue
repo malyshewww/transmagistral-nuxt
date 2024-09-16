@@ -31,9 +31,14 @@
 </template>
 
 <script setup>
+import { useMainDataStore } from "~/stores/maindata";
+const store = useMainDataStore();
+
 const { $gsap: gsap, $MotionPathPlugin: MotionPathPlugin } = useNuxtApp();
 
 const reliablySliderCircle = ref("");
+
+const reliablySliderData = store.reliablySlider;
 
 const gsapSlider = () => {
    // gsap.registerPlugin(MotionPathPlugin);
@@ -161,25 +166,6 @@ const gsapSlider = () => {
       });
    }
 };
-
-const reliablySliderData = [
-   {
-      title: "24 часа на связи",
-      descr: "Наши логисты готовы решать сложные вопросы в любое время</strong> дня и ночи",
-   },
-   {
-      title: "Более 50 000 км",
-      descr: "Ежедневно наши машины проезжают больше чем <strong>длина экватора</strong> земного шара",
-   },
-   {
-      title: "От — 25 °C до +25 °C",
-      descr: "Регулируемый температурный режим с допустимым отклонением <strong>не более 1 градуса</strong>",
-   },
-   {
-      title: "Страховка 15 млн ₽",
-      descr: "Все грузы застрахованы — вы <strong>ничем не рискуете</strong>",
-   },
-];
 
 onMounted(() => {
    gsapSlider();

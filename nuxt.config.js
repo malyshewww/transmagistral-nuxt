@@ -15,7 +15,27 @@ export default defineNuxtConfig({
       // Импорт компонентов из других директорий, помимо components
       { path: "~/sections", pathPrefix: true },
    ],
-   modules: ["@pinia/nuxt"],
+   // modules: ["@pinia/nuxt"],
+   modules: [
+      [
+         "nuxt-mail",
+         {
+            message: {
+               to: process.env.NUXT_MAIL_TARGET,
+            },
+            smtp: {
+               host: process.env.NUXT_MAIL_SMTP,
+               port: process.env.NUXT_MAIL_PORT,
+               secure: true,
+               auth: {
+                  user: process.env.NUXT_MAIL_USERNAME,
+                  pass: process.env.NUXT_MAIL_PASSWORD,
+               },
+            },
+         },
+      ],
+      "@pinia/nuxt",
+   ],
    plugins: ["~/plugins/click-outside.js"],
    app: {
       head: {

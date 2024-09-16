@@ -97,9 +97,6 @@ onMounted(() => {
          background-size: cover;
          mix-blend-mode: overlay;
          z-index: -1;
-         // mix-blend-mode: overlay;
-         // background-repeat: no-repeat;
-         // background-size: cover;
       }
       & .line {
          position: absolute;

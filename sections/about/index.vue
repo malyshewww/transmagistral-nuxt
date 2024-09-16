@@ -10,33 +10,14 @@
 				.main-about__item.end-heading
 					.main-about__content
 						h3.title-sm Поэтому #[span всегда ответственно] подходим к любому контракту
-				.main-about__item.video-block
-					.main-about__video.ibg
-						img(src="/images/about/poster.jpg", alt="")
-						//- video(autoplay="autoplay" loop="loop" poster="/images/about/poster.jpg")
-						//- 	source(:src="``" type="video/mp4")
+				AboutVideoBlock
 </template>
 
 <script setup>
-const aboutCards = [
-   {
-      title: "АСМАП",
-      subTitle: "Действительный член АСМАП",
-      text: "Каждый год мы подтверждаем право быть лучшими и участвовать в&nbsp;Международных перевозках",
-   },
-   {
-      title: "25",
-      separator: "лет",
-      subTitle: "На дорогах России",
-      text: "Проверено временем — без&nbsp;единого сбоя. </br> Мы действительно можем этим гордиться",
-   },
-   {
-      title: "100",
-      separator: "+",
-      subTitle: "Грузовиков SCANIA",
-      text: "Наш автопарк постоянно обновляется в соответствии с&nbsp;современными стандартами качества",
-   },
-];
+import { useMainDataStore } from "~/stores/maindata";
+const store = useMainDataStore();
+const aboutCards = store.aboutList;
+
 defineExpose({
    aboutCards,
 });
@@ -84,6 +65,7 @@ defineExpose({
       }
       &.video-block {
          grid-area: 3 / 3 / 4 / -1;
+         cursor: pointer;
          @media screen and (max-width: $md) {
             grid-area: initial;
          }
@@ -122,16 +104,6 @@ defineExpose({
             font-size: 36px;
          }
       }
-   }
-   &__video {
-      width: 100%;
-      border-radius: 14px;
-      overflow: hidden;
-      height: 100%;
-      padding-bottom: math.div(506, 840) * 100%;
-   }
-   & .video-block {
-      height: 100%;
    }
 }
 </style>

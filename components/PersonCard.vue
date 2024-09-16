@@ -6,8 +6,8 @@
 			.person-card__name {{ card.name }}
 			.person-card__post {{ card.post }}
 			.person-card__contacts.contacts-person
-				a(:href="card.email").contacts-person__link {{ card.email }}
-				a(:href="card.phone").contacts-person__link {{ card.phone }}
+				a(:href="`mailto:${card.email}`").contacts-person__link {{ card.email }}
+				a(:href="`tel:${card.newPhone}`").contacts-person__link {{ card.phone }}
 </template>
 
 <script setup>

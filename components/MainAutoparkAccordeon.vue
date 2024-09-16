@@ -6,7 +6,7 @@
 					h4.item-accordeon__header-text
 						| {{ item.header }}
 					.item-accordeon__header-icon
-				.item-accordeon__body
+				.item-accordeon__body(ref="headerAccordeonBody")
 					.item-accordeon__content
 						.item-accordeon__image.ibg
 							img(:src="`/images/autopark/img-${index+1}.jpg`", :alt="item.title")
@@ -102,6 +102,10 @@ const initAccordeonMobile = () => {
                      }
                      removeAccordeonOpen(index);
                   });
+                  if (index === 0) {
+                     content.style.height = `${content.scrollHeight}px`;
+                     item.classList.add("active");
+                  }
                });
                function removeAccordeonOpen(index1) {
                   [...accordeonItems].forEach((item2, index2) => {

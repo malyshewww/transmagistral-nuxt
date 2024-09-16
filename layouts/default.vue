@@ -2,11 +2,12 @@
 	.page-gradient(ref="pageGradient")
 	.scroller(ref="scroller")
 		.wrapper
-			Header(:menu="menu" :isMainMenu="isMainMenu === true")
+			UiTrailer
+			Header(:menu="menu")
 			MainScreen
 			main
 				.main-content
-					Header(:menu="menu" classNames="header-white" :isHiddenHeader="isHiddenHeader" :isMainMenu="isMainMenu")
+					Header(:menu="menu" :isHiddenHeader="isHiddenHeader" classNames="header-white")
 					slot 
 					Footer(:menu="menu")
 	PopupQuestions(@close-popup="store.closePopupQuestions" :is-open="store.isPopupQuestionsActive")
@@ -16,13 +17,14 @@
 
 <script setup>
 import { usePopupStore } from "~/stores/popup";
+import { useMainDataStore } from "~/stores/maindata";
 
 const { $gsap: gsap, $ScrollTrigger: ScrollTrigger } = useNuxtApp();
 
 const store = usePopupStore();
-
+const storeData = useMainDataStore();
 const isHiddenHeader = ref(true);
-
+const menu = storeData.menu;
 const isMainMenu = ref(false);
 
 onMounted(() => {
@@ -65,7 +67,7 @@ onMounted(() => {
             headerWhite.style.opacity = `1`;
             isHiddenHeader.value = false;
          }
-      } else if (mainScreen && offset.y == 0) {
+      } else if (mainScreen && offset.y < mainScreenHeight) {
          isHiddenHeader.value = true;
          headerWhite.style.opacity = `0`;
          headerWhite.style.pointerEvents = `none`;
@@ -139,33 +141,6 @@ const openNoticePopupQuestions = () => {
 const closeNoticePopupQuestions = () => {
    isOpenNoticePopupQuestions.value = !isOpenNoticePopupQuestions.value;
 };
-
-const menu = [
-   {
-      title: "О компании",
-      path: "#about",
-   },
-   {
-      title: "Автопарк",
-      path: "#autopark",
-   },
-   {
-      title: "Работа",
-      path: "#work",
-   },
-   {
-      title: "Документы",
-      path: "#documents",
-   },
-   {
-      title: "Клиенты",
-      path: "#clients",
-   },
-   {
-      title: "Контакты",
-      path: "#contacts",
-   },
-];
 </script>
 
 <style lang="scss">
@@ -188,13 +163,13 @@ const menu = [
    }
 }
 @media screen and (max-width: 1024px) {
-   .scroller {
-      overflow: clip;
-      width: auto;
-      height: auto;
-      & .scrollbar-track {
-         width: 0;
-      }
-   }
+   // .scroller {
+   //    overflow: clip;
+   //    width: auto;
+   //    height: auto;
+   //    & .scrollbar-track {
+   //       width: 0;
+   //    }
+   // }
 }
 </style>

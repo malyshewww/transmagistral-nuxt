@@ -12,10 +12,13 @@ nuxtApp.hook("page:start", () => {
    ScrollTrigger.update();
 });
 
-onMounted(() => {
-   nuxtApp.provide("hello", (name) => `Hello ${name}!`);
-   console.log(nuxtApp.$hello("name"));
-});
+// const mail = useMail();
+
+// mail.send({
+//    from: "Solid Snake",
+//    subject: "A Strong Man",
+//    text: "A Strong Man doesn't need to read the Future. He makes his own.",
+// });
 
 useHead({
    title: "Трансмагистраль",

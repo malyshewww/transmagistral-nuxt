@@ -94,10 +94,10 @@ const svgSecond = ref("");
 const svgThree = ref("");
 
 onMounted(() => {
-   const svgSecond = document.querySelector(".svg-second");
-   svgSecond.addEventListener("animationend", () => {
-      console.log("end");
-   });
+   // const svgSecond = document.querySelector(".svg-second");
+   // svgSecond.addEventListener("animationend", () => {
+   //    console.log("end");
+   // });
 });
 </script>
 

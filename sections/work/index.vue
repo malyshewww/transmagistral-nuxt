@@ -43,13 +43,25 @@ const closeNoticePopupWork = () => {
    }
    &__wrapper {
       background: var(--gradient);
-      background-repeat: no-repeat;
-      background-size: cover;
       display: grid;
       grid-template-columns: 0.98fr 1fr;
       align-items: center;
       overflow: hidden;
       border-radius: 14px;
+      isolation: isolate;
+      position: relative;
+      &::before {
+         content: "";
+         position: absolute;
+         inset: 0;
+         width: 100%;
+         height: 100%;
+         background-image: url("/images/noise.png");
+         background-repeat: no-repeat;
+         background-size: cover;
+         mix-blend-mode: overlay;
+         z-index: -1;
+      }
       @media screen and (max-width: $xl) {
          padding: 24px 15px;
          grid-template-columns: 100%;

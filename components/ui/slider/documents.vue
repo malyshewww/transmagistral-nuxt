@@ -35,12 +35,10 @@ import "swiper/css/navigation";
 import { Fancybox } from "@fancyapps/ui";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
 
-// const onSwiperInit = (swiper) => {
-//    const slides = swiper.slides;
-//    if (slides.length <= swiper.passedParams.slidesPerView) {
-//       swiper.navigation.destroy();
-//    }
-// };
+import { useMainDataStore } from "~/stores/maindata";
+const store = useMainDataStore();
+
+const documentList = store.documentList;
 
 const buttonPrev = ref("");
 const buttonNext = ref("");
@@ -54,11 +52,6 @@ const initSlider = () => {
       navigation: {
          nextEl: buttonNext.value,
          prevEl: buttonPrev.value,
-      },
-      on: {
-         init: function (swiper) {
-            console.log(swiper);
-         },
       },
       breakpoints: {
          300: {
@@ -77,25 +70,9 @@ const initSlider = () => {
    });
 };
 
-const documentList = [
-   {
-      name: "Свидетельство ИНН",
-   },
-   {
-      name: "Свидетельство ОГРН",
-   },
-   {
-      name: "Карточка партнёра",
-   },
-   {
-      name: "Карточка партнёра",
-   },
-];
-
 const fancyboxOptions = {
    Hash: false,
 };
-
 onMounted(() => {
    initSlider();
    Fancybox.bind(`[data-fancybox="gallery"]`, fancyboxOptions);

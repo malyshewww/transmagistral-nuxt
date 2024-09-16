@@ -64,7 +64,6 @@ const submitForm = async () => {
          },
       }
    );
-   console.log(responseData.value);
 };
 
 onMounted(() => {

@@ -25,33 +25,12 @@ import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 
+import { useMainDataStore } from "~/stores/maindata";
+
 const { $gsap: gsap, $ScrollTrigger: ScrollTrigger } = useNuxtApp();
-const advantagesList = [
-   {
-      title: "Мультирежимные перевозки",
-      text: "<p>Мы поддерживаем разные температурные режимы внутри одного кузова с помощью <strong>погружных электронных градусников в каждом отсеке</strong></p>",
-   },
-   {
-      title: "Водители профессионалы",
-      text: "<p>Чтобы обеспечить высокий уровень сервиса, мы берём на работу <strong>опытных людей</strong> без вредных привычек, ответственных и пунктуальных. Все водители имеют <strong>медицинские книжки</strong></p>",
-   },
-   {
-      title: "GPS/Глонасс мониторинг",
-      text: "<p>Все наши тягачи подключены к системе мониторинга GPS/Глонасс, с помощью чего логисты контролируют перевозки</p><p>Нашим постоянным клиентам доступен <strong>роуминг Wialon</strong></p>",
-   },
-   {
-      title: "Страхование груза",
-      text: "<p>Все грузы страхуются в известных страховых компаниях <strong>в пределах 15 млн ₽</strong></p>",
-   },
-   {
-      title: "Сертифицированный автосервис",
-      text: "<p>Для обслуживания автопарка в 2005 году мы открыли <strong>собственный сервисный центр.</strong></p><p>Ремонт выполняют сертифицированные механики, исключительно оригинальными запчастями</p>",
-   },
-   {
-      title: "Собственный автопарк",
-      text: "<p>Наш автопарк регулярно проходит <strong>полноценное ТО</strong>, чтобы соответствовать техническим и санитарным нормам.</p><p>Около 30% наших тягачей используют экологически чистое газовое топливо</p>",
-   },
-];
+
+const store = useMainDataStore();
+const advantagesList = store.advantagesList;
 
 const animation = () => {
    const { bodyScrollBar, scroller } = useScrollbar();
@@ -80,10 +59,7 @@ const animation = () => {
          end: () =>
             "+=" +
             document.querySelector(".slider-advantages__body")?.offsetWidth,
-         onUpdate: (self) => {
-            console.log(self);
-            console.log(self.direction);
-         },
+         onUpdate: (self) => {},
       },
    });
 };
@@ -108,11 +84,6 @@ const initSlider = () => {
          navigation: {
             nextEl: buttonNext.value,
             prevEl: buttonPrev.value,
-         },
-         on: {
-            init: function (swiper) {
-               console.log(swiper);
-            },
          },
          breakpoints: {
             300: {

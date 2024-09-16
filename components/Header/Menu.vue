@@ -1,7 +1,7 @@
 <template lang="pug">
-	.header__menu.menu(:class="{active: isMenuOpen}" @click="isMenuOpen === false")
+	.header__menu.menu(@click="closeMenu")
 		.menu__wrapper
-			nav.menu__body 
+			nav.menu__body(@click.stop)
 				ul.menu__list 
 					li.menu__item(v-for="item, index in menu" :key="index")
 						a(:href="item.path" @click.prevent="goToSection($event)").menu__link.anchor-link {{ item.title }}
@@ -10,30 +10,40 @@
 </template>
 
 <script setup>
-defineProps({
+const props = defineProps({
    menu: {
       type: Object,
       required: true,
    },
-   isMenuOpen: {
-      type: Boolean,
-   },
 });
+
+const emit = defineEmits(["closeMenu"]);
+
+const closeMenu = () => {
+   emit("closeMenu");
+};
+
 const { $Scrollbar: Scrollbar, $ScrollbarPlugin: ScrollbarPlugin } =
    useNuxtApp();
 
 const goToSection = (e) => {
    const { bodyScrollBar } = useScrollbar();
-   console.log(bodyScrollBar);
    const href = e.target.getAttribute("href");
-   if (window.innerWidth > 1024) {
-      const section = document.querySelector(`${href}`);
-      var scrollToHere = section.offsetTop;
-      bodyScrollBar.scrollTo(0, scrollToHere, 1000);
-      // document.querySelector(`${href}`).scrollIntoView({
-      //    behavior: "smooth",
-      // });
-   }
+   const section = document.querySelector(`${href}`);
+   const addedHeight = window.innerWidth > 1024 ? 0 : 52;
+   const scrollToHere =
+      bodyScrollBar.offset.y +
+      section.getBoundingClientRect().top -
+      addedHeight;
+   bodyScrollBar.scrollTo(0, scrollToHere, 1000);
+   // document.querySelector(`${href}`).scrollIntoView({
+   //    behavior: "smooth",
+   // });
+   bodyScrollBar.updatePluginOptions("lock", {
+      lock: false,
+   });
+   console.log("go to");
+   closeMenu();
 };
 onMounted(() => {
    class AnchorPlugin extends ScrollbarPlugin {
@@ -67,26 +77,6 @@ onMounted(() => {
                scrollbar.offset.y +
                document?.querySelector(hash).getBoundingClientRect().top;
          }
-         // if (hash === "#clients") {
-         //    itemY =
-         //       document.querySelector(".buy-footer__wrap").getBoundingClientRect()
-         //          .top +
-         //       scrollbar.offset.y -
-         //       document.querySelector(".documentation").clientHeight -
-         //       document.querySelector(".gallery").clientHeight;
-         // }
-         // if (hash === "#application") {
-         //    itemY =
-         //       document.querySelector(".buy-footer__wrap").getBoundingClientRect()
-         //          .top +
-         //       scrollbar.offset.y -
-         //       document.querySelector(".documentation").clientHeight -
-         //       document.querySelector(".gallery").clientHeight -
-         //       document.querySelector(".application").clientHeight;
-         // }
-         // reset scrollTop
-         // scrollbar.containerEl.scrollTop = 0;
-
          // scrollbar.scrollIntoView(document.querySelector(hash), {
          //     // offsetTop: 60
          // });
@@ -141,7 +131,7 @@ onMounted(() => {
       justify-content: center;
    }
    @media screen and (max-width: $md) {
-      position: fixed;
+      position: absolute;
       inset: 0;
       width: 100%;
       height: 100vh;
@@ -152,8 +142,10 @@ onMounted(() => {
       background: rgba(16, 35, 70, 0.3);
       opacity: 0;
       transition: opacity $time * 2;
+      pointer-events: none;
       .menu-open & {
          opacity: 1;
+         pointer-events: all;
       }
    }
    &__wrapper {

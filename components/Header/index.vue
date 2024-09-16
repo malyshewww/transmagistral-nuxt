@@ -1,5 +1,5 @@
 <template lang="pug">
-	header.header(:class="[classNames, {'hide': isHiddenHeader}]")
+	header.header(:class="[classNames, {'hide': isHiddenHeader, 'menu-open': isMenuOpen}]")
 		.container 
 			.header__body 
 				NuxtLink(to="/").header__logo.logo
@@ -7,43 +7,55 @@
 						source(:srcset="`/images/logo.svg`" media="(min-width: 767.98px)")
 						source(:srcset="`/images/logo-small.svg`" media="(min-width: 300px)")
 						img(src="/images/logo.svg", alt="логотип")
-				HeaderMenu(:menu="menu" :is-menu-open="isMenuOpen")
+				HeaderMenu(:menu="menu" @closeMenu="closeMenu")
 				HeaderActions
-				button(type="button" @click="openMenu($event)" :class="{active: isMenuOpen}").burger
+				button(type="button" @click="openMenu" :class="{active: isMenuOpen}").burger
 					.burger__icon
 						span
 </template>
 
 <script setup>
+import { useMenuStore } from "~/stores/menu";
+import { usePopupStore } from "~/stores/popup";
+
+const store = useMenuStore();
+const storePopup = usePopupStore();
+
 defineProps({
    menu: {
       type: Object,
       required: true,
    },
-   classNames: {
-      type: String,
-   },
    isHiddenHeader: {
       type: Boolean,
    },
-   isMainMenu: {
-      type: Boolean,
+   classNames: {
+      type: String,
    },
 });
 
-const isMenuOpen = ref(false);
+const isMenuOpen = ref(store.isMenuOpen);
+const isMenuOpenPopupStore = ref(storePopup.isMenuOpen);
 
 const openMenu = (e) => {
-   const target = e.target;
-   const parent = target.closest(".header");
-   parent.classList.toggle("menu-open");
-   target.classList.toggle("active");
+   if (window.innerWidth < 1024) {
+      const { bodyScrollBar } = useScrollbar();
+      isMenuOpen.value = !isMenuOpen.value;
+      bodyScrollBar.updatePluginOptions("lock", {
+         lock: !isMenuOpen.value ? false : true,
+      });
+      isMenuOpenPopupStore.value = !isMenuOpenPopupStore.value;
+   }
 };
-
-const emit = defineEmits(["openPopup"]);
-
-const openPopup = () => {
-   emit("openPopup");
+const closeMenu = () => {
+   if (window.innerWidth < 1024) {
+      const { bodyScrollBar } = useScrollbar();
+      isMenuOpen.value = false;
+      bodyScrollBar.updatePluginOptions("lock", {
+         lock: !isMenuOpen.value ? false : true,
+      });
+      isMenuOpenPopupStore.value = false;
+   }
 };
 </script>
 
@@ -67,6 +79,7 @@ const openPopup = () => {
       background: var(--white);
       min-height: 87px;
       transition: opacity $time * 2;
+      z-index: 11;
       &.hide {
          opacity: 0;
          pointer-events: none;
