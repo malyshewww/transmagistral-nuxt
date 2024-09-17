@@ -1,5 +1,4 @@
 <template lang="pug">
-	.page-gradient(ref="pageGradient")
 	.scroller(ref="scroller")
 		.wrapper
 			UiTrailer
@@ -19,13 +18,14 @@
 import { usePopupStore } from "~/stores/popup";
 import { useMainDataStore } from "~/stores/maindata";
 
+import formActions from "~/utils/formActions.js";
+
 const { $gsap: gsap, $ScrollTrigger: ScrollTrigger } = useNuxtApp();
 
 const store = usePopupStore();
 const storeData = useMainDataStore();
 const isHiddenHeader = ref(true);
 const menu = storeData.menu;
-const isMainMenu = ref(false);
 
 onMounted(() => {
    const { bodyScrollBar, scroller } = useScrollbar();
@@ -41,15 +41,9 @@ onMounted(() => {
       },
    });
    bodyScrollBar.addListener(ScrollTrigger.update);
-
    ScrollTrigger.defaults({ scroller: scroller });
-   // if (window.innerWidth > 1024) {
-   // } else {
-   //    ScrollTrigger.defaults({ scroller: ".wrapper" });
-   // }
 
    const mainScreen = document.querySelector(".main-screen");
-   const mainContent = document.querySelector(".main-content");
    const headerWhite = document.querySelector(".header.header-white");
    const mainScreenHeight = mainScreen.getBoundingClientRect().height;
    let prevScrollPosition = bodyScrollBar.scrollTop;
@@ -61,10 +55,11 @@ onMounted(() => {
          isHiddenHeader.value = false;
          if (prevScrollPosition < scrollPosition) {
             isHiddenHeader.value = true;
-            headerWhite.style.pointerEvents = `all`;
             headerWhite.style.opacity = `0`;
+            headerWhite.style.pointerEvents = `none`;
          } else {
             headerWhite.style.opacity = `1`;
+            headerWhite.style.pointerEvents = `all`;
             isHiddenHeader.value = false;
          }
       } else if (mainScreen && offset.y < mainScreenHeight) {
@@ -74,63 +69,7 @@ onMounted(() => {
       }
       prevScrollPosition = scrollPosition;
    });
-
-   /* COLOR CHANGER */
-   // const scrollColorElems = document.querySelectorAll("[data-bgcolor]");
-   // scrollColorElems.forEach((colorSection, i) => {
-   //    const prevBg = i === 0 ? "" : scrollColorElems[i - 1].dataset.bgcolor;
-   //    const prevText = i === 0 ? "" : scrollColorElems[i - 1].dataset.textcolor;
-   //    const bgOpacity = i === 0 ? 0 : 1;
-   //    const theme = i === 0 ? "white" : scrollColorElems[i - 1].dataset.theme;
-   //    ScrollTrigger.create({
-   //       trigger: colorSection,
-   //       start: "top 50%",
-   //       onEnter: () => {
-   //          gsap.to(".wrapper", {
-   //             // "--bgOpacity": bgOpacity,
-   //             "--color": colorSection.dataset.textcolor,
-   //             backgroundImage: colorSection.dataset.bgcolor,
-   //             color: colorSection.dataset.textcolor,
-   //             overwrite: "auto",
-   //             duration: 0.4,
-   //          });
-   //          document.querySelector(
-   //             ".wrapper"
-   //          ).className = `wrapper ${colorSection.dataset.theme}`;
-   //          document.documentElement.className = `${colorSection.dataset.theme}`;
-   //       },
-   //       onLeaveBack: () => {
-   //          gsap.to(".wrapper", {
-   //             // "--bgOpacity": bgOpacity,
-   //             "--color": prevText,
-   //             backgroundImage: prevBg,
-   //             color: prevText,
-   //             overwrite: "auto",
-   //             duration: 0.4,
-   //          });
-   //          document.documentElement.className = `${theme}`;
-   //          document.querySelector(".wrapper").className = `wrapper ${theme}`;
-   //       },
-   //    });
-   // });
-
-   // const observer = new IntersectionObserver((entries) => {
-   //    entries.forEach((entry) => {
-   //       const id = entry.target.getAttribute("id");
-   //       if (entry.intersectionRatio > 0) {
-   //          document
-   //             .querySelector(`.header li a[href="#${id}"]`)
-   //             .parentElement.classList.add("active");
-   //       } else {
-   //          document
-   //             .querySelector(`.header li a[href="#${id}"]`)
-   //             .parentElement.classList.remove("active");
-   //       }
-   //    });
-   // });
-   // document.querySelectorAll("section[id]").forEach((section) => {
-   //    observer.observe(section);
-   // });
+   formActions();
 });
 
 const isOpenNoticePopupQuestions = ref(false);
@@ -151,6 +90,8 @@ const closeNoticePopupQuestions = () => {
    height: 100vh;
    width: 100vw;
    overflow: auto;
+   position: relative;
+   isolation: isolate;
    & .scrollbar-track {
       width: 6px;
       // background: rgba($bg-anthracite, 0.5);

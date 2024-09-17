@@ -9,10 +9,10 @@
 					.form__body
 						.form-item 
 							.form-item__field
-								input(type="text" name="name" placeholder="Имя" autocomplete="off" @focus="onFocusInput($event)" @blur="onBlurInput($event)").form-input
+								input(type="text" name="name" placeholder="Имя" autocomplete="off").form-input
 						.form-item 
 							.form-item__field
-								input(type="tel" name="phone" placeholder="+7 900 000-00-00" autocomplete="off" @focus="onFocusInput($event)" @blur="onBlurInput($event)").form-input
+								input(type="tel" name="phone" placeholder="+7 900 000-00-00" autocomplete="off").form-input
 						UiButton(buttonText="Заказать консультацию")
 						.form-text 
 							p Отправляя форму, я подтверждаю #[a(href="#").text-link своё согласие на обработку персональных данных]
@@ -21,16 +21,6 @@
 
 <script setup>
 import maskPhone from "~/utils/maskPhone.js";
-
-const onFocusInput = (e) => {
-   const target = e.target;
-   target.parentNode.classList.add("focus");
-};
-const onBlurInput = (e) => {
-   const target = e.target;
-   target.parentNode.classList.contains("focus") &&
-      target.parentNode.classList.remove("focus");
-};
 
 const animation = () => {
    const callback = ([entry]) => {
@@ -80,23 +70,21 @@ onMounted(() => {
       overflow: hidden;
       border-radius: 14px;
       isolation: isolate;
-      @media screen and (max-width: $xl) {
-         padding: 100px 0;
-      }
-      @media screen and (max-width: $md) {
-         padding: 24px;
-      }
       &::before {
          content: "";
          position: absolute;
          inset: 0;
          width: 100%;
          height: 100%;
-         background-image: url("/images/noise.png");
-         background-repeat: no-repeat;
-         background-size: cover;
-         mix-blend-mode: overlay;
+         background-image: url("/images/noise.png"), var(--gradient);
+         background-blend-mode: soft-light;
          z-index: -1;
+      }
+      @media screen and (max-width: $xl) {
+         padding: 100px 0;
+      }
+      @media screen and (max-width: $md) {
+         padding: 24px;
       }
       & .line {
          position: absolute;

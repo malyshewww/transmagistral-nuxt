@@ -9,7 +9,6 @@
 
 <script setup>
 const { $gsap: gsap, $ScrollTrigger: ScrollTrigger } = useNuxtApp();
-// const animClientCard = ref('')
 const animation = () => {
    const { bodyScrollBar, scroller } = useScrollbar();
    ScrollTrigger.scrollerProxy(".scroller", {

@@ -10,11 +10,8 @@
 </template>
 
 <script setup>
-const { $gsap: gsap, $ScrollTrigger: ScrollTrigger } = useNuxtApp();
-const props = defineProps({
-   item: {},
-   idx: {},
-});
+// const { $gsap: gsap, $ScrollTrigger: ScrollTrigger } = useNuxtApp();
+defineProps(["item", "idx"]);
 
 const animation = () => {
    const callback = (entries) => {
@@ -81,7 +78,7 @@ onMounted(() => {
    }
    &__content {
       max-width: 370px;
-      color: var(--text-text-secondary);
+      color: var(--main-color);
       @media screen and (max-width: $md) {
          max-width: 100%;
       }
@@ -110,7 +107,6 @@ onMounted(() => {
       font-weight: 700;
       font-size: 24px;
       line-height: 26px;
-      color: var(--text-text-secondary);
       @media screen and (max-width: $md) {
          margin-bottom: 10px;
          font-size: 18px;

@@ -7,7 +7,8 @@
       "dev": "nuxt dev",
       "generate": "nuxt generate",
       "preview": "nuxt preview",
-      "postinstall": "nuxt prepare"
+      "postinstall": "nuxt prepare",
+      "lint": "eslint ."
    },
    "dependencies": {
       "@fancyapps/ui": "^5.0.36",
@@ -24,6 +25,9 @@
    },
    "devDependencies": {
       "autoprefixer": "^10.4.20",
+      "eslint": "^8.57.1",
+      "eslint-plugin-vue": "^9.28.0",
+      "eslint-plugin-vue-pug": "^0.6.2",
       "pinia": "^2.2.2",
       "postcss": "^8.4.43",
       "postcss-sort-media-queries": "^5.2.0",

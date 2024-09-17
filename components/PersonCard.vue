@@ -12,7 +12,10 @@
 
 <script setup>
 defineProps({
-   cards: {},
+   cards: {
+      type: Object,
+      required: true,
+   },
 });
 </script>
 

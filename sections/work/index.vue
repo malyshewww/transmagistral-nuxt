@@ -1,5 +1,5 @@
 <template lang="pug">
-	section.main-work#work
+	section.main-work#work(data-section="work")
 		.main-work__wrapper 
 			.main-work__image.ibg 
 				img(:src="`/images/work/main-img.jpg`", alt="фото")
@@ -48,18 +48,16 @@ const closeNoticePopupWork = () => {
       align-items: center;
       overflow: hidden;
       border-radius: 14px;
-      isolation: isolate;
       position: relative;
+      isolation: isolate;
       &::before {
          content: "";
          position: absolute;
          inset: 0;
          width: 100%;
          height: 100%;
-         background-image: url("/images/noise.png");
-         background-repeat: no-repeat;
-         background-size: cover;
-         mix-blend-mode: overlay;
+         background-image: url("/images/noise.png"), var(--gradient);
+         background-blend-mode: soft-light;
          z-index: -1;
       }
       @media screen and (max-width: $xl) {

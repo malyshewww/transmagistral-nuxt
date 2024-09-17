@@ -44,7 +44,7 @@ const animation = () => {
    });
    bodyScrollBar.addListener(ScrollTrigger.update);
    ScrollTrigger.defaults({ scroller });
-   let sections = gsap.utils.toArray(
+   const sections = gsap.utils.toArray(
       ".slider-advantages__body .slider-advantages__item"
    );
    const horizontX = -100 * (sections.length - 1);
@@ -59,7 +59,6 @@ const animation = () => {
          end: () =>
             "+=" +
             document.querySelector(".slider-advantages__body")?.offsetWidth,
-         onUpdate: (self) => {},
       },
    });
 };
@@ -117,17 +116,6 @@ onMounted(() => {
    checkScreenWidth();
    window.addEventListener("resize", checkScreenWidth);
 });
-// gsap.to(sliderTrack.value, {
-//    scrollTrigger: {
-//       trigger: ".slider-advantages__item",
-//       start: "top",
-//       end: () => "+=" + transform,
-//       pin: true,
-//       pinSpacing: true,
-//       scrub: true,
-//    },
-//    x: -transform,
-// });
 </script>
 
 <style lang="scss">

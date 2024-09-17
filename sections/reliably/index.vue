@@ -36,8 +36,6 @@ const store = useMainDataStore();
 
 const { $gsap: gsap, $MotionPathPlugin: MotionPathPlugin } = useNuxtApp();
 
-const reliablySliderCircle = ref("");
-
 const reliablySliderData = store.reliablySlider;
 
 const gsapSlider = () => {
@@ -46,8 +44,8 @@ const gsapSlider = () => {
    circlePath.id = "circlePath";
    document.querySelector(".reliably-slider__box svg").prepend(circlePath);
 
-   let images = document.querySelectorAll(".reliably-slider__image");
-   let contentBlocks = document.querySelectorAll(".reliably-slider__content");
+   const images = document.querySelectorAll(".reliably-slider__image");
+   const contentBlocks = document.querySelectorAll(".reliably-slider__content");
    let items = gsap.utils.toArray(".item"),
       numItems = items.length,
       itemStep = 1 / numItems,
@@ -95,7 +93,7 @@ const gsapSlider = () => {
    );
    items.forEach(function (el, i) {
       el.addEventListener("click", function () {
-         var current = tracker.item,
+         let current = tracker.item,
             activeItem = i;
 
          if (i === current) {
@@ -111,11 +109,11 @@ const gsapSlider = () => {
          items[activeItem].classList.add("active");
          images[activeItem].classList.add("active");
          contentBlocks[activeItem].classList.add("active");
-         var diff = current - i;
+         let diff = current - i;
          if (Math.abs(diff) < numItems / 2) {
             moveWheel(diff * itemStep);
          } else {
-            var amt = numItems - Math.abs(diff);
+            let amt = numItems - Math.abs(diff);
 
             if (current > i) {
                moveWheel(amt * -itemStep);
@@ -126,9 +124,9 @@ const gsapSlider = () => {
       });
    });
    document.getElementById("next").addEventListener("click", function () {
-      var i = 0;
-      var theArray = items;
-      var currentIndex = 0;
+      let i = 0;
+      let theArray = items;
+      let currentIndex = 0;
       if (i === 0) {
          console.log(theArray[currentIndex]);
       } else if (i < 0) {
@@ -143,7 +141,7 @@ const gsapSlider = () => {
    document.getElementById("prev").addEventListener("click", function () {
       return moveWheel(itemStep);
    });
-   function moveWheel(amount, i, index) {
+   function moveWheel(amount) {
       let progress = tl.progress();
       tl.progress(wrapProgress(snap(tl.progress() + amount)));
       let next = tracker.item;

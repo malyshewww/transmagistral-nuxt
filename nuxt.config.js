@@ -35,6 +35,7 @@ export default defineNuxtConfig({
          },
       ],
       "@pinia/nuxt",
+      "@nuxt/eslint",
    ],
    plugins: ["~/plugins/click-outside.js"],
    app: {

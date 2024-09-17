@@ -15,7 +15,7 @@
 </template>
 
 <script setup>
-const { $gsap: gsap, $ScrollTrigger: ScrollTrigger } = useNuxtApp();
+// const { $gsap: gsap, $ScrollTrigger: ScrollTrigger } = useNuxtApp();
 onMounted(() => {
    if (window.innerWidth > 1024) {
       const { bodyScrollBar } = useScrollbar();

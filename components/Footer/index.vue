@@ -1,5 +1,5 @@
 <template lang="pug">
-	footer.footer(data-bgcolor="linear-gradient(90deg, #255cae 0%, #b7d8e9 100%)" data-theme="dark" data-textcolor="#31373b")
+	footer.footer(data-section="contacts" data-bgcolor="linear-gradient(90deg, #255cae 0%, #b7d8e9 100%)" data-theme="dark" data-textcolor="#31373b" style="--gradient: linear-gradient(90deg, #255cae 0%, #b7d8e9 100%);")
 		.container 
 			.footer__body
 				Contacts
@@ -44,6 +44,11 @@ const scrollToTop = () => {
       bodyScrollBar.scrollIntoView(wrapper);
    }
 };
+
+defineExpose({
+   getFullYear,
+   openPopupPolitic,
+});
 
 onMounted(() => {
    scrollToTop();
@@ -91,6 +96,7 @@ onMounted(() => {
    }
    @media screen and (max-width: $xl) {
       padding: 20px;
+      border-radius: 14px;
    }
    &__logo {
       max-width: 290px;

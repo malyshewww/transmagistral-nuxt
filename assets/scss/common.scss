@@ -1,68 +1,36 @@
 body {
 	background-color: var(--white);
 }
-.main-content {
-	position: relative;
-	z-index: 2;
-}
 
 html.dark {
-	.page-gradient {
-		opacity: 1;
+	& .wrapper {
+		&::before {
+			opacity: 1;
+		}
 	}
 }
 
-.page-gradient {
-	// position: fixed;
-	// top: 0;
-	// left: 0;
-	// width: 100%;
-	// height: 100%;
-	// background: url('/images/noise.png'), linear-gradient(90deg, #b7d8e9 0%, #255cae 100%);
-	// mix-blend-mode: overlay;
-	// opacity: 0;
-	// transition: opacity 1s;
-	// pointer-events: none;
-	// z-index: 2;
-	// &::before {
-	// 	content: "";
-	// 	position: absolute;
-	// 	inset: 0;
-	// 	width: 100%;
-	// 	height: 100%;
-	// 	background: var(--gradient);
-	// }
-}
-
 .wrapper {
-	--bgOpacity: 0;
 	position: relative;
 	background: var(--white);
 	isolation: isolate;
 	&::before {
-		// content: "";
-		position: absolute;
+		content: "";
+		position: fixed;
 		inset: 0;
 		width: 100%;
 		height: 100%;
-		background-image: url("/images/noise.png");
-		background-repeat: no-repeat;
-		background-size: cover;
-		mix-blend-mode: overlay;
+		background-image: url("/images/noise.png"), var(--page-gradient);
+		background-blend-mode: soft-light;
 		z-index: -1;
+		transition: opacity 0.5s;
 		opacity: 0;
-		transition: opacity 1s;
+		pointer-events: none;
 	}
 	@media screen and (max-width: 1024px) {
 		overflow: clip;
 	}
 }
-
-// #__nuxt,
-// .scroller {
-// 	background: inherit;
-// 	color: inherit;
-// }
 
 .wrapper {
 	display: flex;

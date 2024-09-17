@@ -26,7 +26,7 @@ const openPopupPolitic = () => {
    store.openPopupPolitic();
 };
 
-const props = defineProps({
+defineProps({
    isOpen: {
       type: Boolean,
    },

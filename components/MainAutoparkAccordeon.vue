@@ -92,7 +92,7 @@ const initAccordeonMobile = () => {
                   accordeon.querySelectorAll(".item-accordeon");
                [...accordeonItems].forEach((item, index) => {
                   const header = item.querySelector(".item-accordeon__header");
-                  let content = item.querySelector(".item-accordeon__body");
+                  const content = item.querySelector(".item-accordeon__body");
                   header.addEventListener("click", () => {
                      item.classList.toggle("active");
                      if (item.classList.contains("active")) {
@@ -111,7 +111,7 @@ const initAccordeonMobile = () => {
                   [...accordeonItems].forEach((item2, index2) => {
                      if (index1 != index2) {
                         item2.classList.remove("active");
-                        let contentTwo = item2.querySelector(
+                        const contentTwo = item2.querySelector(
                            ".item-accordeon__body"
                         );
                         contentTwo.style.height = "0px";

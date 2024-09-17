@@ -7,6 +7,8 @@
 </template>
 
 <script setup>
+import maskPhone from "~/utils/maskPhone.js";
+
 defineProps({
    isOpen: {
       type: Boolean,
@@ -17,6 +19,10 @@ const emit = defineEmits(["closePopup"]);
 const closePopup = () => {
    emit("closePopup");
 };
+
+onMounted(() => {
+   maskPhone();
+});
 </script>
 
 <style lang="scss">

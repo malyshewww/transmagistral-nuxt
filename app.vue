@@ -1,24 +1,24 @@
 <template lang="pug">
 	NuxtLayout
-			NuxtErrorBoundary
-				NuxtPage
+      NuxtErrorBoundary
+         NuxtPage
 </template>
 
 <script setup>
-const { $gsap: gsap, $ScrollTrigger: ScrollTrigger } = useNuxtApp();
+const { $ScrollTrigger: ScrollTrigger } = useNuxtApp();
 
 const nuxtApp = useNuxtApp();
 nuxtApp.hook("page:start", () => {
    ScrollTrigger.update();
 });
 
-// const mail = useMail();
+const mail = useMail();
 
-// mail.send({
-//    from: "Solid Snake",
-//    subject: "A Strong Man",
-//    text: "A Strong Man doesn't need to read the Future. He makes his own.",
-// });
+mail.send({
+   from: "Solid Snake",
+   subject: "A Strong Man",
+   text: "A Strong Man doesn't need to read the Future. He makes his own.",
+});
 
 useHead({
    title: "Трансмагистраль",
@@ -33,14 +33,14 @@ useHead({
 @import "~/assets/scss/keyframes.scss";
 @import "~/assets/scss/common.scss";
 @import "~/assets/scss/fonts.scss";
-.wrapper.dark {
+html.dark {
    --bg-bg-dark: #ffffff;
    --bg-red-title: #ffffff;
    --text-text-secondary: #ffffff;
    --button-hover-dark: #eceff6;
    --button-active-dark: #d8dbe2;
    --bg-footer-nav: #f4f6fc;
-   &::before {
+   & .wrapper::before {
       opacity: 1;
    }
    & .main-contacts {

@@ -10,7 +10,7 @@
 </template>
 
 <script setup>
-const props = defineProps({
+defineProps({
    menu: {
       type: Object,
       required: true,
@@ -30,7 +30,12 @@ const goToSection = (e) => {
    const { bodyScrollBar } = useScrollbar();
    const href = e.target.getAttribute("href");
    const section = document.querySelector(`${href}`);
-   const addedHeight = window.innerWidth > 1024 ? 0 : 52;
+   let addedHeight = 0;
+   if (window.innerWidth < 1024 && window.innerWidth > 767.98) {
+      addedHeight = 60;
+   } else if (window.innerWidth <= 767.98) {
+      addedHeight = 20;
+   }
    const scrollToHere =
       bodyScrollBar.offset.y +
       section.getBoundingClientRect().top -
@@ -42,7 +47,6 @@ const goToSection = (e) => {
    bodyScrollBar.updatePluginOptions("lock", {
       lock: false,
    });
-   console.log("go to");
    closeMenu();
 };
 onMounted(() => {
@@ -67,8 +71,8 @@ onMounted(() => {
          if (!hash) {
             return;
          }
-         let offset = 0;
-         let headerHeight = 87;
+         const offset = 0;
+         const headerHeight = 87;
          let itemY =
             document.querySelector(hash).getBoundingClientRect().top +
             scrollbar.offset.y;
@@ -218,6 +222,9 @@ onMounted(() => {
          .header-white &:hover {
             color: var(--bg-bg-red);
          }
+      }
+      &.active {
+         color: var(--bg-bg-red);
       }
    }
 }

@@ -18,10 +18,22 @@
 
 <script setup>
 defineProps({
-   classNames: {},
-   buttonText: {},
-   buttonType: {},
-   iconName: {},
+   classNames: {
+      type: String,
+      required: false,
+   },
+   buttonText: {
+      type: String,
+      required: false,
+   },
+   buttonType: {
+      type: String,
+      required: false,
+   },
+   iconName: {
+      type: String,
+      required: false,
+   },
 });
 const emit = defineEmits(["buttonClick"]);
 

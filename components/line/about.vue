@@ -60,26 +60,6 @@
             </clipPath>
          </defs>
       </svg>
-      <!-- <svg
-         v-else-if="index === 2"
-         ref="svgThree"
-         class="svg-three"
-         width="100%"
-         height="255"
-         fill="none"
-         xmlns="http://www.w3.org/2000/svg">
-         <g clip-path="url(#clip0_936_1096)">
-            <path
-               d="M800 409.626C474.563 471.803 771.435 203.558 240.149 223.558V223.558C172.391 226.109 165.233 155.719 206.4 101.839C235.558 63.6778 247.505 29.9671 189.17 38.2693C120.913 47.9837 -91.5868 144.834 -137 95.5593"
-               stroke="#ECEFF7"
-               stroke-width="20" />
-         </g>
-         <defs>
-            <clipPath id="clip0_936_1096">
-               <rect width="410" height="255" fill="white" />
-            </clipPath>
-         </defs>
-      </svg> -->
    </div>
 </template>
 

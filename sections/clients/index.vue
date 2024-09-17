@@ -1,5 +1,5 @@
 <template lang="pug">
-	section.main-clients#clients(data-bgcolor="linear-gradient(90deg, #ffffff 0%, #ffffff 100%)" data-theme="white" data-textcolor="white")
+	section.main-clients#clients(data-section="clients" data-bgcolor="linear-gradient(90deg, #ffffff 0%, #ffffff 100%)" data-theme="white" data-textcolor="white")
 		.container 
 			.main-clients__body 
 				UiSectionHeading(caption="Клиенты")
@@ -16,10 +16,9 @@
 </template>
 
 <script setup>
-// const { bodyScrollBar } = useScrollbar();
-
 const isOpenPopupClient = ref(false);
 const isOpenNoticePopupClient = ref(false);
+
 const openPopupClient = () => {
    isOpenPopupClient.value = !isOpenPopupClient.value;
    const { bodyScrollBar } = useScrollbar();

@@ -21,8 +21,6 @@
 </template>
 
 <script setup>
-import maskPhone from "~/utils/maskPhone.js";
-
 import { usePopupStore } from "~/stores/popup";
 
 const store = usePopupStore();
@@ -31,7 +29,7 @@ const openPopupPolitic = () => {
    store.openPopupPolitic();
 };
 
-const props = defineProps({
+defineProps({
    isOpen: {
       type: Boolean,
    },
@@ -53,20 +51,19 @@ const newDataFromDropdown = (value) => {
 };
 
 const submitForm = async () => {
-   const { data: responseData } = await useFetch(
-      `${useHref()}/form-handler/index.php`,
-      {
-         method: "post",
-         body: {
-            name: formData.value.name,
-            phone: formData.value.phone,
-            theme: formData.value.theme,
-         },
-      }
-   );
+   console.log(formData.value);
+   //    const { data: responseData } = await useFetch(
+   //       `${useHref()}/form-handler/index.php`,
+   //       {
+   //          method: "post",
+   //          body: {
+   //             name: formData.value.name,
+   //             phone: formData.value.phone,
+   //             theme: formData.value.theme,
+   //          },
+   //       }
+   //    );
 };
 
-onMounted(() => {
-   maskPhone();
-});
+onMounted(() => {});
 </script>

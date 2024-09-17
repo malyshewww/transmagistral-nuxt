@@ -37,7 +37,7 @@ defineProps({
 const isMenuOpen = ref(store.isMenuOpen);
 const isMenuOpenPopupStore = ref(storePopup.isMenuOpen);
 
-const openMenu = (e) => {
+const openMenu = () => {
    if (window.innerWidth < 1024) {
       const { bodyScrollBar } = useScrollbar();
       isMenuOpen.value = !isMenuOpen.value;

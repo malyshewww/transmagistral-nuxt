@@ -1,6 +1,6 @@
 <template lang="pug">
-	section.section.main-about#about(data-bgcolor="linear-gradient(90deg, transparent 0%, transparent 100%)" data-theme="white" data-textcolor="#31373b")
-		.container 
+	section.section.main-about#about(data-section="about" data-bgcolor="linear-gradient(90deg, transparent 0%, transparent 100%)" data-theme="white" data-textcolor="#31373b")
+		.container  
 			.main-about__body
 				.main-about__item.start-heading
 					.main-about__content

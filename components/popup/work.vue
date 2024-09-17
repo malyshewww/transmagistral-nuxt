@@ -35,7 +35,7 @@ const openPopupPolitic = () => {
    store.openPopupPolitic();
 };
 
-const props = defineProps({
+defineProps({
    isOpen: {
       type: Boolean,
    },
@@ -48,7 +48,7 @@ const closePopup = () => {
 
 const maskTime = () => {
    const elements = document.querySelectorAll(".form-item__timelines input");
-   let maskOptions = {
+   const maskOptions = {
       overwrite: true,
       autofix: true,
       mask: "HH:MM",

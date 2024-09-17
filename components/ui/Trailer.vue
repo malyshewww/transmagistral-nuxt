@@ -5,13 +5,13 @@
 </template>
 
 <script setup>
-const { $gsap: gsap, $ScrollTrigger: ScrollTrigger } = useNuxtApp();
+const { $gsap: gsap } = useNuxtApp();
 
 const positionY = ref(0);
 
 onMounted(() => {
    if (window.matchMedia("(min-wdith: 1024px)")) {
-      const { bodyScrollBar, scroller } = useScrollbar();
+      const { bodyScrollBar } = useScrollbar();
       bodyScrollBar.addListener(({ offset }) => {
          positionY.value = offset.y;
       });
@@ -41,14 +41,14 @@ onMounted(() => {
    width: 152px;
    height: 152px;
    position: fixed;
-   background-color: $bg-bg-red;
+   background-color: var(--bg-bg-red);
    left: 0px;
    top: 0px;
    z-index: 1000;
    pointer-events: none;
    opacity: 0;
    transition: opacity $time;
-   color: $white;
+   color: var(--white);
    pointer-events: none;
    border-radius: 50%;
    &::before {

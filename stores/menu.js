@@ -4,10 +4,10 @@ export const useMenuStore = defineStore("menu", {
    }),
    actions: {
       openMenu() {
-         this.isMenuOpen = this.isMenuOpen;
+         this.isMenuOpen = !this.isMenuOpen;
       },
       closeMenu() {
-         this.isMenuOpen = this.isMenuOpen;
+         this.isMenuOpen = !this.isMenuOpen;
       },
    },
 });
