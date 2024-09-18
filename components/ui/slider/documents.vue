@@ -146,6 +146,7 @@ onMounted(() => {
    &__name {
       font-size: 20px;
       line-height: 28px;
+      opacity: 1;
       @media screen and (max-width: $md) {
          font-size: 15px;
          line-height: 140%;

@@ -22,8 +22,9 @@
 import { usePopupStore } from "~/stores/popup";
 
 const store = usePopupStore();
+
 const openPopupPolitic = () => {
-   store.openPopupPolitic();
+   store.openPopupPoliticNotNested();
 };
 
 defineProps({

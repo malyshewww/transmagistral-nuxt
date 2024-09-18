@@ -13,7 +13,7 @@
 						.form-item__field
 							input(type="tel" name="phone" placeholder="+7 900 000-00-00").form-input 
 					.form-text 
-						| Отправляя форму, я подтверждаю своё #[button(type="button" @click="openPopupPolitic").text-link согласие на обработку персональных данных] 
+						| Отправляя форму, я подтверждаю своё #[a(href="#" @click.prevent="openPopupPolitic").text-link согласие на обработку персональных данных] 
 				UiButton(buttonText="Отправить" classNames="btn-red", buttonType="submit")
 </template>
 

@@ -11,7 +11,7 @@
 					Footer(:menu="menu")
 	PopupQuestions(@close-popup="store.closePopupQuestions" :is-open="store.isPopupQuestionsActive")
 	PopupNotice(@close-popup="closeNoticePopupQuestions" :is-open="isOpenNoticePopupQuestions")
-	PopupPolitic(@close-popup="store.closePopupPolitic" :is-open="store.isPopupPoliticActive")
+	PopupPolitic(@close-popup="closePopupPolitic" :is-open="store.isPopupPoliticActive || store.isOpenPopupPoliticNotNested")
 </template>
 
 <script setup>
@@ -74,6 +74,13 @@ onMounted(() => {
 
 const isOpenNoticePopupQuestions = ref(false);
 
+const closePopupPolitic = () => {
+   store.closePopupPolitic();
+   if (store.isOpenPopupPoliticNotNested) {
+      store.closePopupPoliticNotNested();
+   }
+};
+
 const openNoticePopupQuestions = () => {
    isOpenNoticePopupQuestions.value = !isOpenNoticePopupQuestions.value;
 };
@@ -94,23 +101,23 @@ const closeNoticePopupQuestions = () => {
    isolation: isolate;
    & .scrollbar-track {
       width: 6px;
-      // background: rgba($bg-anthracite, 0.5);
+      background: rgba(#255cae, 0.5);
    }
    & .scrollbar-thumb {
-      // background: rgba($bg-green-lime, 0.8);
+      background: rgba(#255cae, 0.8);
    }
    & .scrollbar-track-x {
       display: none;
    }
 }
 @media screen and (max-width: 1024px) {
-   // .scroller {
-   //    overflow: clip;
-   //    width: auto;
-   //    height: auto;
-   //    & .scrollbar-track {
-   //       width: 0;
-   //    }
-   // }
+   .scroller {
+      // overflow: clip;
+      // width: auto;
+      // height: auto;
+      & .scrollbar-track {
+         width: 0;
+      }
+   }
 }
 </style>

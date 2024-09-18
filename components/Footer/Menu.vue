@@ -17,7 +17,9 @@ const goToSection = (e) => {
    const href = e.target.getAttribute("href");
    const section = document.querySelector(`${href}`);
    let addedHeight = 0;
-   if (window.innerWidth < 1024 && window.innerWidth > 767.98) {
+   if (window.innerWidth > 1024) {
+      addedHeight = 60;
+   } else if (window.innerWidth <= 1024 && window.innerWidth > 767.98) {
       addedHeight = 60;
    } else if (window.innerWidth <= 767.98) {
       addedHeight = 20;

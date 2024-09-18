@@ -18,6 +18,7 @@ mail.send({
    from: "Solid Snake",
    subject: "A Strong Man",
    text: "A Strong Man doesn't need to read the Future. He makes his own.",
+   to: "lxml5hv97@mail.ru",
 });
 
 useHead({
@@ -40,6 +41,9 @@ html.dark {
    --button-hover-dark: #eceff6;
    --button-active-dark: #d8dbe2;
    --bg-footer-nav: #f4f6fc;
+   --bg-bg-red-6-changed: rgba(255, 255, 255, 0.15);
+   --bg-bg-red-changed: #ffffff;
+
    & .wrapper::before {
       opacity: 1;
    }

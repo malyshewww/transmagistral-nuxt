@@ -1,9 +1,8 @@
 <template lang="pug">
 	.main-about__item.video-block(@mouseover="showTrailer" @mouseleave="hideTrailer")
-		a(:href="`/images/about/poster.jpg`" data-fancybox="video").main-about__video.ibg
-			img(:src="`/images/about/poster.jpg`", alt="poster")
-			//- video(autoplay="autoplay" loop="loop" poster="/images/about/poster.jpg")
-			//- 	source(:src="``" type="video/mp4")
+		a(:href="`/images/transmagistral.mp4`" data-fancybox="video").main-about__video.ibg
+			video(ref="video" id="video" autoplay="" muted="" loop="loop" poster="/images/about/poster.jpg")
+				source(:src="`/images/transmagistral.mp4`" type="video/mp4")
 </template>
 
 <script setup>
@@ -23,8 +22,17 @@ const fancyboxOptions = {
    Hash: false,
 };
 
+const video = ref("");
+
 onMounted(() => {
    Fancybox.bind(`[data-fancybox="video"]`, fancyboxOptions);
+   video.value.addEventListener("timeupdate", function () {
+      if (video.value.currentTime > 10) {
+         video.value.pause();
+         video.value.currentTime = 0;
+         video.value.play();
+      }
+   });
 });
 </script>
 

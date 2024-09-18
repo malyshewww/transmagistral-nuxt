@@ -199,31 +199,51 @@ h6 {
 	}
 }
 
+// .text-link {
+// 	border-bottom: 1px solid currentColor;
+// 	@media (any-hover: hover) {
+// 		&:hover {
+// 			color: #1941a5;
+// 		}
+// 		&:active {
+// 			border-color: transparent;
+// 		}
+// 	}
+// 	&:visited {
+// 		border-color: transparent;
+// 	}
+// }
+
 .text-link {
+	color: var(--white);
 	border-bottom: 1px solid currentColor;
 	transition: color $time, border-color $time;
 	@media (any-hover: hover) {
 		&:hover {
-			color: #1941a5;
+			color: var(--text-link-white-hover);
 		}
 		&:active {
 			border-color: transparent;
 		}
 	}
-	&:visited {
-		border-color: transparent;
+}
 
-	}
+.error-message {
+	color: var(--bg-bg-red);
+	padding: 0 16px;
 }
 .form-item {
 	position: relative;
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
 	&__field {
 		position: relative;
 		border-bottom: 1px solid rgba(var(--bg-bg-white-rgb), 0.5);
 		&::before {
 			content: "";
 			position: absolute;
-			bottom: 0;
+			bottom: -1px;
 			left: 0;
 			width: 0px;
 			height: 1px;
@@ -248,6 +268,14 @@ h6 {
 		grid-template-columns: repeat(2, 1fr);
 		gap: 42px;
 		margin-top: 14px;
+	}
+	&.error {
+		& .form-item__field {
+			border-bottom: 1px solid var(--bg-bg-red);
+			&::before {
+				background-color: var(--bg-bg-red);
+			}
+		}
 	}
 }
 .form-input {

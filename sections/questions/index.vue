@@ -15,12 +15,19 @@
 								input(type="tel" name="phone" placeholder="+7 900 000-00-00" autocomplete="off").form-input
 						UiButton(buttonText="Заказать консультацию")
 						.form-text 
-							p Отправляя форму, я подтверждаю #[a(href="#").text-link своё согласие на обработку персональных данных]
+							p Отправляя форму, я подтверждаю #[a(href="#" @click.prevent="openPopupPolitic").text-link своё согласие на обработку персональных данных]
 
 </template>
 
 <script setup>
 import maskPhone from "~/utils/maskPhone.js";
+import { usePopupStore } from "~/stores/popup";
+
+const store = usePopupStore();
+
+const openPopupPolitic = () => {
+   store.openPopupPoliticNotNested();
+};
 
 const animation = () => {
    const callback = ([entry]) => {
@@ -142,15 +149,6 @@ onMounted(() => {
       & .form-text {
          padding: 0;
          color: var(--white);
-      }
-      & .text-link {
-         border-color: var(--white);
-         @media (any-hover) {
-            &:hover {
-               color: #31373b;
-               border-color: #31373b;
-            }
-         }
       }
    }
 }

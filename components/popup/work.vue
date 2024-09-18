@@ -21,7 +21,7 @@
 								input(type="text" name="time_to" placeholder="12:00").form-input 
 					.form-item 
 						.form-text 
-							| Отправляя форму, я подтверждаю своё #[button(type="button" @click="openPopupPolitic").text-link согласие на обработку персональных данных] 
+							| Отправляя форму, я подтверждаю своё #[a(href="#" @click.prevent="openPopupPolitic").text-link согласие на обработку персональных данных] 
 				UiButton(buttonText="Отправить" classNames="btn-red", buttonType="submit")
 </template>
 

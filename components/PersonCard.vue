@@ -24,7 +24,7 @@ defineProps({
    padding: 40px;
    border-radius: 14px;
    background-color: var(--bg-bg-grey);
-   color: var(--text-text-secondary);
+   color: var(--main-color);
    @media screen and (max-width: $xxl) {
       padding: 20px;
    }
@@ -222,6 +222,12 @@ defineProps({
    &__link {
       font-size: 20px;
       line-height: 28px;
+      transition: color $time;
+      @media (any-hover: hover) {
+         &:hover {
+            color: #1941a5;
+         }
+      }
       @media screen and (max-width: $md) {
          font-size: 17px;
          line-height: 24px;

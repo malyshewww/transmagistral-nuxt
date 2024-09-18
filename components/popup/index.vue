@@ -134,6 +134,14 @@ onMounted(() => {
          }
       }
    }
+   & .text-link {
+      color: rgba(var(--text-text-secondary-rgb), 0.5);
+      @media (any-hover: hover) {
+         &:hover {
+            color: var(--text-link-dark-hover);
+         }
+      }
+   }
 }
 .popup-politic {
    z-index: 40;
