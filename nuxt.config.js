@@ -17,23 +17,23 @@ export default defineNuxtConfig({
    ],
    // modules: ["@pinia/nuxt"],
    modules: [
-      [
-         "nuxt-mail",
-         {
-            message: {
-               to: process.env.NUXT_MAIL_TARGET,
-            },
-            smtp: {
-               host: process.env.NUXT_MAIL_SMTP,
-               port: process.env.NUXT_MAIL_PORT,
-               secure: true,
-               auth: {
-                  user: process.env.NUXT_MAIL_USERNAME,
-                  pass: process.env.NUXT_MAIL_PASSWORD,
-               },
-            },
-         },
-      ],
+      // [
+      //    "nuxt-mail",
+      //    {
+      //       message: {
+      //          to: process.env.NUXT_MAIL_TARGET,
+      //       },
+      //       smtp: {
+      //          host: process.env.NUXT_MAIL_SMTP,
+      //          port: process.env.NUXT_MAIL_PORT,
+      //          secure: true,
+      //          auth: {
+      //             user: process.env.NUXT_MAIL_USERNAME,
+      //             pass: process.env.NUXT_MAIL_PASSWORD,
+      //          },
+      //       },
+      //    },
+      // ],
       "@pinia/nuxt",
       "@nuxt/eslint",
    ],
