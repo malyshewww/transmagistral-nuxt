@@ -123,6 +123,7 @@ const select = (target, key) => {
       transform: translateY(20px);
       pointer-events: none;
       transition: opacity $time, transform $time;
+      width: 100%;
    }
    &__list {
       @include reset-list;
@@ -133,7 +134,7 @@ const select = (target, key) => {
    }
    &__item {
       padding: 16px;
-      width: 380px;
+      width: 100%;
       min-height: 50px;
       background-color: var(--white);
       transition: background-color $time;

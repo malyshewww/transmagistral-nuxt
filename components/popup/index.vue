@@ -122,8 +122,7 @@ onMounted(() => {
       font-size: 24px;
       line-height: 26px;
    }
-   &__sub-title,
-   &__description {
+   &__sub-title {
       font-size: 20px;
       line-height: 28px;
    }
@@ -145,6 +144,21 @@ onMounted(() => {
 }
 .popup-politic {
    z-index: 40;
+   & .popup__content {
+      padding: 40px 0;
+      @media screen and (max-width: $md) {
+         padding: 30px 0;
+      }
+   }
+   & .popup__content-wrap {
+      padding: 0px 40px;
+      max-height: 394px;
+      overflow-y: auto;
+      overflow-x: hidden;
+      @media screen and (max-width: $md) {
+         padding: 0 15px;
+      }
+   }
 }
 .popup-header {
    display: grid;
