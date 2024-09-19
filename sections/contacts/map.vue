@@ -5,7 +5,7 @@
 </template>
 
 <script setup>
-import json from "~/static/geo.json";
+import json from "~/static/theme.json";
 
 const coords = [43.870026, 56.303546];
 
