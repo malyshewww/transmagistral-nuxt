@@ -7,19 +7,19 @@
 <script setup>
 const { $ScrollTrigger: ScrollTrigger } = useNuxtApp();
 
-const nuxtApp = useNuxtApp();
-nuxtApp.hook("page:start", () => {
-   ScrollTrigger.update();
-});
+// const nuxtApp = useNuxtApp();
+// nuxtApp.hook("page:start", () => {
+//    ScrollTrigger.update();
+// });
 
-const mail = useMail();
+// const mail = useMail();
 
-mail.send({
-   from: "Solid Snake",
-   subject: "A Strong Man",
-   text: "A Strong Man doesn't need to read the Future. He makes his own.",
-   to: "lxml5hv97@mail.ru",
-});
+// mail.send({
+//    from: "Solid Snake",
+//    subject: "A Strong Man",
+//    text: "A Strong Man doesn't need to read the Future. He makes his own.",
+//    to: "lxml5hv97@mail.ru",
+// });
 
 useHead({
    title: "Трансмагистраль",
