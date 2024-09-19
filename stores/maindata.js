@@ -48,7 +48,7 @@ export const useMainDataStore = defineStore("maindata", {
       reliablySlider: [
          {
             title: "24 часа на связи",
-            descr: "Наши логисты готовы решать сложные вопросы в любое время</strong> дня и ночи",
+            descr: "Наши логисты готовы решать сложные вопросы <strong>в любое время</strong> дня и ночи",
          },
          {
             title: "Более 50 000 км",

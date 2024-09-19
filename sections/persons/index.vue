@@ -8,8 +8,8 @@
 					PersonCard(:cards="newPersonList")
 					.person-card.person-card-last
 						.person-card__top 
-							.person-card__small-image.ibg(v-for="image, index in 3") 
-								img(:src="`/images/persons/person-small-${index+1}.jpg`", alt="маленькое фото команды")
+							.person-card__small-image.ibg(v-for="image, index in 3")
+								NuxtPicture(format="avif,webp" :src="`/images/persons/person-small-${index+1}.jpg`" alt="маленькое фото команды")
 							.person-card__small-image
 								span
 						.person-card__bottom

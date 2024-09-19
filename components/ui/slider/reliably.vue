@@ -10,7 +10,7 @@
 					circle(ref="holder" id="holder" class="st0" cx="151" cy="151" r="150")
 			.reliably-slider__images 
 				.reliably-slider__image(v-for="item, index in reliablySliderData" :key="index" :class="{active: index === 0}")
-					img(:src="`/images/reliably/slide-${index+1}.jpg`", :alt="item.title")
+					NuxtPicture(format="avif,webp" :src="`/images/reliably/slide-${index+1}.jpg`" :alt="item.title")
 		.reliably-slider__content-box
 			.reliably-slider__content.reliably-content(v-for="item, index in reliablySliderData" :key="index" :class="{active: index === 0}")
 				.reliably-content__caption {{item.title}}
@@ -305,7 +305,8 @@ onMounted(() => {
       opacity: 0;
       transition: transform $time * 2, opacity $time * 2;
       z-index: -1;
-      & img {
+      & img,
+      & picture {
          border-radius: inherit;
          width: 100%;
          height: 100%;

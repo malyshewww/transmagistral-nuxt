@@ -2,7 +2,7 @@
 	section.main-work#work(data-section="work")
 		.main-work__wrapper 
 			.main-work__image.ibg 
-				img(:src="`/images/work/main-img.jpg`", alt="фото")
+				NuxtPicture(format="avif,webp" :src="`/images/work/main-img.jpg`" alt="секция есть работа")
 			.main-work__body
 				.main-work__content 
 					h2.main-work__title.section.title ЕСТЬ РАБОТА

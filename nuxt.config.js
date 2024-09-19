@@ -34,9 +34,13 @@ export default defineNuxtConfig({
       //       },
       //    },
       // ],
+      "@nuxt/image",
       "@pinia/nuxt",
       "@nuxt/eslint",
    ],
+   devServer: {
+      port: 3001,
+   },
    plugins: ["~/plugins/click-outside.js"],
    app: {
       head: {
@@ -137,6 +141,7 @@ export default defineNuxtConfig({
             scss: {
                additionalData:
                   '@use "sass:math"; @use "~/assets/scss/mixins.scss" as *; @import "~/assets/scss/variables.scss";',
+               silenceDeprecations: ["legacy-js-api"],
             },
          },
       },

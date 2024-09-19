@@ -2,7 +2,7 @@
 	.person-card(v-for="card, index in cards" :key="index")
 		.person-card__body 
 			.person-card__image
-				img(:src="`/images/persons/person-${index+1}.jpg`", :alt="card.name")
+				NuxtPicture(format="avif,webp" :src="`/images/persons/person-${index+1}.jpg`" :alt="card.name")
 			.person-card__name {{ card.name }}
 			.person-card__post {{ card.post }}
 			.person-card__contacts.contacts-person
@@ -34,6 +34,11 @@ defineProps({
       border-radius: 50%;
       overflow: hidden;
       align-self: center;
+      & img,
+      & picture {
+         width: 100%;
+         height: 100%;
+      }
       @media screen and (max-width: $xxl) {
          width: 183px;
          height: 183px;
@@ -145,6 +150,11 @@ defineProps({
       place-items: center;
       flex-shrink: 0;
       border: 1px solid var(--stroke-stroke-grey);
+      & img,
+      & picture {
+         width: 100%;
+         height: 100%;
+      }
       & span {
          width: 23px;
          display: inline-block;
