@@ -5,7 +5,7 @@
 				NuxtLink(to="/").header__logo.logo
 					picture 
 						source(:srcset="`/images/logo.svg`" media="(min-width: 767.98px)")
-						source(:srcset="`/images/logo-small.svg`" media="(min-width: 300px)")
+						source(:srcset="`/images/logo-small.svg`" media="(min-width: 767px)")
 						img(src="/images/logo.svg", alt="логотип")
 				HeaderMenu(:menu="menu" @closeMenu="closeMenu")
 				HeaderActions
@@ -73,7 +73,7 @@ const closeMenu = () => {
    color: var(--white);
    padding: 10px 0;
    &.header-white {
-      position: sticky;
+      position: fixed;
       color: #31373b;
       box-shadow: 0 2px 5px 0 rgba(25, 51, 99, 0.05);
       background: var(--white);
@@ -96,7 +96,7 @@ const closeMenu = () => {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 10px 20px;
+      gap: 10px 24px;
       @media screen and (max-width: $xxl) {
          flex-wrap: wrap;
       }

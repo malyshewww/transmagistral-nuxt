@@ -48,7 +48,7 @@ onMounted(() => {
       const marker = new YMapMarker(
          {
             coordinates: coords,
-            draggable: true,
+            draggable: false,
          },
          content
       );
@@ -70,6 +70,7 @@ onMounted(() => {
       & .map {
          width: 100%;
          height: 100%;
+         pointer-events: none;
       }
       @media screen and (max-width: $xl) {
          height: 479px;

@@ -32,13 +32,13 @@ const openPopupPolitic = () => {
 const animation = () => {
    const callback = ([entry]) => {
       if (entry.isIntersecting) {
-         if (entry.intersectionRatio >= 0.6) {
+         if (entry.intersectionRatio >= 0.2) {
             entry.target.classList.add("in-view");
          }
       }
    };
    const options = {
-      threshold: [0, 0.6, 1],
+      threshold: [0, 0.2, 1],
    };
    const targetElement = document.querySelector(".main-questions");
    const observerQuestion = new IntersectionObserver(callback, options);
@@ -57,17 +57,6 @@ onMounted(() => {
    padding: 60px 20px 0;
    @media screen and (max-width: $xl) {
       padding: 36px 15px 0;
-   }
-   &__line {
-      position: absolute;
-      width: 100%;
-      inset: 0;
-      height: 100%;
-      display: block;
-      background-size: cover;
-      background-position: center;
-      background-image: url("/images/icons/questions-line.svg");
-      pointer-events: none;
    }
    &__wrapper {
       padding: 128px 0 152px;
@@ -99,6 +88,7 @@ onMounted(() => {
          width: 100%;
          height: 100%;
          pointer-events: none;
+         z-index: -1;
          & svg {
             width: 100%;
          }
@@ -146,6 +136,8 @@ onMounted(() => {
    &__form {
       grid-area: form;
       padding-top: 16px;
+      position: relative;
+      z-index: 2;
       & .form-text {
          padding: 0;
          color: var(--white);

@@ -1,7 +1,7 @@
 <template lang="pug">
 	.main-advantages__slider.slider-advantages
-		.slider-advantages__track(ref="sliderAdvantages")
-			.slider-advantages__body(ref="sliderAdvantagesBody")
+		.slider-advantages__track.track(ref="sliderAdvantages" :class="{resizable: isResizable}")
+			.slider-advantages__body.track-body(ref="sliderAdvantagesBody")
 				.slider-advantages__item.item-advantages(v-for="item, index in advantagesList" :key="index")
 					.item-advantages__image.ibg
 						NuxtPicture(format="webp" :src="`/images/advantages/image-${index+1}.jpg`")
@@ -32,7 +32,11 @@ const { $gsap: gsap, $ScrollTrigger: ScrollTrigger } = useNuxtApp();
 const store = useMainDataStore();
 const advantagesList = store.advantagesList;
 
-const animation = () => {
+const isResizable = ref(false);
+
+let st = ref(null);
+
+const initAnimation = () => {
    const { bodyScrollBar, scroller } = useScrollbar();
    ScrollTrigger.scrollerProxy(".scroller", {
       scrollTop(value) {
@@ -44,22 +48,27 @@ const animation = () => {
    });
    bodyScrollBar.addListener(ScrollTrigger.update);
    ScrollTrigger.defaults({ scroller });
-   const sections = gsap.utils.toArray(
-      ".slider-advantages__body .slider-advantages__item"
-   );
+   const sections = gsap.utils.toArray(".track .slider-advantages__item");
    const horizontX = -100 * (sections.length - 1);
-   gsap.to(sections, {
-      xPercent: horizontX,
-      ease: "none",
-      scrollTrigger: {
-         trigger: ".slider-advantages__track",
-         pin: true,
-         start: "top",
-         scrub: 1,
-         end: () =>
-            "+=" +
-            document.querySelector(".slider-advantages__body")?.offsetWidth,
-      },
+   // gsap.to(sections, {
+   //    xPercent: horizontX,
+   //    ease: "none",
+   //    scrollTrigger: {
+   //       trigger: ".main-advantages__body",
+   //       pin: true,
+   //       start: "top",
+   //       scrub: 1,
+   //       end: () => "+=" + document.querySelector(".track-body")?.offsetWidth,
+   //    },
+   // });
+   const tween = gsap.to(sections, { xPercent: horizontX, ease: "none" });
+   st.value = ScrollTrigger.create({
+      trigger: ".main-advantages__body",
+      pin: true,
+      start: "top",
+      scrub: 1,
+      end: () => "+=" + document.querySelector(".track-body")?.offsetWidth,
+      animation: tween,
    });
 };
 
@@ -102,7 +111,7 @@ const destroySlider = () => {
    }
 };
 const checkScreenWidth = () => {
-   if (window.matchMedia("(max-width: 1024px)").matches) {
+   if (window.matchMedia("(max-width: 1199.98px)").matches) {
       initSlider();
    } else {
       destroySlider();
@@ -110,32 +119,74 @@ const checkScreenWidth = () => {
 };
 
 onMounted(() => {
-   if (window.innerWidth > 1024) {
-      animation();
+   if (window.innerWidth > 1200) {
+      initAnimation();
    }
+   const mainAdvantagesSection = document.querySelector(".main-advantages");
+   const observeWindowHeight = () => {
+      if (window.innerWidth > 1024) {
+         if (window.innerHeight < 780) {
+            // initSlider();
+            // console.log(st.value);
+            // st.value.kill();
+            // destroySlider();
+            // initSlider();
+            isResizable.value = true;
+            // st.value.destroy();
+            mainAdvantagesSection.classList.add("resizable");
+         } else {
+            // ScrollTrigger.destroy();
+            isResizable.value = false;
+            mainAdvantagesSection.classList.remove("resizable");
+         }
+      }
+   };
+   // observeWindowHeight();
    checkScreenWidth();
-   window.addEventListener("resize", checkScreenWidth);
+   window.addEventListener("resize", () => {
+      checkScreenWidth();
+      // observeWindowHeight();
+   });
 });
 </script>
 
 <style lang="scss">
+// .custom-slider {
+//    display: none;
+//    @media screen and (max-height: 800px) {
+//       display: block;
+//    }
+// }
+// .track {
+//    @media screen and (max-height: 800px) {
+//       display: none;
+//    }
+// }
 .slider-advantages {
    display: grid;
+   grid-template-columns: 100%;
    gap: 100px 20px;
    grid-column: span 3;
    & .slider-controls {
       display: none;
-      @media screen and (max-width: $xl) {
+      margin-top: 36px;
+      justify-content: flex-end;
+      @media screen and (max-width: $xxl) {
          display: flex;
       }
    }
+   @media screen and (max-width: $xxl) {
+      display: block;
+   }
    @media screen and (max-width: $xl) {
-      gap: 36px;
       grid-column: initial;
       margin-top: 9px;
    }
    &__track {
       padding-top: 80px;
+      &.resizable {
+         padding: 0;
+      }
       @media screen and (max-width: $xl) {
          padding: 0;
       }
@@ -150,7 +201,7 @@ onMounted(() => {
       display: flex;
       gap: 120px;
       @media screen and (max-width: $xxl) {
-         gap: 60px;
+         gap: 0;
       }
       @media screen and (max-width: $xl) {
          display: flex;

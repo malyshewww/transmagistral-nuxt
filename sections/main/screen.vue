@@ -80,7 +80,7 @@ onMounted(() => {
       }
    }
    &__title {
-      transform: translate3d(0, calc(var(--scrollTop) / 2.5), 0);
+      transform: translate3d(0, calc(var(--scrollTop) * 1.5), 0);
       will-change: transform;
       position: absolute;
       z-index: 6;
@@ -89,7 +89,7 @@ onMounted(() => {
       line-height: 1;
       text-align: center;
       inset: 0;
-      top: 23.5%;
+      top: 19.5%;
       color: var(--bg-bg-white);
       @media (max-width: 1919px) {
          font-size: 15vw;

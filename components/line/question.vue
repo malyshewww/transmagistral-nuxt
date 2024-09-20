@@ -36,7 +36,7 @@
 }
 .main-questions.in-view {
    & svg path {
-      animation: dash 7s linear forwards;
+      animation: dash 5s linear forwards;
    }
 }
 @keyframes dash {

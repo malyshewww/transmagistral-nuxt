@@ -165,8 +165,13 @@ onMounted(() => {
          height: 52px;
          background-color: var(--white);
          z-index: 25;
+         opacity: 0;
+         transition: opacity $time * 2;
          @media screen and (max-width: $md) {
             display: block;
+            .menu-open & {
+               opacity: 1;
+            }
          }
       }
    }
@@ -183,7 +188,7 @@ onMounted(() => {
          align-items: flex-start;
          justify-content: space-between;
          gap: 36px;
-         transform: translateX(-100%);
+         transform: translateY(-120%);
          transition: transform $time * 2 ease-in-out 0s;
          &::-webkit-scrollbar,
          &::-webkit-scrollbar-track,
@@ -194,7 +199,7 @@ onMounted(() => {
             background-color: transparent;
          }
          .menu-open & {
-            transform: translateX(0);
+            transform: translateY(0);
          }
       }
    }
@@ -204,7 +209,7 @@ onMounted(() => {
       align-items: center;
       gap: 54px;
       @media screen and (max-width: 1600px) {
-         gap: 20px;
+         gap: 15px;
       }
       @media screen and (max-width: $md) {
          flex-direction: column;

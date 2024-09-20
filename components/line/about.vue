@@ -98,13 +98,13 @@ onMounted(() => {
 }
 .about-card.active {
    .svg-one path {
-      animation: dash 5s linear forwards;
+      animation: dash 3s linear forwards;
    }
    .svg-second path {
-      animation: dash 5s linear forwards;
+      animation: dash 3s linear forwards;
    }
    .svg-three path {
-      animation: dash 5s linear forwards 2.8s;
+      animation: dash 3s linear forwards 1.8s;
    }
 }
 @keyframes dash {

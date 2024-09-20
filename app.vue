@@ -27,6 +27,8 @@ html.dark {
    --bg-footer-nav: #f4f6fc;
    --bg-bg-red-6-changed: rgba(255, 255, 255, 0.15);
    --bg-bg-red-changed: #ffffff;
+   --stroke-stroke-grey-changed: #c1d5e9;
+   --stroke-stroke-grey-line-changed: #ffffff;
 
    & .wrapper::before {
       opacity: 1;

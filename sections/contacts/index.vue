@@ -7,8 +7,7 @@
 					.main-contacts__item
 						address.main-contacts__address г. Н. Новгород, ул. Кузбасская, 1
 						.main-contacts__schedule.schedule-contacts
-							.schedule-contacts__item ПН-ПТ
-							.schedule-contacts__item 8:00–17:00
+							.schedule-contacts__item ПН-ПТ 8:00–17:00
 					.main-contacts__item
 						.main-contacts__phones 
 							a(href="tel:+78312748833").main-contacts__phone +7 831 274-88-33
@@ -62,6 +61,7 @@ const openPopupQuestions = () => {
       margin: 0 auto;
       & .btn {
          width: 100%;
+         max-width: 210px;
       }
       @media screen and (max-width: $md) {
          max-width: 100%;
@@ -70,8 +70,9 @@ const openPopupQuestions = () => {
    }
    &__items {
       display: grid;
+      justify-items: center;
       width: 100%;
-      gap: 56px;
+      gap: 48px;
       @media screen and (max-width: $md) {
          gap: 20px;
       }
@@ -79,6 +80,9 @@ const openPopupQuestions = () => {
    &__item {
       display: grid;
       gap: 20px;
+      &:nth-child(2) {
+         gap: 48px;
+      }
       @media screen and (max-width: $md) {
          gap: 12px;
          &:nth-child(2) {
@@ -107,8 +111,8 @@ const openPopupQuestions = () => {
    }
    &__phone {
       font-weight: 700;
-      font-size: 32px;
-      line-height: 35px;
+      font-size: 24px;
+      line-height: 26px;
       color: var(--bg-bg-dark-contacts);
       transition: color $time;
       @media screen and (max-width: $md) {
@@ -124,6 +128,7 @@ const openPopupQuestions = () => {
 }
 .schedule-contacts {
    display: flex;
+   flex-direction: column;
    align-items: center;
    justify-content: center;
    flex-wrap: wrap;
@@ -137,9 +142,7 @@ const openPopupQuestions = () => {
       color: var(--bg-bg-dark-contacts);
       display: grid;
       place-items: center;
-      border: 1px solid var(--bg-bg-dark-contacts);
       border-radius: 50px;
-      padding: 8px 16px;
       min-height: 42px;
       @media screen and (max-width: $md) {
          padding: 4px 16px;

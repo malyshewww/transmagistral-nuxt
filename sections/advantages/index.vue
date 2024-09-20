@@ -1,10 +1,11 @@
 <template lang="pug">
 	section.main-advantages
 		.container 
-			.main-advantages__body 
-				UiSectionHeading(caption="Преимущества")
-				h2.section-title В чем секрет нашего успеха?
-				UiSliderAdvantages
+			.main-advantages__wrapper
+				.main-advantages__body 
+					UiSectionHeading(caption="Преимущества")
+					h2.section-title В чем секрет нашего успеха?
+					UiSliderAdvantages
 </template>
 
 <style lang="scss">

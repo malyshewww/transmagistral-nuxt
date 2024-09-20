@@ -33,7 +33,7 @@ const { $gsap: gsap, $MotionPathPlugin: MotionPathPlugin } = useNuxtApp();
 const reliablySliderData = store.reliablySlider;
 
 const gsapSlider = () => {
-   // gsap.registerPlugin(MotionPathPlugin);
+   gsap.registerPlugin(MotionPathPlugin);
    const circlePath = MotionPathPlugin.convertToPath("#holder", false)[0];
    circlePath.id = "circlePath";
    document.querySelector(".reliably-slider__box svg").prepend(circlePath);
@@ -47,7 +47,10 @@ const gsapSlider = () => {
       snap = gsap.utils.snap(itemStep),
       wrapTracker = gsap.utils.wrap(0, numItems),
       tracker = { item: 0 };
-   gsap.set(items, {
+   let autoplaySlider = setInterval(() => {
+      moveWheel(-itemStep);
+   }, 4000);
+   gsap.to(items, {
       motionPath: {
          path: circlePath,
          align: circlePath,
@@ -56,11 +59,13 @@ const gsapSlider = () => {
       },
       scale: 1,
    });
-   const tl = gsap.timeline({ paused: true, reversed: true });
+   const tl = gsap.timeline({
+      paused: true,
+      reversed: true,
+   });
    tl.to(".reliably-slider__circle", {
       rotation: 360,
-      transformOrigin: "center",
-      duration: 1,
+      transformOrigin: "center center",
       ease: "none",
    });
    tl.to(
@@ -68,7 +73,6 @@ const gsapSlider = () => {
       {
          rotation: "-=360",
          transformOrigin: "center center",
-         duration: 1,
          ease: "none",
       },
       0
@@ -77,7 +81,6 @@ const gsapSlider = () => {
       tracker,
       {
          item: numItems,
-         duration: 1,
          ease: "none",
          modifiers: {
             item: (value) => wrapTracker(numItems - Math.round(value)),
@@ -89,7 +92,6 @@ const gsapSlider = () => {
       el.addEventListener("click", function () {
          let current = tracker.item,
             activeItem = i;
-
          if (i === current) {
             return;
          }
@@ -104,11 +106,14 @@ const gsapSlider = () => {
          images[activeItem].classList.add("active");
          contentBlocks[activeItem].classList.add("active");
          let diff = current - i;
+         clearInterval(autoplaySlider);
+         autoplaySlider = setInterval(() => {
+            moveWheel(-itemStep);
+         }, 4000);
          if (Math.abs(diff) < numItems / 2) {
             moveWheel(diff * itemStep);
          } else {
             let amt = numItems - Math.abs(diff);
-
             if (current > i) {
                moveWheel(amt * -itemStep);
             } else {
@@ -130,9 +135,17 @@ const gsapSlider = () => {
       } else if (i > 0) {
          //  console.log(theArray[(currentIndex + i) % theArray.length]);
       }
+      clearInterval(autoplaySlider);
+      autoplaySlider = setInterval(() => {
+         moveWheel(-itemStep);
+      }, 4000);
       return moveWheel(-itemStep);
    });
    document.getElementById("prev").addEventListener("click", function () {
+      clearInterval(autoplaySlider);
+      autoplaySlider = setInterval(() => {
+         moveWheel(-itemStep);
+      }, 4000);
       return moveWheel(itemStep);
    });
    function moveWheel(amount) {
@@ -155,7 +168,11 @@ const gsapSlider = () => {
          modifiers: {
             progress: wrapProgress,
          },
+         duration: 2,
       });
+      // const circle = document.querySelector(".reliably-slider__circle");
+      // circle.style.transition =
+      //    "rotate 0.4s linear, translate 0.4s linear, transform 0.2s linear";
    }
 };
 
@@ -176,7 +193,7 @@ onMounted(() => {
       transform: translate(-100%, -50%);
       height: 1px;
       width: 100vw;
-      background-color: var(--stroke-stroke-grey);
+      background-color: var(--stroke-stroke-grey-line-changed);
    }
    & .item {
       width: 40px;
@@ -192,10 +209,10 @@ onMounted(() => {
          display: block;
          width: 24px;
          height: 24px;
-         background-color: var(--stroke-stroke-grey);
+         background-color: var(--stroke-stroke-grey-changed);
          border-radius: 50%;
-         transition: width $time ease-in-out 0s, height $time ease-in-out 0s,
-            background-color $time ease-in-out 0s;
+         transition: width $time * 2 ease-in-out 0s, height $time ease-in-out 0s,
+            background-color $time * 2 ease-in-out 0s;
       }
       @media (any-hover: hover) {
          &:hover {
@@ -205,9 +222,8 @@ onMounted(() => {
       &.active {
          &::before {
             background-color: var(--bg-bg-dark);
-            transition: width $time ease-in-out 0.4s,
-               height $time ease-in-out 0.4s,
-               background-color $time ease-in-out 0.4s;
+            transition: width $time ease-in-out 1s, height $time ease-in-out 1s,
+               background-color $time ease-in-out 1s;
             // transition: background-color $time ease-in-out 0.4s;
             width: 100%;
             height: 100%;
@@ -301,9 +317,8 @@ onMounted(() => {
       left: 0;
       width: 100%;
       height: 100%;
-      transform: scale(0);
       opacity: 0;
-      transition: transform $time * 2, opacity $time * 2;
+      transition: opacity $time * 3;
       z-index: -1;
       & img,
       & picture {
@@ -314,6 +329,7 @@ onMounted(() => {
       }
       &.active {
          transform: scale(1);
+         transition: opacity $time * 3 ease-in-out 0.2s;
          opacity: 1;
          z-index: 1;
       }
@@ -330,11 +346,15 @@ onMounted(() => {
       }
       @media screen and (max-width: $xl) {
          position: relative;
-         width: 100%;
+         width: 50%;
+         align-self: flex-start;
          top: 0;
          transform: none;
          right: 0;
          min-height: 102px;
+      }
+      @media screen and (max-width: $md) {
+         width: 100%;
       }
    }
    &__content {
@@ -350,9 +370,11 @@ onMounted(() => {
          & .reliably-content__caption {
             opacity: 1;
             transform: translateY(0px);
+            transition-delay: 0.4s;
          }
          & .reliably-content__description {
             transform: translateY(0px);
+            transition-delay: 0.6s;
             opacity: 1;
          }
       }
@@ -374,6 +396,10 @@ onMounted(() => {
          transform $time * 2 ease-in-out 0.5s;
       transform: translateY(-20px);
       overflow: hidden;
+      @media screen and (max-width: $xl) {
+         font-size: 24px;
+         line-height: 100%;
+      }
       @media screen and (max-width: $md) {
          font-size: 18px;
          line-height: 20px;

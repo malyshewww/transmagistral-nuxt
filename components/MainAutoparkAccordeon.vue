@@ -26,7 +26,7 @@ const accordeonList = reactive({
          isSelected: true,
          header: "Стандартные рефрижераторы",
          title: "Гарантия свежести",
-         text: "<p>Мы используем надёжные морозильные установки, которые позволяют доставлять груз свежим</p>",
+         text: "<p>Мы используем надёжные морозильные установки, которые позволяют доставлять груз <strong>свежим</strong></p>",
       },
       {
          key: 1,
@@ -83,7 +83,7 @@ const select = (key) => {
 };
 
 const initAccordeonMobile = () => {
-   if (window.innerWidth < 1024) {
+   if (window.innerWidth <= 1024) {
       const accordeons = document.querySelectorAll(".accordeon");
       if (accordeons.length) {
          [...accordeons].forEach((accordeon) => {
@@ -94,8 +94,8 @@ const initAccordeonMobile = () => {
                   const header = item.querySelector(".item-accordeon__header");
                   const content = item.querySelector(".item-accordeon__body");
                   header.addEventListener("click", () => {
-                     item.classList.toggle("active");
-                     if (item.classList.contains("active")) {
+                     item.classList.toggle("open");
+                     if (item.classList.contains("open")) {
                         content.style.height = `${content.scrollHeight}px`;
                      } else {
                         content.style.height = "0px";
@@ -103,14 +103,14 @@ const initAccordeonMobile = () => {
                      removeAccordeonOpen(index);
                   });
                   if (index === 0) {
+                     item.classList.add("open");
                      content.style.height = `${content.scrollHeight}px`;
-                     item.classList.add("active");
                   }
                });
                function removeAccordeonOpen(index1) {
                   [...accordeonItems].forEach((item2, index2) => {
                      if (index1 != index2) {
-                        item2.classList.remove("active");
+                        item2.classList.remove("open");
                         const contentTwo = item2.querySelector(
                            ".item-accordeon__body"
                         );
@@ -143,7 +143,7 @@ onMounted(() => {
    }
 }
 .accordeon {
-   min-height: 737px;
+   min-height: 621px;
    @media screen and (max-width: $xl) {
       min-height: auto;
    }
@@ -184,26 +184,27 @@ onMounted(() => {
       padding-bottom: 20px;
       border-radius: 0 0 14px 14px;
       border-right: none;
+      overflow: visible;
       &:not(:last-child) {
          border-bottom: 1px solid var(--stroke-stroke-grey);
       }
    }
    &.active {
-      flex: 61.3vw;
+      flex: 68vw;
       pointer-events: none;
       @media screen and (max-width: $xl) {
          flex: 1 1 auto;
          pointer-events: all;
-         grid-template-rows: auto auto;
+         // grid-template-rows: auto auto;
       }
    }
    &__header {
-      padding: 40px 30px;
+      padding: 39px 30px;
       display: flex;
       align-items: center;
       justify-content: flex-end;
       flex-direction: column;
-      gap: 40px;
+      gap: 24px;
       .active & {
          pointer-events: none;
          @media screen and (max-width: $xl) {
@@ -231,20 +232,22 @@ onMounted(() => {
       transform: rotate(180deg);
       color: var(--bg-bg-dark);
       white-space: nowrap;
+      font-size: 36px;
+      line-height: 36px;
       @media screen and (max-width: $xxxl) {
          font-size: 32px;
       }
       @media screen and (max-width: $xl) {
          writing-mode: horizontal-tb;
          transform: none;
-         font-size: 18px;
+         font-size: 24px;
          line-height: 100%;
          white-space: normal;
       }
    }
    &__header-icon {
-      width: 56px;
-      height: 56px;
+      width: 36px;
+      height: 36px;
       display: grid;
       place-items: center;
       border-radius: 50%;
@@ -256,14 +259,15 @@ onMounted(() => {
          width: 20px;
          height: 20px;
          mask-image: url("/images/icons/icon-info.svg");
+         mask-size: 14px 14px;
          mask-repeat: no-repeat;
          mask-position: center;
          background-color: var(--bg-bg-dark);
          transition: background-color $time * 2;
       }
       @media screen and (max-width: $xxxl) {
-         width: 40px;
-         height: 40px;
+         width: 30px;
+         height: 30px;
       }
       @media screen and (max-width: $xl) {
          display: none;
@@ -285,7 +289,7 @@ onMounted(() => {
    &__body {
       display: grid;
       align-content: end;
-      padding: 30px 30px 136px 30px;
+      padding: 30px 30px 100px 30px;
       position: relative;
       flex-shrink: 0;
       flex-grow: 1;
@@ -293,13 +297,15 @@ onMounted(() => {
          padding: 0;
          display: block;
          height: 0;
-         transition: height $time * 3, margin $time * 2;
+         transition: height $time * 2, margin $time * 3;
          overflow: hidden;
          padding: 0px 20px 0;
          width: 100%;
          .active & {
-            margin-top: 20px;
             height: auto;
+         }
+         .open & {
+            margin-top: 20px;
          }
       }
    }
@@ -312,36 +318,50 @@ onMounted(() => {
       transition: opacity 0s;
       position: absolute;
       left: 36px;
-      bottom: 136px;
+      bottom: 100px;
       height: 347px;
       @media screen and (max-width: $xl) {
          transition: opacity 0.5s;
       }
-      .active & {
-         opacity: 1;
-         transition: opacity $time * 2 ease-out 0.5s;
-         @media screen and (max-width: $xl) {
-            max-height: 100%;
-            transition: opacity $time * 2 ease-out 0s;
+      @media screen and (min-width: $xl) {
+         .active & {
             opacity: 1;
+            transition: opacity $time * 2 ease-out 0.5s;
+            @media screen and (max-width: $xl) {
+               max-height: none;
+               transition: opacity $time * 2 ease-out 0s;
+               opacity: 1;
+            }
+         }
+         .notactive & {
+            opacity: 0;
+            @media screen and (max-width: $xl) {
+               opacity: 1;
+            }
          }
       }
-      .notactive & {
-         opacity: 0;
+      .open & {
+         @media screen and (max-width: $xl) {
+            max-height: none;
+         }
       }
       @media screen and (max-width: 1600px) {
-         bottom: auto;
-         top: 36px;
+         bottom: 100px;
+         top: auto;
+         height: auto;
          grid-template-columns: 400px 1fr;
       }
       @media screen and (max-width: $xxxl) {
          grid-template-columns: 100%;
          right: 36px;
+         top: 36px;
       }
       @media screen and (max-width: $xl) {
          position: static;
-         height: auto;
+         align-items: start;
+         height: 100%;
          gap: 24px;
+         opacity: 1;
       }
    }
    &__image {
@@ -356,10 +376,13 @@ onMounted(() => {
       }
    }
    &__inner {
-      display: grid;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
       gap: 12px;
       @media screen and (max-width: $xl) {
          gap: 10px;
+         min-height: 110px;
       }
    }
    &__title,
