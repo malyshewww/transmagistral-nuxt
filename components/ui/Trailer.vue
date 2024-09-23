@@ -62,8 +62,8 @@ onMounted(() => {
       transform-origin: center;
       transition: transform $time;
    }
-   @media (hover: hover) {
-      display: none;
+   @media (any-hover: hover) {
+      display: block;
    }
    @media screen and (max-width: $xl) {
       display: none;
