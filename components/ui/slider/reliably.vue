@@ -194,8 +194,8 @@ onMounted(() => {
       content: "";
       position: absolute;
       left: 0;
-      top: 50%;
-      transform: translate(-100%, -50%);
+      top: calc(50% - 1px);
+      transform: translate(-100%);
       height: 1px;
       width: 100vw;
       background-color: var(--stroke-stroke-grey-line-changed);
