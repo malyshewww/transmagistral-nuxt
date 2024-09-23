@@ -29,6 +29,7 @@ html.dark {
    --bg-bg-red-changed: #ffffff;
    --stroke-stroke-grey-changed: #c1d5e9;
    --stroke-stroke-grey-line-changed: #ffffff;
+   --stroke-stroke-grey-circle: #ffffff;
 
    & .wrapper::before {
       opacity: 1;

@@ -111,6 +111,10 @@ onMounted(() => {
             }
          }
       }
+      @media screen and (max-width: $xl) {
+         top: 8px;
+         right: 8px;
+      }
    }
    &__form {
       display: grid;

@@ -261,7 +261,7 @@ onMounted(() => {
       & path {
          fill: transparent;
          stroke-width: 1px;
-         stroke: var(--stroke-stroke-grey);
+         stroke: var(--stroke-stroke-grey-circle);
       }
    }
 }

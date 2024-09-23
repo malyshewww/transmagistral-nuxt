@@ -352,7 +352,8 @@ onMounted(() => {
          grid-template-columns: 400px 1fr;
       }
       @media screen and (max-width: $xxxl) {
-         grid-template-columns: 100%;
+         display: flex;
+         flex-direction: column;
          right: 36px;
          top: 36px;
       }
@@ -362,6 +363,10 @@ onMounted(() => {
          height: 100%;
          gap: 24px;
          opacity: 1;
+         .active &,
+         .notactive & {
+            opacity: 1;
+         }
       }
    }
    &__image {
@@ -370,6 +375,7 @@ onMounted(() => {
       padding-bottom: 62%;
       @media screen and (max-width: $xxxl) {
          padding-bottom: 36%;
+         align-self: stretch;
       }
       @media screen and (max-width: $xl) {
          padding-bottom: math.div(154, 250) * 100%;

@@ -3,12 +3,12 @@
 		button(type="button" @click="openDropdown").dropdown__button {{ dropdownButtonText }}
 		.dropdown__wrapper(@click.stop)
 			ul.dropdown__list()
-				li.dropdown__item(v-for="item, index in dropdownList.new" :class="{selected: item.isSelected}" @click="select(item, index)") {{ item.title }}
+				li.dropdown__item(v-for="item, index in dropdownList.new" :class="{selected: item.isSelected || dropdownButtonText === item.title}" @click="select(item, index)") {{ item.title }}
 </template>
 
 <script setup>
 const isDropdownActive = ref(false);
-const dropdownButtonText = ref("Тема вопроса");
+const dropdownButtonText = ref("Название темы 2");
 
 const emit = defineEmits(["dataFromDropdown"]);
 
