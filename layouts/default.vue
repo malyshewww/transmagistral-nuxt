@@ -75,21 +75,21 @@ onMounted(() => {
       }
       prevScrollPosition = scrollPosition;
    });
-   const headerObjArr = [];
-   const anchorLinks = document.querySelectorAll(".header-white .anchor-link");
-   [...anchorLinks].forEach((link) => {
-      const hash = link.getAttribute("href").substring(1);
-      const target = document.getElementById(hash);
-      headerObjArr.push({
-         element: link,
-         target: target,
-         targetStart: target.getBoundingClientRect().top + window.scrollY,
-         targetEnd:
-            target.getBoundingClientRect().top +
-            window.scrollY +
-            target.clientHeight,
-      });
-   });
+   // const headerObjArr = [];
+   // const anchorLinks = document.querySelectorAll(".header-white .anchor-link");
+   // [...anchorLinks].forEach((link) => {
+   //    const hash = link.getAttribute("href").substring(1);
+   //    const target = document.getElementById(hash);
+   //    headerObjArr.push({
+   //       element: link,
+   //       target: target,
+   //       targetStart: target.getBoundingClientRect().top + window.scrollY,
+   //       targetEnd:
+   //          target.getBoundingClientRect().top +
+   //          window.scrollY +
+   //          target.clientHeight,
+   //    });
+   // });
    /* CHANGE NAVIGATION */
    function scrollNav() {
       const sections = document.querySelectorAll("[data-section]");
