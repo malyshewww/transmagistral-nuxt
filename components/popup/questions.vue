@@ -17,8 +17,8 @@
 					.form-item 
 						.form-item__field
 							input(type="tel" v-model="formData.phone" name="phone" placeholder="+7 900 000-00-00").form-input 
-					.form-item 
-						UiDropdown(@dataFromDropdown="newDataFromDropdown")
+					//- .form-item 
+					//- 	UiDropdown(@dataFromDropdown="newDataFromDropdown")
 					.form-item 
 						.form-text 
 							| Отправляя форму, я подтверждаю своё #[a(href="#" @click.prevent="openPopupPolitic").text-link согласие на обработку персональных данных] 
