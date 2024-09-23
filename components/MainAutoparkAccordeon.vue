@@ -323,7 +323,7 @@ onMounted(() => {
       @media screen and (max-width: $xl) {
          transition: opacity 0.5s;
       }
-      @media screen and (min-width: $xl) {
+      @media screen and (min-width: 1025px) {
          .active & {
             opacity: 1;
             transition: opacity $time * 2 ease-out 0.5s;
