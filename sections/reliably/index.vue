@@ -11,7 +11,7 @@
 .reliably {
    padding: 152px 0 60px;
    @media screen and (max-width: $xl) {
-      padding: 100px 0 36px;
+      padding: 100px 0 0px;
    }
    @media screen and (max-width: $md) {
       padding: 36px 0;

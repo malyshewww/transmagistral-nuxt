@@ -46,32 +46,5 @@ onMounted(() => {
          },
       });
    });
-   /* CHANGE NAVIGATION */
-   // const scroller = document.querySelector(".scroller");
-   // const options = {
-   //    root: document,
-   //    threshold: 0.55,
-   // };
-   // const changeNav = (entries) => {
-   //    entries.forEach((entry) => {
-   //       const id = entry.target.dataset.section;
-   //       if (entry.intersectionRatio > 0 && entry.intersectionRatio >= 0.55) {
-   //          console.log(id);
-   //          const newLink = document
-   //             .querySelector(`.header-white .menu__list a[href="#${id}"]`)
-   //             .classList.add("active");
-   //          console.log(newLink);
-   //          document
-   //             .querySelectorAll(".header-white .menu__list a")
-   //             .forEach((item) => {
-   //                item.classList.remove("active");
-   //             });
-   //       }
-   //    });
-   // };
-   // const observer = new IntersectionObserver(changeNav, options);
-   // document.querySelectorAll("[data-section]").forEach((section) => {
-   //    observer.observe(section);
-   // });
 });
 </script>

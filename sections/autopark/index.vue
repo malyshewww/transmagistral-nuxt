@@ -17,7 +17,7 @@
    gap: 100px;
    overflow: hidden;
    @media screen and (max-width: $xl) {
-      padding: 36px 0;
+      padding: 72px 0 0;
       gap: 36px;
    }
    &__body {

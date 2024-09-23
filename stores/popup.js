@@ -5,6 +5,7 @@ export const usePopupStore = defineStore("popup", {
       // Дополнительное свойство для отслеживания открытия меню в мобильной версии
       isMenuOpen: false,
       isOpenPopupPoliticNotNested: false,
+      isPopupQuestionsNotNested: false,
    }),
    actions: {
       openPopupPoliticNotNested() {
@@ -32,29 +33,46 @@ export const usePopupStore = defineStore("popup", {
       },
       openPopupQuestions() {
          const { bodyScrollBar } = useScrollbar();
-         if (window.innerWidth < 1024) {
+         if (window.innerWidth <= 1024) {
             bodyScrollBar.updatePluginOptions("lock", {
                lock: this.isMenuOpen === true ? false : true,
             });
-         } else {
+         } else if (window.innerWidth > 1024) {
             bodyScrollBar.updatePluginOptions("lock", {
                lock: true,
             });
          }
+         bodyScrollBar.updatePluginOptions("lock", {
+            lock: true,
+         });
          this.isPopupQuestionsActive = true;
       },
       closePopupQuestions() {
          const { bodyScrollBar } = useScrollbar();
-         if (window.innerWidth < 1024) {
+         if (window.innerWidth <= 1024) {
             bodyScrollBar.updatePluginOptions("lock", {
                lock: this.isMenuOpen === false ? true : false,
             });
-         } else {
+         } else if (window.innerWidth > 1024) {
             bodyScrollBar.updatePluginOptions("lock", {
                lock: false,
             });
          }
          this.isPopupQuestionsActive = false;
+      },
+      openPopupQuestionsNotNested() {
+         this.isPopupQuestionsNotNested = true;
+         const { bodyScrollBar } = useScrollbar();
+         bodyScrollBar.updatePluginOptions("lock", {
+            lock: true,
+         });
+      },
+      closePopupQuestionsNotNested() {
+         this.isPopupQuestionsNotNested = false;
+         const { bodyScrollBar } = useScrollbar();
+         bodyScrollBar.updatePluginOptions("lock", {
+            lock: false,
+         });
       },
    },
 });

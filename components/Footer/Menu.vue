@@ -12,22 +12,25 @@ defineProps({
    },
 });
 
+const addedHeight = ref(0);
+
 const goToSection = (e) => {
    const { bodyScrollBar } = useScrollbar();
    const href = e.target.getAttribute("href");
    const section = document.querySelector(`${href}`);
-   let addedHeight = 0;
    if (window.innerWidth > 1024) {
-      addedHeight = 60;
-   } else if (window.innerWidth <= 1024 && window.innerWidth > 767.98) {
-      addedHeight = 60;
-   } else if (window.innerWidth <= 767.98) {
-      addedHeight = 20;
+      if (href === "#about") {
+         addedHeight.value = 0;
+      } else if (href === "#work") {
+         addedHeight.value = 0;
+      } else {
+         addedHeight.value = 50;
+      }
    }
    const scrollToHere =
       bodyScrollBar.offset.y +
       section.getBoundingClientRect().top -
-      addedHeight;
+      addedHeight.value;
    bodyScrollBar.scrollTo(0, scrollToHere, 1000);
 };
 </script>

@@ -41,7 +41,7 @@ const closeNoticePopupClient = () => {
 .main-clients {
    padding: 60px 0 60px;
    @media screen and (max-width: $xl) {
-      padding: 36px 0 36px;
+      padding: 72px 0 0px;
    }
    &__body {
       display: grid;

@@ -88,12 +88,17 @@ const gsapSlider = () => {
       },
       0
    );
+
    items.forEach(function (el, i) {
       el.addEventListener("click", function () {
          let current = tracker.item,
             activeItem = i;
          if (i === current) {
             return;
+         }
+         const currentItem = document.querySelector(".item.active");
+         if (document.documentElement.classList.contains("dark")) {
+            currentItem.classList.add("current");
          }
          document.querySelector(".item.active").classList.remove("active");
          document
@@ -168,7 +173,7 @@ const gsapSlider = () => {
          modifiers: {
             progress: wrapProgress,
          },
-         duration: 2,
+         duration: 1.5,
       });
       // const circle = document.querySelector(".reliably-slider__circle");
       // circle.style.transition =
@@ -227,6 +232,11 @@ onMounted(() => {
             // transition: background-color $time ease-in-out 0.4s;
             width: 100%;
             height: 100%;
+         }
+      }
+      &.current {
+         &::before {
+            transition: none;
          }
       }
       @media screen and (max-width: $md) {
@@ -318,7 +328,7 @@ onMounted(() => {
       width: 100%;
       height: 100%;
       opacity: 0;
-      transition: opacity $time * 3;
+      transition: opacity $time * 3 ease-in-out 0.5s;
       z-index: -1;
       & img,
       & picture {
@@ -328,8 +338,6 @@ onMounted(() => {
          object-fit: cover;
       }
       &.active {
-         transform: scale(1);
-         transition: opacity $time * 3 ease-in-out 0.2s;
          opacity: 1;
          z-index: 1;
       }
@@ -370,11 +378,11 @@ onMounted(() => {
          & .reliably-content__caption {
             opacity: 1;
             transform: translateY(0px);
-            transition-delay: 0.4s;
+            transition-delay: 1s;
          }
          & .reliably-content__description {
             transform: translateY(0px);
-            transition-delay: 0.6s;
+            transition-delay: 1.4s;
             opacity: 1;
          }
       }
@@ -392,8 +400,8 @@ onMounted(() => {
       font-size: 32px;
       line-height: 35px;
       opacity: 0;
-      transition: opacity $time * 2 ease-in-out 0.5s,
-         transform $time * 2 ease-in-out 0.5s;
+      transition: opacity $time * 2 ease-in-out 0.4s,
+         transform $time * 2 ease-in-out 0.4s;
       transform: translateY(-20px);
       overflow: hidden;
       @media screen and (max-width: $xl) {

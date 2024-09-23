@@ -1,6 +1,7 @@
 export const useMenuStore = defineStore("menu", {
    state: () => ({
       isMenuOpen: false,
+      isHiddenHeader: true,
    }),
    actions: {
       openMenu() {
@@ -8,6 +9,12 @@ export const useMenuStore = defineStore("menu", {
       },
       closeMenu() {
          this.isMenuOpen = !this.isMenuOpen;
+      },
+      visibleHeader() {
+         this.isHiddenHeader = false;
+      },
+      hideHeader() {
+         this.isHiddenHeader = true;
       },
    },
 });

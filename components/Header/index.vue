@@ -7,7 +7,7 @@
 						source(:srcset="`/images/logo.svg`" media="(min-width: 767.98px)")
 						source(:srcset="`/images/logo-small.svg`" media="(min-width: 767px)")
 						img(src="/images/logo.svg", alt="логотип")
-				HeaderMenu(:menu="menu" @closeMenu="closeMenu")
+				HeaderMenu(:menu="menu" @closeMenu="closeMenu" :is-hidden-header="isHiddenHeader")
 				HeaderActions
 				button(type="button" @click="openMenu" :class="{active: isMenuOpen}").burger
 					.burger__icon
@@ -38,7 +38,7 @@ const isMenuOpen = ref(store.isMenuOpen);
 const isMenuOpenPopupStore = ref(storePopup.isMenuOpen);
 
 const openMenu = () => {
-   if (window.innerWidth < 1024) {
+   if (window.innerWidth <= 1024) {
       const { bodyScrollBar } = useScrollbar();
       isMenuOpen.value = !isMenuOpen.value;
       bodyScrollBar.updatePluginOptions("lock", {
@@ -48,7 +48,7 @@ const openMenu = () => {
    }
 };
 const closeMenu = () => {
-   if (window.innerWidth < 1024) {
+   if (window.innerWidth <= 1024) {
       const { bodyScrollBar } = useScrollbar();
       isMenuOpen.value = false;
       bodyScrollBar.updatePluginOptions("lock", {
@@ -84,11 +84,11 @@ const closeMenu = () => {
          opacity: 0;
          pointer-events: none;
       }
-      @media screen and (max-width: $md) {
+      @media screen and (max-width: $xl) {
          min-height: 52px;
       }
    }
-   @media screen and (max-width: $md) {
+   @media screen and (max-width: $xl) {
       min-height: 52px;
       color: var(--main-color);
    }
@@ -107,14 +107,14 @@ const closeMenu = () => {
       @media screen and (max-width: $xxxl) {
          max-width: 200px;
       }
-      @media screen and (max-width: $md) {
+      @media screen and (max-width: $xl) {
          z-index: 25;
       }
    }
 }
 .burger {
    display: none;
-   @media screen and (max-width: $md) {
+   @media screen and (max-width: $xl) {
       display: block;
       position: relative;
       padding: 8px 5px;

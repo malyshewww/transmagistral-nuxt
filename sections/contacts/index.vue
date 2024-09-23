@@ -1,5 +1,5 @@
 <template lang="pug">
-	section.main-contacts#contacts
+	section.main-contacts
 		.main-contacts__body 
 			.main-contacts__content
 				h2.section-title Контакты
@@ -12,7 +12,7 @@
 						.main-contacts__phones 
 							a(href="tel:+78312748833").main-contacts__phone +7 831 274-88-33
 							a(href="tel:+78312748811").main-contacts__phone +7 831 274-88-11
-						UiButton(buttonText="Позвоните мне" buttonType="button" classNames="btn-blue" iconName="phone" @buttonClick="openPopupQuestions")
+						UiButton(buttonText="Позвоните мне" buttonType="button" classNames="btn-blue" iconName="phone" @buttonClick="openPopupQuestionsNotNested")
 					//- .main-contacts__item
 						UiSocialList
 			ContactsMap
@@ -22,8 +22,8 @@
 import { usePopupStore } from "~/stores/popup";
 
 const store = usePopupStore();
-const openPopupQuestions = () => {
-   store.openPopupQuestions();
+const openPopupQuestionsNotNested = () => {
+   store.openPopupQuestionsNotNested();
 };
 </script>
 

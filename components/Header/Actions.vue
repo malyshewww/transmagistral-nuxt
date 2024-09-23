@@ -18,7 +18,7 @@ onMounted(() => {});
    display: flex;
    align-items: center;
    gap: 16px;
-   @media screen and (max-width: $md) {
+   @media screen and (max-width: $xl) {
       flex-direction: column-reverse;
       align-self: stretch;
       margin-top: auto;
@@ -27,7 +27,7 @@ onMounted(() => {});
 }
 .header-actions-mobile {
    display: none;
-   @media screen and (max-width: $md) {
+   @media screen and (max-width: $xl) {
       display: block;
       width: 100%;
       & .header__actions {
@@ -74,7 +74,7 @@ onMounted(() => {});
       @media screen and (max-width: $xxl) {
          padding: 6px 32px;
       }
-      @media screen and (max-width: $md) {
+      @media screen and (max-width: $xl) {
          width: 100%;
          min-height: 47px;
          font-size: 18px;

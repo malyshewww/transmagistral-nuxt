@@ -10,10 +10,18 @@
 </template>
 
 <script setup>
-defineProps({
+import { useMenuStore } from "~/stores/menu.js";
+
+const storeMenu = useMenuStore();
+
+const props = defineProps({
    menu: {
       type: Object,
       required: true,
+   },
+   isHiddenHeader: {
+      type: Boolean,
+      required: false,
    },
 });
 
@@ -26,26 +34,26 @@ const closeMenu = () => {
 const { $Scrollbar: Scrollbar, $ScrollbarPlugin: ScrollbarPlugin } =
    useNuxtApp();
 
+const addedHeight = ref(0);
+
 const goToSection = (e) => {
    const { bodyScrollBar } = useScrollbar();
    const href = e.target.getAttribute("href");
    const section = document.querySelector(`${href}`);
-   let addedHeight = 0;
    if (window.innerWidth > 1024) {
-      addedHeight = 60;
-   } else if (window.innerWidth <= 1024 && window.innerWidth > 767.98) {
-      addedHeight = 60;
-   } else if (window.innerWidth <= 767.98) {
-      addedHeight = 20;
+      if (href === "#about") {
+         addedHeight.value = 0;
+      } else if (href === "#work") {
+         addedHeight.value = 0;
+      } else {
+         addedHeight.value = 50;
+      }
    }
    const scrollToHere =
       bodyScrollBar.offset.y +
       section.getBoundingClientRect().top -
-      addedHeight;
+      addedHeight.value;
    bodyScrollBar.scrollTo(0, scrollToHere, 1000);
-   // document.querySelector(`${href}`).scrollIntoView({
-   //    behavior: "smooth",
-   // });
    bodyScrollBar.updatePluginOptions("lock", {
       lock: false,
    });
@@ -73,43 +81,8 @@ onMounted(() => {
          if (!hash) {
             return;
          }
-         const offset = 0;
-         const headerHeight = 87;
-         let itemY =
-            document.querySelector(hash).getBoundingClientRect().top +
-            scrollbar.offset.y;
-         if (hash === "#about") {
-            itemY =
-               scrollbar.offset.y +
-               document?.querySelector(hash).getBoundingClientRect().top;
-         }
-         // scrollbar.scrollIntoView(document.querySelector(hash), {
-         //     // offsetTop: 60
-         // });
-         if (document.querySelector(hash).getBoundingClientRect().top > 0) {
-            if (
-               window
-                  .getComputedStyle(document.querySelector(hash), null)
-                  .paddingTop.replace("px", "") < 100
-            ) {
-               scrollbar.scrollTo(0, itemY - offset, 1000);
-            } else {
-               scrollbar.scrollTo(0, itemY + offset, 1000);
-            }
-         } else {
-            if (
-               window
-                  .getComputedStyle(document.querySelector(hash), null)
-                  .paddingTop.replace("px", "") < 100
-            ) {
-               scrollbar.scrollTo(0, itemY - offset - headerHeight, 1000);
-            } else {
-               scrollbar.scrollTo(0, itemY + offset - headerHeight, 1000);
-            }
-         }
-         // scrollbar.scrollTo(0, document.querySelector(hash).getBoundingClientRect().top + scrollbar.offset.y, 600);
+         scrollbar.containerEl.scrollTop = 0;
       };
-
       onInit() {
          this.jumpToHash(window.location.hash);
          window.addEventListener("hashchange", this.onHashChange);
@@ -136,7 +109,7 @@ onMounted(() => {
       display: flex;
       justify-content: center;
    }
-   @media screen and (max-width: $md) {
+   @media screen and (max-width: $xl) {
       position: absolute;
       inset: 0;
       width: 100%;
@@ -167,7 +140,7 @@ onMounted(() => {
          z-index: 25;
          opacity: 0;
          transition: opacity $time * 2;
-         @media screen and (max-width: $md) {
+         @media screen and (max-width: $xl) {
             display: block;
             .menu-open & {
                opacity: 1;
@@ -177,7 +150,7 @@ onMounted(() => {
    }
    &__body {
       display: flex;
-      @media screen and (max-width: $md) {
+      @media screen and (max-width: $xl) {
          background: var(--white);
          height: calc(100vh - 162px);
          padding: 78px 15px 20px;
@@ -211,7 +184,7 @@ onMounted(() => {
       @media screen and (max-width: 1600px) {
          gap: 15px;
       }
-      @media screen and (max-width: $md) {
+      @media screen and (max-width: $xl) {
          flex-direction: column;
          align-items: flex-start;
       }

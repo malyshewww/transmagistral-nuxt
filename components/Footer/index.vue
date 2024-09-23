@@ -1,5 +1,5 @@
 <template lang="pug">
-	footer.footer(data-section="contacts" data-bgcolor="linear-gradient(90deg, #255cae 0%, #b7d8e9 100%)" data-theme="dark" data-textcolor="#31373b" style="--gradient: linear-gradient(90deg, #255cae 0%, #b7d8e9 100%);")
+	footer.footer#contacts(data-section="contacts" data-bgcolor="linear-gradient(90deg, #255cae 0%, #b7d8e9 100%)" data-theme="dark" data-textcolor="#31373b" style="--gradient: linear-gradient(90deg, #255cae 0%, #b7d8e9 100%);")
 		.container 
 			.footer__body
 				Contacts
@@ -61,7 +61,7 @@ onMounted(() => {
    padding: 60px 0 27px;
    position: relative;
    @media screen and (max-width: $xl) {
-      padding: 36px 0 24px;
+      padding: 72px 0 24px;
    }
    &__body {
       display: grid;

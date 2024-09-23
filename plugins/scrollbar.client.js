@@ -19,7 +19,16 @@ export default defineNuxtPlugin(() => {
          return this.options.lock ? { x: 0, y: 0 } : delta;
       }
    }
-   Scrollbar.use(ModalPlugin, LockPlugin);
+   class DirectionPlugin extends ScrollbarPlugin {
+      static pluginName = "direction";
+      transformDelta(delta, fromEvent) {
+         return {
+            x: delta.x,
+            y: delta.y,
+         };
+      }
+   }
+   Scrollbar.use(ModalPlugin, LockPlugin, DirectionPlugin);
    return {
       provide: {
          Scrollbar,

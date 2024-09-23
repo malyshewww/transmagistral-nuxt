@@ -9,13 +9,7 @@
 							a(:href="`/images/documents/doc-${index+1}.png`" data-fancybox="gallery" class="document-item__link")
 								.document-item__image.ibg
 									NuxtPicture(format="avif,webp" :src="`/images/documents/doc-${index+1}.png`" :alt="item.name")
-							.document-item__name {{ item.name }}
-			//- Swiper(class="slider-documents__body" :slides-per-view="'3'" space-between="40" :modules="[Navigation]" :navigation="{nextEl: buttonNext, prevEl: buttonPrev}" @init="onSwiperInit")
-			//- 	SwiperSlide(v-for="item, index in documentList" :key="index" class="document-item")
-			//- 		a(:href="`/images/documents/doc-${index+1}.png`" data-fancybox="gallery" class="document-item__link")
-			//- 			.document-item__image.ibg
-			//- 				img(:src="`/images/documents/doc-${index+1}.png`", alt="")
-			//- 		.document-item__name {{ item.name }}
+							.document-item__label {{ item.name }}
 			.slider-controls
 				button(ref="buttonPrev" type="button").slider-button.slider-button-prev 
 					svg(width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg")
@@ -143,7 +137,7 @@ onMounted(() => {
       //    padding-bottom: math.div(154, 218) * 100%;
       // }
    }
-   &__name {
+   &__label {
       font-size: 20px;
       line-height: 28px;
       opacity: 1;

@@ -63,7 +63,7 @@ onMounted(() => {
    position: relative;
    overflow: hidden;
    @media screen and (max-width: $xl) {
-      padding: 50px 0 36px;
+      padding: 50px 0 0px;
    }
    @media screen and (max-width: $md) {
       padding: 36px 0 36px;

@@ -39,7 +39,7 @@ const closeNoticePopupWork = () => {
    padding: 79px 20px 74px;
    color: var(--bg-bg-white);
    @media screen and (max-width: $xl) {
-      padding: 36px 20px 36px;
+      padding: 72px 20px 0px;
    }
    &__wrapper {
       background: var(--gradient);
