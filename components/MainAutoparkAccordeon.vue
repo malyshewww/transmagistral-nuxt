@@ -1,7 +1,8 @@
 <template lang="pug">
 	.main-autopark__accordeon.accordeon
 		.accordeon__items 
-			.accordeon__item.item-accordeon(v-for="item,index in accordeonList.data" :key="index" @click="select(index)" :class="{ active : item.isSelected, notactive : !item.isSelected }")
+			#nextAccordeon(ref="nextButton" hidden="true")
+			.accordeon__item.item-accordeon(v-for="item,index in accordeonList.data" :key="index" :class="{active: index === 0}")
 				.item-accordeon__header(ref="headerAccordeonTrigger")
 					h4.item-accordeon__header-text
 						| {{ item.header }}
@@ -65,6 +66,7 @@ const accordeonList = reactive({
       },
    ],
 });
+
 const toggleSelection = (key) => {
    const stepsItem = accordeonList.data.find((item) => item.key === key);
    if (stepsItem) {
@@ -72,14 +74,16 @@ const toggleSelection = (key) => {
    }
 };
 const select = (key) => {
-   if (window.innerWidth > 1024) {
-      for (let i = 0; i < accordeonList.data.length; i++) {
-         if (accordeonList.data[i].key !== key) {
-            accordeonList.data[i].isSelected = false;
-         }
-      }
-      toggleSelection(key);
-   }
+   // if (window.innerWidth > 1024) {
+   //    for (let i = 0; i < accordeonList.data.length; i++) {
+   //       if (accordeonList.data[i].key !== key) {
+   //          accordeonList.data[i].isSelected = false;
+   //       }
+   //    }
+   //    toggleSelection(key);
+   //    clearInterval(key);
+   //    stopAutoplay();
+   // }
 };
 
 const initAccordeonMobile = () => {
@@ -124,12 +128,68 @@ const initAccordeonMobile = () => {
    }
 };
 
+const autoChangeAccordeon = () => {
+   if (window.innerWidth > 1024) {
+      let slideIndex = 1;
+      const autoplayInterval = setInterval(function () {
+         // Get element via id and click next
+         document.getElementById("nextAccordeon").click();
+      }, 4000);
+      const stopAutoplay = () => {
+         // Stop the autoplay
+         clearInterval(autoplayInterval);
+      };
+      document.getElementById("nextAccordeon").addEventListener("click", () => {
+         plusSlides(1);
+      });
+      function plusSlides(n) {
+         showSlides((slideIndex += n));
+      }
+      function currentSlide(n) {
+         showSlides((slideIndex = n));
+      }
+      function showSlides(n) {
+         let i;
+         const slides = document.querySelectorAll(".item-accordeon");
+         if (n > slides.length) {
+            slideIndex = 1;
+         }
+         if (n < 1) {
+            slideIndex = slides.length;
+         }
+         for (i = 0; i < slides.length; i++) {
+            slides[i].classList.add("notactive");
+            slides[i].classList.remove("active");
+         }
+         slides[slideIndex - 1].classList.remove("notactive");
+         slides[slideIndex - 1].classList.add("active");
+      }
+      const accordeonItems = document.querySelectorAll(".item-accordeon");
+      accordeonItems.forEach((item, index) => {
+         const header = item.querySelector(".item-accordeon__header");
+         header.addEventListener("click", (e) => {
+            slideIndex = index;
+            document
+               .querySelectorAll(".item-accordeon")
+               .forEach((accordItem) => {
+                  accordItem.classList.remove("active");
+                  accordItem.classList.add("notactive");
+               });
+            accordeonItems[slideIndex].classList.add("active");
+            accordeonItems[slideIndex].classList.remove("notactive");
+            stopAutoplay();
+         });
+      });
+   }
+};
+
 defineExpose({
    select,
 });
 
 onMounted(() => {
    initAccordeonMobile();
+   autoChangeAccordeon();
 });
 </script>
 

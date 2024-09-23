@@ -80,7 +80,7 @@ onMounted(() => {
       }
    }
    &__title {
-      transform: translate3d(0, calc(var(--scrollTop) * 1.5), 0);
+      transform: translate3d(0, calc(var(--scrollTop) / 2), 0);
       will-change: transform;
       position: absolute;
       z-index: 6;

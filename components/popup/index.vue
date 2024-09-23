@@ -130,13 +130,13 @@ onMounted(() => {
       font-size: 20px;
       line-height: 28px;
    }
-   &__description {
-      & p {
-         &:not(:last-child) {
-            margin-bottom: 20px;
-         }
-      }
-   }
+   // &__description {
+   //    & p {
+   //       &:not(:last-child) {
+   //          margin-bottom: 20px;
+   //       }
+   //    }
+   // }
    & .text-link {
       color: rgba(var(--text-text-secondary-rgb), 0.5);
       @media (any-hover: hover) {

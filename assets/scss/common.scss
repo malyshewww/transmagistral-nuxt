@@ -325,7 +325,7 @@ picture {
 		display: flex;
 		flex-direction: column;
 		gap: 8px;
-		margin-bottom: 24px;
+		// margin-bottom: 24px;
 		& li {
 			position: relative;
 			padding-left: 16px;
@@ -346,21 +346,30 @@ picture {
 		@include reset-list;
 		display: flex;
 		flex-direction: column;
-		gap: 8px;
 		counter-reset: numbers;
-		& li {
+		margin-bottom: 16px;
+		& p {
+			display: inline-block;
+			margin: 0 0 8px;
+		}
+		& > li {
 			position: relative;
-			display: flex;
-			align-items: center;
-			gap: 8px;
+			margin-bottom: 8px;
 			&::before {
 				counter-increment: numbers;
-				content: counter(numbers) ".";
+				content: counters(numbers, ".") ". ";
 				font-size: 20px;
 				line-height: 28px;
 				text-align: right;
 				font-weight: 700;
 				color: var(--bg-bg-red-static);
+				margin-right: 8px;
+			}
+			&:not(:last-child) {
+				margin-bottom: 8px;
+			}
+			& > ol {
+				margin-bottom: 0;
 			}
 		}
 	}
