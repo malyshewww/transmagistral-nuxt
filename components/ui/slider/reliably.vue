@@ -56,7 +56,8 @@ const gsapSlider = () => {
          autoplaySlider = setInterval(() => {
             moveWheel(-itemStep);
          }, 4000);
-         observer.unobserve(entry.target);
+      } else {
+         clearInterval(autoplaySlider);
       }
    };
    const options = {
