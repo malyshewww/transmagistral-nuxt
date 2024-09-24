@@ -131,10 +131,29 @@ const initAccordeonMobile = () => {
 const autoChangeAccordeon = () => {
    if (window.innerWidth > 1024) {
       let slideIndex = 1;
-      const autoplayInterval = setInterval(function () {
-         // Get element via id and click next
-         document.getElementById("nextAccordeon").click();
-      }, 4000);
+      let autoplayInterval = null;
+      const autoparkAccordeon = document.querySelector(
+         ".main-autopark__accordeon"
+      );
+
+      const callback = ([entry]) => {
+         if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+            console.log("intersect");
+            autoplayInterval = setInterval(function () {
+               // Get element via id and click next
+               document.getElementById("nextAccordeon").click();
+            }, 4000);
+            observer.unobserve(entry.target);
+         }
+      };
+      const options = {
+         // root: по умолчанию window,
+         rootMargin: "75px 0px 0px 0px",
+         threshold: [0.5],
+      };
+      const observer = new IntersectionObserver(callback, options);
+      observer.observe(autoparkAccordeon);
+
       const stopAutoplay = () => {
          // Stop the autoplay
          clearInterval(autoplayInterval);

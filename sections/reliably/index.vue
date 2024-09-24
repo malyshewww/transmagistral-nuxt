@@ -14,7 +14,7 @@
       padding: 100px 0 0px;
    }
    @media screen and (max-width: $md) {
-      padding: 36px 0;
+      padding: 36px 0 0;
    }
    &__body {
       display: grid;
@@ -23,6 +23,13 @@
       z-index: 10;
       @media screen and (max-width: $xxl) {
          gap: 24px;
+      }
+      &.in-view {
+         & .reliably-slider__box {
+            & .item.active::before {
+               transition: none;
+            }
+         }
       }
    }
    &__heading {

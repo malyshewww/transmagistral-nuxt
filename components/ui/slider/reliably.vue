@@ -33,13 +33,7 @@ const { $gsap: gsap, $MotionPathPlugin: MotionPathPlugin } = useNuxtApp();
 const reliablySliderData = store.reliablySlider;
 
 const gsapSlider = () => {
-   gsap.registerPlugin(MotionPathPlugin);
-   const circlePath = MotionPathPlugin.convertToPath("#holder", false)[0];
-   circlePath.id = "circlePath";
-   document.querySelector(".reliably-slider__box svg").prepend(circlePath);
-
-   const images = document.querySelectorAll(".reliably-slider__image");
-   const contentBlocks = document.querySelectorAll(".reliably-slider__content");
+   let autoplaySlider = null;
    let items = gsap.utils.toArray(".item"),
       numItems = items.length,
       itemStep = 1 / numItems,
@@ -47,9 +41,38 @@ const gsapSlider = () => {
       snap = gsap.utils.snap(itemStep),
       wrapTracker = gsap.utils.wrap(0, numItems),
       tracker = { item: 0 };
-   let autoplaySlider = setInterval(() => {
-      moveWheel(-itemStep);
-   }, 4000);
+
+   // Observer (откладывааем момент срабатывания автоматического переключения)
+   const reliablyBody = document.querySelector(".reliably__body");
+   const callback = ([entry]) => {
+      if (entry.isIntersecting) {
+         entry.target.classList.add("in-view");
+         setTimeout(() => {
+            entry.target.classList.remove("in-view");
+         }, 1000);
+      }
+      if (entry.isIntersecting && entry.intersectionRatio >= 0.3) {
+         console.log("intersect");
+         autoplaySlider = setInterval(() => {
+            moveWheel(-itemStep);
+         }, 4000);
+         observer.unobserve(entry.target);
+      }
+   };
+   const options = {
+      // root: по умолчанию window,
+      rootMargin: "30px 0px 0px 0px",
+      threshold: [0.3],
+   };
+   const observer = new IntersectionObserver(callback, options);
+   observer.observe(reliablyBody);
+
+   const circlePath = MotionPathPlugin.convertToPath("#holder", false)[0];
+   circlePath.id = "circlePath";
+   document.querySelector(".reliably-slider__box svg").prepend(circlePath);
+   const images = document.querySelectorAll(".reliably-slider__image");
+   const contentBlocks = document.querySelectorAll(".reliably-slider__content");
+
    gsap.to(items, {
       motionPath: {
          path: circlePath,
@@ -409,8 +432,8 @@ onMounted(() => {
          line-height: 100%;
       }
       @media screen and (max-width: $md) {
-         font-size: 18px;
-         line-height: 20px;
+         font-size: 22px;
+         line-height: 24px;
       }
    }
    &__description {
