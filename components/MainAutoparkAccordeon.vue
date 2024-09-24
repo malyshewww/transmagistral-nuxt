@@ -96,19 +96,23 @@ const initAccordeonMobile = () => {
                   accordeon.querySelectorAll(".item-accordeon");
                [...accordeonItems].forEach((item, index) => {
                   const header = item.querySelector(".item-accordeon__header");
-                  const content = item.querySelector(".item-accordeon__body");
+                  const body = item.querySelector(".item-accordeon__body");
+                  const content = item.querySelector(
+                     ".item-accordeon__content"
+                  );
+                  const text = item.querySelector(".item-accordeon__text");
                   header.addEventListener("click", () => {
                      item.classList.toggle("open");
                      if (item.classList.contains("open")) {
-                        content.style.height = `${content.scrollHeight}px`;
+                        body.style.height = `${body.scrollHeight}px`;
                      } else {
-                        content.style.height = "0px";
+                        body.style.height = "0px";
                      }
                      removeAccordeonOpen(index);
                   });
                   if (index === 0) {
                      item.classList.add("open");
-                     content.style.height = `${content.scrollHeight}px`;
+                     body.style.height = `${body.scrollHeight + 20}px`;
                   }
                });
                function removeAccordeonOpen(index1) {
@@ -277,6 +281,14 @@ onMounted(() => {
          // grid-template-rows: auto auto;
       }
    }
+   &.open {
+      & .item-accordeon__body {
+         @media screen and (max-width: $xl) {
+            margin-top: 20px;
+            grid-template-rows: 1fr;
+         }
+      }
+   }
    &__header {
       padding: 39px 30px;
       display: flex;
@@ -373,18 +385,14 @@ onMounted(() => {
       flex-shrink: 0;
       flex-grow: 1;
       @media screen and (max-width: $xl) {
-         padding: 0;
-         display: block;
+         display: flex;
          height: 0;
          transition: height $time * 2, margin $time * 3;
          overflow: hidden;
-         padding: 0px 20px 0;
          width: 100%;
+         padding: 0px 20px 0;
          .active & {
-            height: auto;
-         }
-         .open & {
-            margin-top: 20px;
+            height: 0;
          }
       }
    }
@@ -419,11 +427,12 @@ onMounted(() => {
             }
          }
       }
-      .open & {
-         @media screen and (max-width: $xl) {
-            max-height: none;
-         }
-      }
+      // .open & {
+      //    @media screen and (max-width: $xl) {
+      //       max-height: 100%;
+      //       height: 100%;
+      //    }
+      // }
       @media screen and (max-width: 1600px) {
          bottom: 100px;
          top: auto;
@@ -438,8 +447,9 @@ onMounted(() => {
       }
       @media screen and (max-width: $xl) {
          position: static;
+         width: 100%;
+         height: min-content;
          align-items: start;
-         height: 100%;
          gap: 24px;
          opacity: 1;
          .active &,
@@ -467,7 +477,8 @@ onMounted(() => {
       gap: 12px;
       @media screen and (max-width: $xl) {
          gap: 10px;
-         min-height: 110px;
+         // min-height: 110px;
+         flex-shrink: 0;
       }
    }
    &__title,
