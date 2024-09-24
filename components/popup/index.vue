@@ -148,7 +148,11 @@ onMounted(() => {
 }
 .popup-politic {
    z-index: 40;
+   & .popup__wrapper {
+      height: 100%;
+   }
    & .popup__content {
+      height: 100%;
       padding: 40px 0;
       @media screen and (max-width: $md) {
          padding: 30px 0;
@@ -156,7 +160,7 @@ onMounted(() => {
    }
    & .popup__content-wrap {
       padding: 0px 40px;
-      max-height: 394px;
+      max-height: 100%;
       overflow-y: auto;
       overflow-x: hidden;
       @media screen and (max-width: $md) {

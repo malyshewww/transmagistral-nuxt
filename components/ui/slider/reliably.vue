@@ -199,9 +199,6 @@ const gsapSlider = () => {
          },
          duration: 1.5,
       });
-      // const circle = document.querySelector(".reliably-slider__circle");
-      // circle.style.transition =
-      //    "rotate 0.4s linear, translate 0.4s linear, transform 0.2s linear";
    }
 };
 
