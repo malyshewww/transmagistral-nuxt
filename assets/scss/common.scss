@@ -317,6 +317,10 @@ picture {
 .content {
 	font-size: 20px;
 	line-height: 28px;
+	@media screen and (max-width: $md) {
+		font-size: 17px;
+		line-height: 24px;
+	}
 	p {
 		margin-bottom: 14px;
 	}
@@ -355,6 +359,9 @@ picture {
 		& > li {
 			position: relative;
 			margin-bottom: 8px;
+			& > ol {
+				margin-top: 8px;
+			}
 			&::before {
 				counter-increment: numbers;
 				content: counters(numbers, ".") ". ";
@@ -364,6 +371,11 @@ picture {
 				font-weight: 700;
 				color: var(--bg-bg-red-static);
 				margin-right: 8px;
+				@media screen and (max-width: $md) {
+					font-size: 17px;
+					line-height: 24px;
+					margin-right: 4px;
+				}
 			}
 			&:not(:last-child) {
 				margin-bottom: 8px;
