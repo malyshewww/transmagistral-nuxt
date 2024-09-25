@@ -28,11 +28,13 @@ defineProps({
 });
 
 const store = usePopupStore();
+// eslint-disable-next-line
 const openPopupPolitic = () => {
    store.openPopupPolitic();
 };
 
 const emit = defineEmits(["closePopup"]);
+// eslint-disable-next-line
 const closePopup = () => {
    emit("closePopup");
 };

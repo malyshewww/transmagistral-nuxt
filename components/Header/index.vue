@@ -37,6 +37,7 @@ defineProps({
 const isMenuOpen = ref(store.isMenuOpen);
 const isMenuOpenPopupStore = ref(storePopup.isMenuOpen);
 
+// eslint-disable-next-line
 const openMenu = () => {
    if (window.innerWidth <= 1024) {
       const { bodyScrollBar } = useScrollbar();
@@ -47,6 +48,7 @@ const openMenu = () => {
       isMenuOpenPopupStore.value = !isMenuOpenPopupStore.value;
    }
 };
+// eslint-disable-next-line
 const closeMenu = () => {
    if (window.innerWidth <= 1024) {
       const { bodyScrollBar } = useScrollbar();

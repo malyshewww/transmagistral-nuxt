@@ -153,8 +153,8 @@ const gsapSlider = () => {
    });
    document.getElementById("next").addEventListener("click", function () {
       let i = 0;
-      let theArray = items;
-      let currentIndex = 0;
+      // const theArray = items;
+      // const currentIndex = 0;
       if (i === 0) {
          //  console.log(theArray[currentIndex]);
       } else if (i < 0) {

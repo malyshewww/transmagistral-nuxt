@@ -30,11 +30,12 @@ import { useMainDataStore } from "~/stores/maindata";
 const { $gsap: gsap, $ScrollTrigger: ScrollTrigger } = useNuxtApp();
 
 const store = useMainDataStore();
+// eslint-disable-next-line
 const advantagesList = store.advantagesList;
-
+// eslint-disable-next-line
 const isResizable = ref(false);
 
-let st = ref(null);
+const st = ref(null);
 
 const initAnimation = () => {
    const { bodyScrollBar, scroller } = useScrollbar();
@@ -122,30 +123,9 @@ onMounted(() => {
    if (window.innerWidth > 1200) {
       initAnimation();
    }
-   const mainAdvantagesSection = document.querySelector(".main-advantages");
-   const observeWindowHeight = () => {
-      if (window.innerWidth > 1024) {
-         if (window.innerHeight < 780) {
-            // initSlider();
-            // console.log(st.value);
-            // st.value.kill();
-            // destroySlider();
-            // initSlider();
-            isResizable.value = true;
-            // st.value.destroy();
-            mainAdvantagesSection.classList.add("resizable");
-         } else {
-            // ScrollTrigger.destroy();
-            isResizable.value = false;
-            mainAdvantagesSection.classList.remove("resizable");
-         }
-      }
-   };
-   // observeWindowHeight();
    checkScreenWidth();
    window.addEventListener("resize", () => {
       checkScreenWidth();
-      // observeWindowHeight();
    });
 });
 </script>

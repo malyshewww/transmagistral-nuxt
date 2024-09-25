@@ -11,10 +11,10 @@
 
 <script setup>
 import { useMenuStore } from "~/stores/menu.js";
-
+// eslint-disable-next-line
 const storeMenu = useMenuStore();
 
-const props = defineProps({
+defineProps({
    menu: {
       type: Object,
       required: true,
@@ -35,7 +35,7 @@ const { $Scrollbar: Scrollbar, $ScrollbarPlugin: ScrollbarPlugin } =
    useNuxtApp();
 
 const addedHeight = ref(0);
-
+// eslint-disable-next-line
 const goToSection = (e) => {
    const { bodyScrollBar } = useScrollbar();
    const href = e.target.getAttribute("href");

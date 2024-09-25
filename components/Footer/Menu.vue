@@ -14,6 +14,7 @@ defineProps({
 
 const addedHeight = ref(0);
 
+// eslint-disable-next-line
 const goToSection = (e) => {
    const { bodyScrollBar } = useScrollbar();
    const href = e.target.getAttribute("href");

@@ -89,8 +89,8 @@ defineProps({
       display: flex;
       align-items: center;
       position: relative;
-      width: 324px;
-      height: 115px;
+      width: 256px;
+      height: 100px;
       @media screen and (max-width: $md) {
          width: 156px;
          height: 54px;
@@ -142,8 +142,8 @@ defineProps({
       position: absolute;
       right: 0;
       top: 0;
-      width: 117px;
-      height: 117px;
+      width: 100px;
+      height: 100px;
       border-radius: 50%;
       overflow: hidden;
       display: grid;
@@ -180,15 +180,19 @@ defineProps({
          z-index: 3;
       }
       &:nth-child(3) {
-         right: 69px;
+         right: 52px;
          z-index: 1;
          @media screen and (max-width: $md) {
-            z-index: 2;
+            z-index: 1;
+            right: 34px;
          }
       }
       &:nth-child(2) {
-         left: 69px;
+         left: 52px;
          z-index: 2;
+         @media screen and (max-width: $md) {
+            left: 34px;
+         }
       }
    }
 }
@@ -200,9 +204,10 @@ defineProps({
    gap: 20px;
    position: relative;
    overflow: hidden;
-   padding-top: 60px;
+   padding-top: 40px;
    min-height: 546px;
-   grid-column: span 2;
+   background-color: var(--bg-bg-grey-dark);
+   // grid-column: span 2;
    & .line-card {
       position: absolute;
       top: 0;
@@ -215,13 +220,13 @@ defineProps({
       }
    }
    @media screen and (max-width: 1600px) {
-      grid-column: span 3;
+      grid-column: span 2;
    }
    @media screen and (max-width: $xxl) {
       min-height: auto;
    }
    @media screen and (max-width: $xl) {
-      grid-column: span 2;
+      grid-column: span 1;
    }
    @media screen and (max-width: $md) {
       grid-column: initial;

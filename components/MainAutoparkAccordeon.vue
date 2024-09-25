@@ -67,24 +67,24 @@ const accordeonList = reactive({
    ],
 });
 
-// const toggleSelection = (key) => {
-//    const stepsItem = accordeonList.data.find((item) => item.key === key);
-//    if (stepsItem) {
-//       stepsItem.isSelected = !stepsItem.isSelected;
-//    }
-// };
-// const select = (key) => {
-// if (window.innerWidth > 1024) {
-//    for (let i = 0; i < accordeonList.data.length; i++) {
-//       if (accordeonList.data[i].key !== key) {
-//          accordeonList.data[i].isSelected = false;
-//       }
-//    }
-//    toggleSelection(key);
-//    clearInterval(key);
-//    stopAutoplay();
-// }
-// };
+const toggleSelection = (key) => {
+   const stepsItem = accordeonList.data.find((item) => item.key === key);
+   if (stepsItem) {
+      stepsItem.isSelected = !stepsItem.isSelected;
+   }
+};
+const select = (key) => {
+   if (window.innerWidth > 1024) {
+      for (let i = 0; i < accordeonList.data.length; i++) {
+         if (accordeonList.data[i].key !== key) {
+            accordeonList.data[i].isSelected = false;
+         }
+      }
+      toggleSelection(key);
+      clearInterval(key);
+      stopAutoplay();
+   }
+};
 
 const initAccordeonMobile = () => {
    if (window.innerWidth <= 1024) {

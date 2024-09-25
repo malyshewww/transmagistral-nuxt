@@ -9,10 +9,12 @@
 import { Fancybox } from "@fancyapps/ui";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
 
+// eslint-disable-next-line
 const showTrailer = () => {
    const trailer = document.querySelector(".trailer");
    trailer && trailer.classList.add("active");
 };
+// eslint-disable-next-line
 const hideTrailer = () => {
    const trailer = document.querySelector(".trailer");
    trailer && trailer.classList.remove("active");

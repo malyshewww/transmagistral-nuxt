@@ -30,18 +30,20 @@ import { usePopupStore } from "~/stores/popup";
 import IMask from "imask";
 import maskPhone from "~/utils/maskPhone.js";
 
-const store = usePopupStore();
-const openPopupPolitic = () => {
-   store.openPopupPolitic();
-};
-
 defineProps({
    isOpen: {
       type: Boolean,
    },
 });
-const emit = defineEmits(["closePopup"]);
 
+const store = usePopupStore();
+// eslint-disable-next-line
+const openPopupPolitic = () => {
+   store.openPopupPolitic();
+};
+
+const emit = defineEmits(["closePopup"]);
+// eslint-disable-next-line
 const closePopup = () => {
    emit("closePopup");
 };

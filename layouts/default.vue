@@ -26,7 +26,9 @@ const { $ScrollTrigger: ScrollTrigger } = useNuxtApp();
 const store = usePopupStore();
 const storeData = useMainDataStore();
 const storeMenu = useMenuStore();
+// eslint-disable-next-line
 const isHiddenHeader = ref(storeMenu.isHiddenHeader);
+// eslint-disable-next-line
 const menu = storeData.menu;
 
 onMounted(() => {
@@ -130,23 +132,25 @@ onMounted(() => {
 
 const isOpenNoticePopupQuestions = ref(false);
 
+// eslint-disable-next-line
 const closePopupPolitic = () => {
    store.closePopupPolitic();
    if (store.isOpenPopupPoliticNotNested) {
       store.closePopupPoliticNotNested();
    }
 };
-
+// eslint-disable-next-line
 const closePopupQuestions = () => {
    store.closePopupQuestions();
    if (store.isPopupQuestionsNotNested) {
       store.closePopupQuestionsNotNested();
    }
 };
-
+// eslint-disable-next-line
 const openNoticePopupQuestions = () => {
    isOpenNoticePopupQuestions.value = !isOpenNoticePopupQuestions.value;
 };
+// eslint-disable-next-line
 const closeNoticePopupQuestions = () => {
    isOpenNoticePopupQuestions.value = !isOpenNoticePopupQuestions.value;
 };

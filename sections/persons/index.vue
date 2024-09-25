@@ -15,7 +15,7 @@
 						.person-card__bottom
 							.person-card__num 200 #[span +]
 							.person-card__description Профессионалов в нашей команде
-						LineCard
+						//- LineCard
 </template>
 
 <script setup>
@@ -24,6 +24,7 @@ const store = useMainDataStore();
 
 const personList = store.personList;
 
+// eslint-disable-next-line
 const newPersonList = personList.map((item) => {
    return {
       ...item,
@@ -63,10 +64,7 @@ onMounted(() => {
    position: relative;
    overflow: hidden;
    @media screen and (max-width: $xl) {
-      padding: 50px 0 0px;
-   }
-   @media screen and (max-width: $md) {
-      padding: 36px 0 36px;
+      padding: 36px 0 0px;
    }
    & .line-person {
       position: absolute;

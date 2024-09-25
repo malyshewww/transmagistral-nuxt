@@ -17,11 +17,13 @@ defineProps({
    },
 });
 
+// eslint-disable-next-line
 const defaultNoticeSubTitle =
    "Форма успешно отправлена. Звонок поступит в ближайшее время";
 
 const emit = defineEmits(["closePopup"]);
 
+// eslint-disable-next-line
 const closePopup = () => {
    emit("closePopup");
 };

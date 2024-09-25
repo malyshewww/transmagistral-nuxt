@@ -22,6 +22,8 @@
 import { usePopupStore } from "~/stores/popup";
 
 const store = usePopupStore();
+
+// eslint-disable-next-line
 const openPopupQuestionsNotNested = () => {
    store.openPopupQuestionsNotNested();
 };

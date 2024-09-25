@@ -98,7 +98,7 @@ export const useMainDataStore = defineStore("maindata", {
          },
          {
             name: "Гусева Наталья",
-            post: "Начальник отдела логистики",
+            post: "Начальник коммерческого отдела",
             email: "guseva@transmagistral.ru",
             phone: "+7 915 958-75-68",
          },
@@ -110,7 +110,7 @@ export const useMainDataStore = defineStore("maindata", {
          },
          {
             name: "Доскинский Дмитрий",
-            post: "Логист",
+            post: "Начальник отдела логистики",
             email: "dima@transmagistral.ru",
             phone: "+7 915 956-47-71",
          },
@@ -125,6 +125,12 @@ export const useMainDataStore = defineStore("maindata", {
             post: "Логист",
             email: "perevalova@transmagistral.ru",
             phone: "+7 910 396-13-50",
+         },
+         {
+            name: "Свистунов Максим",
+            post: "Логист",
+            email: "m.svistunov@transmagistral.ru",
+            phone: "+7 910 893-29-20",
          },
       ],
       documentList: [

@@ -52,19 +52,21 @@ import { usePopupStore } from "~/stores/popup";
 //    // phone: Yup.string().phone().required(),
 // });
 
-const store = usePopupStore();
-
-const openPopupPolitic = () => {
-   store.openPopupPolitic();
-};
-
 defineProps({
    isOpen: {
       type: Boolean,
    },
 });
-const emit = defineEmits(["closePopup"]);
 
+const store = usePopupStore();
+
+// eslint-disable-next-line
+const openPopupPolitic = () => {
+   store.openPopupPolitic();
+};
+
+const emit = defineEmits(["closePopup"]);
+// eslint-disable-next-line
 const closePopup = () => {
    emit("closePopup");
 };
@@ -75,10 +77,12 @@ const formData = ref({
    theme: "",
 });
 
+// eslint-disable-next-line
 const newDataFromDropdown = (value) => {
    formData.value.theme = value;
 };
 
+// eslint-disable-next-line
 const submitForm = async () => {
    console.log(formData.value);
    //    const { data: responseData } = await useFetch(

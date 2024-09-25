@@ -12,6 +12,7 @@ const dropdownButtonText = ref("Название темы 2");
 
 const emit = defineEmits(["dataFromDropdown"]);
 
+// eslint-disable-next-line
 const openDropdown = () => {
    isDropdownActive.value = !isDropdownActive.value;
 };
@@ -44,7 +45,7 @@ const toggleSelection = (key) => {
       currentIem.isSelected = !currentIem.isSelected;
    }
 };
-
+// eslint-disable-next-line
 const select = (target, key) => {
    // isDropdownActive.value = false;
    for (let i = 0; i < dropdownList.new.length; i++) {

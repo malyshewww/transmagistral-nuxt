@@ -16,6 +16,8 @@ defineProps({
    },
 });
 const emit = defineEmits(["closePopup"]);
+
+// eslint-disable-next-line
 const closePopup = () => {
    emit("closePopup");
 };

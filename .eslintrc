@@ -1,3 +1,8 @@
 {
-   "extends": ["plugin:vue/vue3-recommended", "plugin:vue-pug/vue3-recommended"]
+   "extends": [
+      // "plugin:vue/vue3-recommended",
+      // "plugin:vue-pug/vue3-recommended"
+      "plugin:vue/recommended",
+      "plugin:pug/recommended"
+   ]
 }

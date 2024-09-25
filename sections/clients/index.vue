@@ -19,19 +19,23 @@
 const isOpenPopupClient = ref(false);
 const isOpenNoticePopupClient = ref(false);
 
+// eslint-disable-next-line
 const openPopupClient = () => {
    isOpenPopupClient.value = !isOpenPopupClient.value;
    const { bodyScrollBar } = useScrollbar();
    bodyScrollBar.updatePluginOptions("lock", { lock: true });
 };
+// eslint-disable-next-line
 const closePopupClient = () => {
    isOpenPopupClient.value = !isOpenPopupClient.value;
    const { bodyScrollBar } = useScrollbar();
    bodyScrollBar.updatePluginOptions("lock", { lock: false });
 };
+// eslint-disable-next-line
 const openNoticePopupClient = () => {
    isOpenNoticePopupClient.value = !isOpenNoticePopupClient.value;
 };
+// eslint-disable-next-line
 const closeNoticePopupClient = () => {
    isOpenNoticePopupClient.value = !isOpenNoticePopupClient.value;
 };

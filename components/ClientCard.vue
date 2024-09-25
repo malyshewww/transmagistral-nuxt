@@ -1,5 +1,5 @@
 <template lang="pug">
-	.client-card.anim-client-card(ref="animClientCard" v-for="item, index in 7")
+	.client-card.anim-client-card(ref="animClientCard" v-for="item, index in 5")
 		.client-card__image
 			picture 
 				source(:srcset="`/images/clients/client-${item}.svg`" media="(min-width: 767.98px)")

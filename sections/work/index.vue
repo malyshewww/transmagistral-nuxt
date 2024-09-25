@@ -16,19 +16,23 @@
 const isOpenPopupWork = ref(false);
 const isOpenNoticePopupWork = ref(false);
 
+// eslint-disable-next-line
 const openPopupWork = () => {
    isOpenPopupWork.value = !isOpenPopupWork.value;
    const { bodyScrollBar } = useScrollbar();
    bodyScrollBar.updatePluginOptions("lock", { lock: true });
 };
+// eslint-disable-next-line
 const closePopupWork = () => {
    isOpenPopupWork.value = !isOpenPopupWork.value;
    const { bodyScrollBar } = useScrollbar();
    bodyScrollBar.updatePluginOptions("lock", { lock: false });
 };
+// eslint-disable-next-line
 const openNoticePopupWork = () => {
    isOpenNoticePopupWork.value = !isOpenNoticePopupWork.value;
 };
+// eslint-disable-next-line
 const closeNoticePopupWork = () => {
    isOpenNoticePopupWork.value = !isOpenNoticePopupWork.value;
 };

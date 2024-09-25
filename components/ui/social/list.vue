@@ -33,7 +33,7 @@
       width: 64px;
       height: 64px;
       border-radius: 50%;
-      background-color: var(--bg-bg-white);
+      background-color: var(--white);
       transition: background-color $time * 1.5;
       & svg {
          width: 38px;

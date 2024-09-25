@@ -32,6 +32,7 @@ import "@fancyapps/ui/dist/fancybox/fancybox.css";
 import { useMainDataStore } from "~/stores/maindata";
 const store = useMainDataStore();
 
+// eslint-disable-next-line
 const documentList = store.documentList;
 
 const buttonPrev = ref("");

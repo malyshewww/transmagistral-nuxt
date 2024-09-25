@@ -16,6 +16,8 @@
 
 <script setup>
 const downloadLink = ref("");
+
+// eslint-disable-next-line
 const downloadFile = () => {
    downloadLink.value.click();
 };
