@@ -67,24 +67,24 @@ const accordeonList = reactive({
    ],
 });
 
-const toggleSelection = (key) => {
-   const stepsItem = accordeonList.data.find((item) => item.key === key);
-   if (stepsItem) {
-      stepsItem.isSelected = !stepsItem.isSelected;
-   }
-};
-const select = (key) => {
-   // if (window.innerWidth > 1024) {
-   //    for (let i = 0; i < accordeonList.data.length; i++) {
-   //       if (accordeonList.data[i].key !== key) {
-   //          accordeonList.data[i].isSelected = false;
-   //       }
-   //    }
-   //    toggleSelection(key);
-   //    clearInterval(key);
-   //    stopAutoplay();
-   // }
-};
+// const toggleSelection = (key) => {
+//    const stepsItem = accordeonList.data.find((item) => item.key === key);
+//    if (stepsItem) {
+//       stepsItem.isSelected = !stepsItem.isSelected;
+//    }
+// };
+// const select = (key) => {
+// if (window.innerWidth > 1024) {
+//    for (let i = 0; i < accordeonList.data.length; i++) {
+//       if (accordeonList.data[i].key !== key) {
+//          accordeonList.data[i].isSelected = false;
+//       }
+//    }
+//    toggleSelection(key);
+//    clearInterval(key);
+//    stopAutoplay();
+// }
+// };
 
 const initAccordeonMobile = () => {
    if (window.innerWidth <= 1024) {
@@ -97,10 +97,9 @@ const initAccordeonMobile = () => {
                [...accordeonItems].forEach((item, index) => {
                   const header = item.querySelector(".item-accordeon__header");
                   const body = item.querySelector(".item-accordeon__body");
-                  const content = item.querySelector(
-                     ".item-accordeon__content"
-                  );
-                  const text = item.querySelector(".item-accordeon__text");
+                  // const content = item.querySelector(
+                  //    ".item-accordeon__content"
+                  // );
                   header.addEventListener("click", () => {
                      item.classList.toggle("open");
                      if (item.classList.contains("open")) {
@@ -190,7 +189,7 @@ const autoChangeAccordeon = () => {
       const accordeonItems = document.querySelectorAll(".item-accordeon");
       accordeonItems.forEach((item, index) => {
          const header = item.querySelector(".item-accordeon__header");
-         header.addEventListener("click", (e) => {
+         header.addEventListener("click", () => {
             slideIndex = index;
             document
                .querySelectorAll(".item-accordeon")

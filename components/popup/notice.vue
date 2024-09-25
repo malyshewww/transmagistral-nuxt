@@ -13,6 +13,7 @@ defineProps({
    },
    noticeSubTitle: {
       type: String,
+      required: false,
    },
 });
 

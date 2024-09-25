@@ -21,7 +21,7 @@ import { useMenuStore } from "~/stores/menu";
 
 import formActions from "~/utils/formActions.js";
 
-const { $gsap: gsap, $ScrollTrigger: ScrollTrigger } = useNuxtApp();
+const { $ScrollTrigger: ScrollTrigger } = useNuxtApp();
 
 const store = usePopupStore();
 const storeData = useMainDataStore();

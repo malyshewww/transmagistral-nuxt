@@ -21,7 +21,7 @@ export default defineNuxtPlugin(() => {
    }
    class DirectionPlugin extends ScrollbarPlugin {
       static pluginName = "direction";
-      transformDelta(delta, fromEvent) {
+      transformDelta(delta) {
          return {
             x: delta.x,
             y: delta.y,

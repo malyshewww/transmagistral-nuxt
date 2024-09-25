@@ -11,7 +11,16 @@
 
 <script setup>
 // const { $gsap: gsap, $ScrollTrigger: ScrollTrigger } = useNuxtApp();
-defineProps(["item", "idx"]);
+defineProps({
+   item: {
+      type: Object,
+      required: true,
+   },
+   idx: {
+      type: Number,
+      required: true,
+   },
+});
 
 const animation = () => {
    const callback = (entries) => {

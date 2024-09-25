@@ -21,16 +21,16 @@
 import maskPhone from "~/utils/maskPhone.js";
 import { usePopupStore } from "~/stores/popup";
 
-const store = usePopupStore();
-const openPopupPolitic = () => {
-   store.openPopupPolitic();
-};
-
 defineProps({
    isOpen: {
       type: Boolean,
    },
 });
+
+const store = usePopupStore();
+const openPopupPolitic = () => {
+   store.openPopupPolitic();
+};
 
 const emit = defineEmits(["closePopup"]);
 const closePopup = () => {

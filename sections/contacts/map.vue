@@ -32,9 +32,6 @@ onMounted(() => {
          YMapDefaultFeaturesLayer,
          YMapMarker,
       } = ymaps3;
-      const { YMapHint, YMapHintContext } = await ymaps3.import(
-         "@yandex/ymaps3-hint@0.0.1"
-      );
       const map = new YMap(document.getElementById("mapElem"), {
          location: {
             center: coords,
@@ -82,7 +79,7 @@ onMounted(() => {
          ]);
          const mapLayout = document.getElementById("mapElem");
          if (mapLayout) {
-            let pane = document.createElement("div");
+            const pane = document.createElement("div");
             pane.innerHTML =
                "Чтобы переместить карту проведите по ней двумя пальцами";
             pane.style.cssText =
@@ -129,8 +126,8 @@ onMounted(() => {
          }
       }
    }
-   let observerOptions = {};
-   let observer = new IntersectionObserver(([entry]) => {
+   const observerOptions = {};
+   const observer = new IntersectionObserver(([entry]) => {
       const targetInfo = entry.boundingClientRect;
       const rootBoundsInfo = entry.rootBounds;
       if (

@@ -67,6 +67,7 @@
 defineProps({
    index: {
       type: Number,
+      required: true,
    },
 });
 
