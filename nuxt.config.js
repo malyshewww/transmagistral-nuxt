@@ -38,16 +38,6 @@ export default defineNuxtConfig({
       "@pinia/nuxt",
       "@nuxt/eslint",
    ],
-   image: {
-      format: ["webp"],
-      provider: "ipx",
-      ipx: {
-         modifiers: {
-            quality: "80",
-            format: ["webp"],
-         },
-      },
-   },
    devServer: {
       port: 3001,
    },
@@ -122,7 +112,7 @@ export default defineNuxtConfig({
          ],
       },
    },
-   ssr: true,
+   ssr: false,
    vite: {
       server: {
          port: 3001,

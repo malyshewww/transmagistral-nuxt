@@ -9,16 +9,17 @@ import json from "~/static/theme.json";
 
 const coords = [43.870026, 56.303546];
 
-const isLoaded = ref(false);
+// const isLoaded = ref(false);
 
 onMounted(() => {
+   let isLoaded = false;
    const mapElem = document.getElementById("mapElem");
    function loadMap() {
       const script = document.createElement("script");
       script.src =
          "https://api-maps.yandex.ru/v3/?apikey=c87eadb5-9e35-48d6-8175-3e770edb04e0&lang=ru_RU";
       document.body.appendChild(script);
-      isLoaded.value = true;
+      isLoaded = true;
       script.onload = function () {
          initMap();
       };
@@ -126,12 +127,15 @@ onMounted(() => {
          }
       }
    }
-   const observerOptions = {};
+   const scroller = document.querySelector(".scroller");
+   const observerOptions = {
+      root: scroller,
+   };
    const observer = new IntersectionObserver(([entry]) => {
       const targetInfo = entry.boundingClientRect;
       const rootBoundsInfo = entry.rootBounds;
       if (
-         (!isLoaded.value && targetInfo.top < rootBoundsInfo.bottom) ||
+         (!isLoaded && targetInfo.top < rootBoundsInfo.bottom) ||
          targetInfo.isIntersecting
       ) {
          loadMap();
