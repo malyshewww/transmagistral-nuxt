@@ -5,7 +5,8 @@
          height="906"
          viewBox="0 0 1920 906"
          fill="none"
-         xmlns="http://www.w3.org/2000/svg">
+         xmlns="http://www.w3.org/2000/svg"
+         preserveAspectRatio="none">
          <g clip-path="url(#clip0_936_1250)">
             <path
                d="M-10.5 19C45.3333 132.167 182.2 304 351 232C562 142 526.5 18.5 377 108.5C227.5 198.5 71 621.5 351 797C885.674 1132.13 1428.5 133.768 1428.5 608C1428.5 975 2034 451.5 1964.5 906"
@@ -23,6 +24,10 @@
 
 <style lang="scss">
 .line-document {
+   width: 100%;
+   & svg {
+      width: 100%;
+   }
    & svg path {
       stroke-dasharray: 4000;
       stroke-dashoffset: 5000;

@@ -34,7 +34,8 @@
          width="100%"
          height="280"
          fill="none"
-         xmlns="http://www.w3.org/2000/svg">
+         xmlns="http://www.w3.org/2000/svg"
+         preserveAspectRatio="none">
          <path
             d="M662 33.8065C504.539 56.7455 368.09 142.626 322.663 93.2574C289.266 56.9632 343.813 -3.7616 388.936 41.3953C407.871 60.345 455.707 175.075 314.192 246.944C172.676 318.812 -18.6689 116.196 -68 2"
             stroke="#ECEFF7"
@@ -47,7 +48,8 @@
          width="100%"
          height="255"
          fill="none"
-         xmlns="http://www.w3.org/2000/svg">
+         xmlns="http://www.w3.org/2000/svg"
+         preserveAspectRatio="none">
          <g clip-path="url(#clip0_936_1096)">
             <path
                d="M800 409.626C474.563 471.803 771.435 203.558 240.149 223.558V223.558C172.391 226.109 165.233 155.719 206.4 101.839C235.558 63.6778 247.505 29.9671 189.17 38.2693C120.913 47.9837 -91.5868 144.834 -137 95.5593"
@@ -84,6 +86,9 @@ onMounted(() => {
 
 <style lang="scss">
 .line-about {
+   & svg {
+      width: 100%;
+   }
    .svg-one path {
       stroke-dasharray: 2000;
       stroke-dashoffset: 2000;
