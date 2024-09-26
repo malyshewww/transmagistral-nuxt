@@ -30,12 +30,12 @@
    }
    & svg path {
       stroke-dasharray: 4000;
-      stroke-dashoffset: 5000;
+      stroke-dashoffset: 4000;
    }
 }
 .main-documents.in-view {
    & svg path {
-      animation: dash 8s linear forwards;
+      animation: dash 5s linear forwards;
    }
 }
 @keyframes dash {

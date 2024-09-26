@@ -34,15 +34,26 @@ export default defineNuxtConfig({
       //       },
       //    },
       // ],
+      "@nuxt/image",
       "@pinia/nuxt",
       "@nuxt/eslint",
-      "@nuxt/image",
    ],
+   image: {
+      format: ["webp"],
+      provider: "ipx",
+      ipx: {
+         modifiers: {
+            quality: "80",
+            format: ["webp"],
+         },
+      },
+   },
    devServer: {
       port: 3001,
    },
    plugins: ["~/plugins/click-outside.js"],
    app: {
+      rootId: "app",
       head: {
          htmlAttrs: {
             lang: "ru",
@@ -111,7 +122,7 @@ export default defineNuxtConfig({
          ],
       },
    },
-   ssr: false,
+   ssr: true,
    vite: {
       server: {
          port: 3001,
