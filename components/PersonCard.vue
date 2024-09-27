@@ -2,7 +2,10 @@
 	.person-card(v-for="card, index in cards" :key="index")
 		.person-card__body 
 			.person-card__image
-				NuxtPicture(format="avif,webp" :src="`/images/persons/person-${index+1}.jpg`" :alt="card.name")
+				picture
+					source(type="image/webp" :srcset="`/images/persons/person-${index+1}.webp`")
+					source(:srcset="`/images/persons/person-${index+1}.jpg`")
+					img(:src="`/images/persons/person-${index+1}.jpg`" :alt="card.name")
 			.person-card__name {{ card.name }}
 			.person-card__post {{ card.post }}
 			.person-card__contacts.contacts-person

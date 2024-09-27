@@ -10,7 +10,10 @@
 				.item-accordeon__body(ref="headerAccordeonBody")
 					.item-accordeon__content
 						.item-accordeon__image.ibg
-							NuxtPicture(format="avif,webp" :src="`/images/autopark/img-${index+1}.jpg`" :alt="item.title")
+							picture
+								source(type="image/webp" :srcset="`/images/autopark/img-${index+1}.webp`")
+								source(:srcset="`/images/autopark/img-${index+1}.jpg`")
+								img(:src="`/images/autopark/img-${index+1}.jpg`" :alt="item.title")
 						.item-accordeon__inner
 							span.item-accordeon__icon
 								img(:src="`/images/autopark/car-${index+1}.svg`", :alt="item.title")

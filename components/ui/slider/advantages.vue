@@ -4,7 +4,10 @@
 			.slider-advantages__body.track-body(ref="sliderAdvantagesBody")
 				.slider-advantages__item.item-advantages(v-for="item, index in advantagesList" :key="index")
 					.item-advantages__image.ibg
-						NuxtPicture(format="webp" :src="`/images/advantages/image-${index+1}.jpg`")
+						picture
+							source(type="image/webp" :srcset="`/images/advantages/image-${index+1}.webp`")
+							source(:srcset="`/images/advantages/image-${index+1}.jpg`")
+							img(:src="`/images/advantages/image-${index+1}.jpg`" :alt="item.title")
 					.item-advantages__content 
 						.item-advantages__number
 						.item-advantages__title {{ item.title }}
