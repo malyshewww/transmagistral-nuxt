@@ -24,10 +24,10 @@ onMounted(() => {
          start: "top 50%",
          onEnter: () => {
             gsap.to(".wrapper", {
-               "--color": colorSection.dataset.textcolor,
+               // "--color": colorSection.dataset.textcolor,
                "--page-gradient": colorSection.dataset.bgcolor,
                //    backgroundImage: colorSection.dataset.bgcolor,
-               color: colorSection.dataset.textcolor,
+               // color: colorSection.dataset.textcolor,
                overwrite: "auto",
                duration: 1,
             });
@@ -35,10 +35,10 @@ onMounted(() => {
          },
          onLeaveBack: () => {
             gsap.to(".wrapper", {
-               "--color": prevText,
+               // "--color": prevText,
                "--page-gradient": prevBg,
                //    backgroundImage: prevBg,
-               color: prevText,
+               // color: prevText,
                overwrite: "auto",
                duration: 1,
             });
