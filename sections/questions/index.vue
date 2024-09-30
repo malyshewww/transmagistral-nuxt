@@ -16,7 +16,6 @@
 						UiButton(buttonText="Заказать консультацию")
 						.form-text 
 							p Отправляя форму, я подтверждаю #[a(href="#" @click.prevent="openPopupPolitic").text-link своё согласие на обработку персональных данных]
-
 </template>
 
 <script setup>

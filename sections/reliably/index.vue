@@ -7,6 +7,8 @@
 				UiSliderReliably
 </template>
 
+<script setup></script>
+
 <style lang="scss">
 .reliably {
    padding: 152px 0 60px;

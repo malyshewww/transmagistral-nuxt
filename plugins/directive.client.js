@@ -1,5 +1,5 @@
 export default defineNuxtPlugin((nuxtApp) => {
-   nuxtApp.vueApp.directive("click-outside", {
+   nuxtApp.vueApp.directive("my-directive", {
       // mounted(el) {
       //    el.classList.remove("active");
       // },
@@ -7,6 +7,10 @@ export default defineNuxtPlugin((nuxtApp) => {
       //    // you can provide SSR-specific props here
       //    return {};
       // },
+      mounted(element, binding, globalThis) {
+         // Your custom directive logic here
+         console.log("My directive works!", binding.value); // Output: the value passed as an argument to the directive. In this case the string 'Hello'
+      },
       bind: function (el, binding, vnode) {
          el.clickOutsideEvent = function (event) {
             // here I check that click was outside the el and his childrens

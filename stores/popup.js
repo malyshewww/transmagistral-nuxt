@@ -6,6 +6,9 @@ export const usePopupStore = defineStore("popup", {
       isMenuOpen: false,
       isOpenPopupPoliticNotNested: false,
       isPopupQuestionsNotNested: false,
+      isPopupNoticeActive: false,
+      popupNoticeText:
+         "Форма успешно отправлена. Звонок поступит в ближайшее время",
    }),
    actions: {
       openPopupPoliticNotNested() {
@@ -73,6 +76,14 @@ export const usePopupStore = defineStore("popup", {
          bodyScrollBar.updatePluginOptions("lock", {
             lock: false,
          });
+      },
+      openPopupNotice(popupText) {
+         this.popupNoticeText = popupText ? popupText : this.popupNoticeText;
+         this.isPopupNoticeActive = !this.isPopupNoticeActive;
+      },
+      closePopupNotice() {
+         this.popupNoticeText = "";
+         this.isPopupNoticeActive = !this.isPopupNoticeActive;
       },
    },
 });

@@ -41,7 +41,11 @@ export default defineNuxtConfig({
    devServer: {
       port: 3001,
    },
-   plugins: ["~/plugins/click-outside.js"],
+   runtimeConfig: {
+      public: {
+         apiBase: process.env.NUXT_PUBLIC_API_BASE_URL,
+      },
+   },
    app: {
       rootId: "app",
       head: {

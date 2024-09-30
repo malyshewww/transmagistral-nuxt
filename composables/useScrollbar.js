@@ -6,7 +6,7 @@ function useScrollbar(scroller) {
    if (scroller) {
       bodyScrollBar = Scrollbar.init(scroller, {
          damping: 0.1,
-         delegateTo: document,
+         delegateTo: document || window,
          alwaysShowTracks: true,
          renderByPixels: true,
          continuousScrolling: true,

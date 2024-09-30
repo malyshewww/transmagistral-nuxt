@@ -52,6 +52,9 @@ import { usePopupStore } from "~/stores/popup";
 //    // phone: Yup.string().phone().required(),
 // });
 
+const runtimeConfig = useRuntimeConfig();
+console.log(runtimeConfig.public.apiBase);
+
 defineProps({
    isOpen: {
       type: Boolean,
@@ -85,17 +88,6 @@ const newDataFromDropdown = (value) => {
 // eslint-disable-next-line
 const submitForm = async () => {
    console.log(formData.value);
-   //    const { data: responseData } = await useFetch(
-   //       `${useHref()}/form-handler/index.php`,
-   //       {
-   //          method: "post",
-   //          body: {
-   //             name: formData.value.name,
-   //             phone: formData.value.phone,
-   //             theme: formData.value.theme,
-   //          },
-   //       }
-   //    );
 };
 
 onMounted(() => {});

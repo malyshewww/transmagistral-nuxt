@@ -3,10 +3,15 @@
 		Popup(class="popup-notice" :is-open="isOpen" @close-popup="closePopup")
 			.popup-header
 				.popup__title Успешно!
-				.popup__sub-title {{ noticeSubTitle || defaultNoticeSubTitle }}
+				.popup__sub-title {{ popupNoticeText }}
 </template>
 
 <script setup>
+import { usePopupStore } from "~/stores/popup";
+
+const popupStore = usePopupStore();
+const popupNoticeText = popupStore.popupNoticeText;
+
 defineProps({
    isOpen: {
       type: Boolean,

@@ -9,9 +9,10 @@
 					Header(:menu="menu" :isHiddenHeader="isHiddenHeader" classNames="header-white")
 					slot 
 					Footer(:menu="menu")
-	PopupQuestions(@close-popup="closePopupQuestions" :is-open="store.isPopupQuestionsActive || store.isPopupQuestionsNotNested")
-	PopupNotice(@close-popup="closeNoticePopupQuestions" :is-open="isOpenNoticePopupQuestions")
-	PopupPolitic(@close-popup="closePopupPolitic" :is-open="store.isPopupPoliticActive || store.isOpenPopupPoliticNotNested")
+	PopupQuestions(@close-popup="closePopupQuestions" :is-open="storePopup.isPopupQuestionsActive || storePopup.isPopupQuestionsNotNested")
+	PopupPolitic(@close-popup="closePopupPolitic" :is-open="storePopup.isPopupPoliticActive || storePopup.isOpenPopupPoliticNotNested")
+	//- PopupNotice(@close-popup="closeNoticePopupQuestions" :is-open="isOpenNoticePopupQuestions")
+	PopupNotice(@close-popup="closeNoticePopup" :is-open="storePopup.isPopupNoticeActive")
 </template>
 
 <script setup>
@@ -21,9 +22,9 @@ import { useMenuStore } from "~/stores/menu";
 
 import formActions from "~/utils/formActions.js";
 
-const { $ScrollTrigger: ScrollTrigger } = useNuxtApp();
+const { $ScrollTrigger: ScrollTrigger, $Scrollbar: Scrollbar } = useNuxtApp();
 
-const store = usePopupStore();
+const storePopup = usePopupStore();
 const storeData = useMainDataStore();
 const storeMenu = useMenuStore();
 // eslint-disable-next-line
@@ -77,21 +78,23 @@ onMounted(() => {
       }
       prevScrollPosition = scrollPosition;
    });
-   // const headerObjArr = [];
-   // const anchorLinks = document.querySelectorAll(".header-white .anchor-link");
-   // [...anchorLinks].forEach((link) => {
-   //    const hash = link.getAttribute("href").substring(1);
-   //    const target = document.getElementById(hash);
-   //    headerObjArr.push({
-   //       element: link,
-   //       target: target,
-   //       targetStart: target.getBoundingClientRect().top + window.scrollY,
-   //       targetEnd:
-   //          target.getBoundingClientRect().top +
-   //          window.scrollY +
-   //          target.clientHeight,
-   //    });
-   // });
+   const headerObjArr = ref([]);
+   const anchorLinks = document.querySelectorAll(".header-white .anchor-link");
+   [...anchorLinks].forEach((link) => {
+      const hash = link.getAttribute("href").substring(1);
+      const target = document.getElementById(hash);
+      if (target) {
+         headerObjArr.value.push({
+            element: link,
+            target: target,
+            targetStart: target.getBoundingClientRect().top + window.scrollY,
+            targetEnd:
+               target.getBoundingClientRect().top +
+               window.scrollY +
+               target.clientHeight,
+         });
+      }
+   });
    /* CHANGE NAVIGATION */
    function scrollNav() {
       const sections = document.querySelectorAll("[data-section]");
@@ -110,12 +113,13 @@ onMounted(() => {
       });
    }
    const scrollEvent = new Event("scroll");
-   bodyScrollBar.addListener(() => {
-      document.dispatchEvent(scrollEvent);
+
+   bodyScrollBar.addListener(({ offset }) => {
+      window.dispatchEvent(scrollEvent);
    });
-   document.addEventListener("scroll", () => {
+   window.addEventListener("scroll", () => {
       scrollNav();
-      // headerObjArr.forEach((obj) => {
+      // headerObjArr.value.forEach((obj) => {
       //    if (
       //       obj.targetStart < window.scrollY + 100 &&
       //       obj.targetEnd > window.screenY
@@ -130,29 +134,31 @@ onMounted(() => {
    formActions();
 });
 
-const isOpenNoticePopupQuestions = ref(false);
+const isOpenNoticePopup = ref(false);
 
 // eslint-disable-next-line
 const closePopupPolitic = () => {
-   store.closePopupPolitic();
-   if (store.isOpenPopupPoliticNotNested) {
-      store.closePopupPoliticNotNested();
+   storePopup.closePopupPolitic();
+   if (storePopup.isOpenPopupPoliticNotNested) {
+      storePopup.closePopupPoliticNotNested();
    }
 };
 // eslint-disable-next-line
 const closePopupQuestions = () => {
-   store.closePopupQuestions();
-   if (store.isPopupQuestionsNotNested) {
-      store.closePopupQuestionsNotNested();
+   storePopup.closePopupQuestions();
+   if (storePopup.isPopupQuestionsNotNested) {
+      storePopup.closePopupQuestionsNotNested();
    }
 };
 // eslint-disable-next-line
-const openNoticePopupQuestions = () => {
-   isOpenNoticePopupQuestions.value = !isOpenNoticePopupQuestions.value;
+const openNoticePopup = () => {
+   storePopup.openPopupNotice();
+   // isOpenNoticePopup.value = !isOpenNoticePopup.value;
 };
 // eslint-disable-next-line
-const closeNoticePopupQuestions = () => {
-   isOpenNoticePopupQuestions.value = !isOpenNoticePopupQuestions.value;
+const closeNoticePopup = () => {
+   storePopup.closePopupNotice();
+   // isOpenNoticePopup.value = !isOpenNoticePopup.value;
 };
 </script>
 
