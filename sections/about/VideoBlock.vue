@@ -1,7 +1,7 @@
 <template lang="pug">
 	.main-about__item.video-block(@mouseover="showTrailer" @mouseleave="hideTrailer")
 		a(:href="`/images/transmagistral.mp4`" data-fancybox="video").main-about__video.ibg
-			video(ref="video" id="video" autoplay="" muted="" loop="loop" poster="/images/about/poster.jpg")
+			video(ref="video" id="video" data-video="video" muted="" loop="loop" poster="/images/about/poster.jpg")
 				source(:src="`/images/transmagistral.mp4`" type="video/mp4")
 </template>
 
@@ -34,6 +34,30 @@ onMounted(() => {
          video.value.currentTime = 0;
          video.value.play();
       }
+   });
+   const optionsObserverVideo = {
+      rootMargin: "0px",
+      threshold: 0,
+   };
+   const callbackVideo = (entries) => {
+      entries.forEach((entry) => {
+         if (entry.target.dataset.video === "video") {
+            if (entry.isIntersecting) {
+               entry.target.play();
+            }
+            // else {
+            //    entry.target.pause();
+            // }
+         }
+      });
+   };
+   const observerVideo = new IntersectionObserver(
+      callbackVideo,
+      optionsObserverVideo
+   );
+   const videos = document.querySelectorAll("video");
+   videos.forEach((video) => {
+      observerVideo.observe(video);
    });
 });
 </script>
