@@ -144,7 +144,6 @@ const autoChangeAccordeon = () => {
 
       const callback = ([entry]) => {
          if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
-            console.log("intersect");
             autoplayInterval = setInterval(function () {
                // Get element via id and click next
                document.getElementById("nextAccordeon").click();

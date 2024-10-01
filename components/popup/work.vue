@@ -121,7 +121,7 @@ const submitForm = async () => {
                   storePopup.openPopupNoticeWork();
                   setTimeout(() => {
                      storePopup.closePopupNoticeWork();
-                  }, 2000);
+                  }, 5000);
                } else {
                   formErrors.name = res.error.name || "";
                   formErrors.phone = res.error.phone || "";

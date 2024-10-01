@@ -9,7 +9,7 @@
 						p Мы всегда рады долгосрочному сотрудничеству. Клиенты — основная ценность нашей компании
 				.main-clients__cards
 					ClientCard
-					.anim-client-card
+					.anim-client-card.client-card-last
 						UiButton(buttonText="Стать нашим клиентом" classNames="btn-red" buttonType="button" @buttonClick="openPopupClient")
 		PopupClient(@close-popup="closePopupClient" :is-open="isOpenPopupClient")
 </template>
