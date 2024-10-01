@@ -3,28 +3,19 @@
 		Popup(class="popup-notice" :is-open="isOpen" @close-popup="closePopup")
 			.popup-header
 				.popup__title Успешно!
-				.popup__sub-title {{ popupNoticeText }}
+				.popup__sub-title {{ popupKey === 'work' ? "Форма успешно отправлена. Мы позвоним вам в указанный промежуток" : "Форма успешно отправлена. Звонок поступит в ближайшее время"}}
 </template>
 
 <script setup>
-import { usePopupStore } from "~/stores/popup";
-
-const popupStore = usePopupStore();
-const popupNoticeText = popupStore.popupNoticeText;
-
 defineProps({
    isOpen: {
       type: Boolean,
    },
-   noticeSubTitle: {
+   popupKey: {
       type: String,
       required: false,
    },
 });
-
-// eslint-disable-next-line
-const defaultNoticeSubTitle =
-   "Форма успешно отправлена. Звонок поступит в ближайшее время";
 
 const emit = defineEmits(["closePopup"]);
 

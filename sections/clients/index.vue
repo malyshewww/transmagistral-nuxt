@@ -12,12 +12,10 @@
 					.anim-client-card
 						UiButton(buttonText="Стать нашим клиентом" classNames="btn-red" buttonType="button" @buttonClick="openPopupClient")
 		PopupClient(@close-popup="closePopupClient" :is-open="isOpenPopupClient")
-		PopupNotice(@close-popup="closeNoticePopupClient" :is-open="isOpenNoticePopupClient")
 </template>
 
 <script setup>
 const isOpenPopupClient = ref(false);
-const isOpenNoticePopupClient = ref(false);
 
 // eslint-disable-next-line
 const openPopupClient = () => {
@@ -30,14 +28,6 @@ const closePopupClient = () => {
    isOpenPopupClient.value = !isOpenPopupClient.value;
    const { bodyScrollBar } = useScrollbar();
    bodyScrollBar.updatePluginOptions("lock", { lock: false });
-};
-// eslint-disable-next-line
-const openNoticePopupClient = () => {
-   isOpenNoticePopupClient.value = !isOpenNoticePopupClient.value;
-};
-// eslint-disable-next-line
-const closeNoticePopupClient = () => {
-   isOpenNoticePopupClient.value = !isOpenNoticePopupClient.value;
 };
 </script>
 

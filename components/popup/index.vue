@@ -148,6 +148,9 @@ onMounted(() => {
       }
    }
 }
+.popup-notice {
+   z-index: 40;
+}
 .popup-politic {
    z-index: 40;
    & .popup__wrapper {

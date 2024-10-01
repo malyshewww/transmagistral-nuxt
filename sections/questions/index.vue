@@ -5,30 +5,10 @@
 			.main-questions__body 
 				h2.main-questions__title Готовы к любым вопросам
 				.main-questions__sub-title Коммерческий отдел сможет вам ответить в рабочее время с 9:00 до 21:00
-				form(action="#").main-questions__form.form
-					.form__body
-						.form-item 
-							.form-item__field
-								input(type="text" name="name" placeholder="Имя" autocomplete="off").form-input
-						.form-item 
-							.form-item__field
-								input(type="tel" name="phone" placeholder="+7 900 000-00-00" autocomplete="off").form-input
-						UiButton(buttonText="Заказать консультацию")
-						.form-text 
-							p Отправляя форму, я подтверждаю #[a(href="#" @click.prevent="openPopupPolitic").text-link своё согласие на обработку персональных данных]
+				QuestionsForm
 </template>
 
 <script setup>
-import maskPhone from "~/utils/maskPhone.js";
-import { usePopupStore } from "~/stores/popup";
-
-const store = usePopupStore();
-
-// eslint-disable-next-line
-const openPopupPolitic = () => {
-   store.openPopupPoliticNotNested();
-};
-
 const animation = () => {
    const callback = ([entry]) => {
       if (entry.isIntersecting) {
@@ -46,7 +26,6 @@ const animation = () => {
 };
 
 onMounted(() => {
-   maskPhone();
    animation();
 });
 </script>

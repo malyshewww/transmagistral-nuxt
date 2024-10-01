@@ -12,7 +12,8 @@
 	PopupQuestions(@close-popup="closePopupQuestions" :is-open="storePopup.isPopupQuestionsActive || storePopup.isPopupQuestionsNotNested")
 	PopupPolitic(@close-popup="closePopupPolitic" :is-open="storePopup.isPopupPoliticActive || storePopup.isOpenPopupPoliticNotNested")
 	//- PopupNotice(@close-popup="closeNoticePopupQuestions" :is-open="isOpenNoticePopupQuestions")
-	PopupNotice(@close-popup="closeNoticePopup" :is-open="storePopup.isPopupNoticeActive")
+	PopupNotice(@close-popup="closePopupNotice" :is-open="storePopup.isPopupNoticeActive" popup-key="common")
+	PopupNotice(@close-popup="closePopupNoticeWork" :is-open="storePopup.isPopupNoticeWorkActive" popup-key="work")
 </template>
 
 <script setup>
@@ -151,14 +152,21 @@ const closePopupQuestions = () => {
    }
 };
 // eslint-disable-next-line
-const openNoticePopup = () => {
+const openPopupNotice = () => {
    storePopup.openPopupNotice();
-   // isOpenNoticePopup.value = !isOpenNoticePopup.value;
 };
 // eslint-disable-next-line
-const closeNoticePopup = () => {
+const closePopupNotice = () => {
    storePopup.closePopupNotice();
-   // isOpenNoticePopup.value = !isOpenNoticePopup.value;
+};
+
+// eslint-disable-next-line
+const openPopupNoticeWork = () => {
+   storePopup.openPopupNoticeWork();
+};
+// eslint-disable-next-line
+const closePopupNoticeWork = () => {
+   storePopup.closePopupNoticeWork();
 };
 </script>
 

@@ -9,6 +9,7 @@ export const usePopupStore = defineStore("popup", {
       isPopupNoticeActive: false,
       popupNoticeText:
          "Форма успешно отправлена. Звонок поступит в ближайшее время",
+      isPopupNoticeWorkActive: false,
    }),
    actions: {
       openPopupPoliticNotNested() {
@@ -78,12 +79,18 @@ export const usePopupStore = defineStore("popup", {
          });
       },
       openPopupNotice(popupText) {
-         this.popupNoticeText = popupText ? popupText : this.popupNoticeText;
-         this.isPopupNoticeActive = !this.isPopupNoticeActive;
+         // this.popupNoticeText = popupText ? popupText : this.popupNoticeText;
+         this.isPopupNoticeActive = true;
       },
       closePopupNotice() {
-         this.popupNoticeText = "";
-         this.isPopupNoticeActive = !this.isPopupNoticeActive;
+         // this.popupNoticeText = this.popupNoticeText;
+         this.isPopupNoticeActive = false;
+      },
+      openPopupNoticeWork() {
+         this.isPopupNoticeWorkActive = true;
+      },
+      closePopupNoticeWork() {
+         this.isPopupNoticeWorkActive = false;
       },
    },
 });

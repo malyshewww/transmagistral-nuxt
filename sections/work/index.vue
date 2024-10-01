@@ -12,7 +12,6 @@
 					.main-work__sub-title Получайте стабильно высокий доход, спокойно занимаясь любимым делом
 					UiButton(buttonText="Стать водителем" @buttonClick="openPopupWork")
 		PopupWork(@close-popup="closePopupWork" :is-open="isOpenPopupWork")
-		PopupNotice(@close-popup="closeNoticePopupWork" :is-open="isOpenNoticePopupWork" noticeSubTitle="Форма успешно отправлена. Мы позвоним вам в указанный промежуток")
 </template>
 
 <script setup>

@@ -1,50 +1,34 @@
 <template lang="pug">
-	Teleport(to="body")
-		Popup(class="popup-client" :is-open="isOpen" @close-popup="closePopup")
-			form(@submit.prevent="submitForm").popup__form.form
-				.form__header.popup-header
-					.popup__title Хотите воспользоваться нашими услугами?
-					.popup__sub-title Заполните форму, и наши менеджеры перезвонят вам в ближайшее время
-				.form__body 
-					.form-item(:class="{error: formErrors.name}")
-						.form-item__field
-							input(type="text" v-model="formData.name" name="name" placeholder="Имя").form-input
-						.error-message(v-if="formErrors.name") {{formErrors.name}}
-					.form-item(:class="{error: formErrors.phone}")
-						.form-item__field
-							input(type="tel" v-model="formData.phone" name="phone" placeholder="+7 900 000-00-00").form-input 
-						.error-message(v-if="formErrors.phone") {{formErrors.phone}}
-					.form-text 
-						| Отправляя форму, я подтверждаю своё #[a(href="#" @click.prevent="openPopupPolitic").text-link согласие на обработку персональных данных] 
-				UiButton(buttonText="Отправить" classNames="btn-red", buttonType="submit")
+	form(@submit.prevent="submitForm").main-questions__form.form
+		.form__body
+			.form-item(:class="{error: formErrors.name}")
+				.form-item__field
+					input(type="text" v-model="formData.name" name="name" placeholder="Имя").form-input
+				.error-message(v-if="formErrors.name") {{formErrors.name}}
+			.form-item(:class="{error: formErrors.phone}")
+				.form-item__field
+					input(type="tel" v-model="formData.phone" name="phone" placeholder="+7 900 000-00-00").form-input 
+				.error-message(v-if="formErrors.phone") {{formErrors.phone}}
+			UiButton(buttonText="Заказать консультацию")
+			.form-text 
+				p Отправляя форму, я подтверждаю #[a(href="#" @click.prevent="openPopupPolitic").text-link своё согласие на обработку персональных данных]
 </template>
 
 <script setup>
 import maskPhone from "~/utils/maskPhone.js";
 import { usePopupStore } from "~/stores/popup";
 
-defineProps({
-   isOpen: {
-      type: Boolean,
-   },
-});
-
 const storePopup = usePopupStore();
+
 // eslint-disable-next-line
 const openPopupPolitic = () => {
-   storePopup.openPopupPolitic();
-};
-
-const emit = defineEmits(["closePopup"]);
-// eslint-disable-next-line
-const closePopup = () => {
-   emit("closePopup");
+   storePopup.openPopupPoliticNotNested();
 };
 
 const formData = reactive({
    name: "",
    phone: "",
-   webform_id: "services",
+   webform_id: "main_questions",
 });
 
 const formErrors = reactive({
@@ -80,7 +64,6 @@ const submitForm = async () => {
                   formData.phone = "";
                   formErrors.name = "";
                   formErrors.phone = "";
-                  closePopup();
                   storePopup.openPopupNotice();
                   setTimeout(() => {
                      storePopup.closePopupNotice();
