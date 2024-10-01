@@ -73,6 +73,13 @@ export default defineNuxtConfig({
                sizes: "180x180",
                href: "/apple-icon-180x180.png",
             },
+            {
+               rel: "preload",
+               href: "/fonts/PTRootUI-Regular.woff2",
+               as: "font",
+               type: "font/woff2",
+               crossorigin: "anonymous",
+            },
          ],
          meta: [
             { charset: "utf-8" },

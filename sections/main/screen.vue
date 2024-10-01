@@ -89,7 +89,7 @@ onMounted(() => {
       font-size: 280px;
       line-height: 1;
       text-align: center;
-      inset: 0;
+      // inset: 0;
       top: 19.5%;
       color: var(--bg-bg-white);
       @media (max-width: 1919px) {

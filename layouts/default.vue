@@ -173,6 +173,7 @@ const closePopupNoticeWork = () => {
 <style lang="scss">
 .main-content {
    position: relative;
+   min-height: 100vh;
 }
 .scroller {
    height: 100vh;

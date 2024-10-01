@@ -11,6 +11,16 @@ useHead({
       class: "home",
    },
 });
+// const isLoading = ref(false);
+// const nuxtApp = useNuxtApp();
+// nuxtApp.hook("page:start", () => {
+//    console.log("start");
+//    isLoading.value = true;
+// });
+// nuxtApp.hook("page:finish", () => {
+//    console.log("finish");
+//    isLoading.value = true;
+// });
 </script>
 
 <style lang="scss">
@@ -75,11 +85,8 @@ useHead({
    --button-disabled-white: 255, 255, 255;
    --bg-bg-dark-contacts: #0d235a;
    --bg-footer-nav: #ffffff;
-
    --stroke-stroke-grey-circle: #cfd3de;
-
    --bgOpacity: 0;
-
    --text-link-white-hover: #9be1ff;
    --text-link-dark-hover: #1941a5;
 }
