@@ -35,6 +35,9 @@ html.dark {
 .wrapper {
 	display: flex;
 	flex-direction: column;
+	& > * {
+		min-width: 0;
+	}
 }
 
 .container {

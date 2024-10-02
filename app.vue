@@ -11,16 +11,6 @@ useHead({
       class: "home",
    },
 });
-// const isLoading = ref(false);
-// const nuxtApp = useNuxtApp();
-// nuxtApp.hook("page:start", () => {
-//    console.log("start");
-//    isLoading.value = true;
-// });
-// nuxtApp.hook("page:finish", () => {
-//    console.log("finish");
-//    isLoading.value = true;
-// });
 </script>
 
 <style lang="scss">

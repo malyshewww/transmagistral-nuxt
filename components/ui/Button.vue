@@ -35,7 +35,7 @@ defineProps({
       required: false,
    },
 });
-const emit = defineEmits(["buttonClick"]);
+const emit = defineEmits(["buttonClick", "getRef"]);
 
 const buttonClick = () => {
    emit("buttonClick");

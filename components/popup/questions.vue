@@ -1,7 +1,7 @@
 <template lang="pug">
 	Teleport(to="body")
 		Popup(class="popup-questions" :is-open="isOpen" @close-popup="closePopup")
-			form(@submit.prevent="submitForm").popup__form.form
+			form(@submit.prevent="submitForm($event)").popup__form.form
 				.form__header.popup-header
 					.popup__title Остались вопросы?
 					.popup__sub-title Заполните форму, и наши менеджеры перезвонят вам в ближайшее время
@@ -19,11 +19,20 @@
 					.form-item 
 						.form-text 
 							| Отправляя форму, я подтверждаю своё #[a(href="#" @click.prevent="openPopupPolitic").text-link согласие на обработку персональных данных] 
-				UiButton(buttonText="Отправить" classNames="btn-red", buttonType="submit")
+				UiButton(buttonText="Отправить" classNames="btn-red" buttonType="submit")
 </template>
 
 <script setup>
 import { usePopupStore } from "~/stores/popup";
+
+const childButton = ref(null);
+
+const childRef = useTemplateRef("childButton");
+
+const getRef = (child) => {
+   console.log(child.value);
+   return child.value;
+};
 
 defineProps({
    isOpen: {
@@ -63,7 +72,12 @@ const formErrors = reactive({
 const runtimeConfig = useRuntimeConfig();
 
 // eslint-disable-next-line
-const submitForm = async () => {
+const submitForm = async (e) => {
+   const buttonSubmit = e.target.querySelector('button[type="submit"]');
+   const buttonText = buttonSubmit.querySelector(".btn-text");
+   const buttonSubmitText = buttonText.textContent;
+   buttonSubmit.setAttribute("disabled", "true");
+   buttonText.textContent = "идет отправка...";
    fetch(`${runtimeConfig.public.apiBase}/session/token`)
       .then(function (response) {
          return response.text();
@@ -93,9 +107,13 @@ const submitForm = async () => {
                   setTimeout(() => {
                      storePopup.closePopupNotice();
                   }, 5000);
+                  buttonSubmit.removeAttribute("disabled");
+                  buttonText.textContent = buttonSubmitText;
                } else {
                   formErrors.name = res.error.name || "";
                   formErrors.phone = res.error.phone || "";
+                  buttonSubmit.removeAttribute("disabled");
+                  buttonText.textContent = buttonSubmitText;
                }
             });
       });

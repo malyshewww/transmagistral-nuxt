@@ -1,7 +1,7 @@
 <template lang="pug">
 	Teleport(to="body")
 		Popup(class="popup-work" :is-open="isOpen" @close-popup="closePopup")
-			form(@submit.prevent="submitForm").popup__form.form
+			form(@submit.prevent="submitForm($event)").popup__form.form
 				.form__header.popup-header
 					.popup__title Присоединяйтесь к нашей команде!
 					.popup__sub-title Заполните форму, и мы свяжемся с вами для обсуждения сотрудничества
@@ -92,7 +92,12 @@ const formErrors = reactive({
 const runtimeConfig = useRuntimeConfig();
 
 // eslint-disable-next-line
-const submitForm = async () => {
+const submitForm = async (e) => {
+   const buttonSubmit = e.target.querySelector('button[type="submit"]');
+   const buttonText = buttonSubmit.querySelector(".btn-text");
+   const buttonSubmitText = buttonText.textContent;
+   buttonSubmit.setAttribute("disabled", "true");
+   buttonText.textContent = "идет отправка...";
    fetch(`${runtimeConfig.public.apiBase}/session/token`)
       .then(function (response) {
          return response.text();
@@ -122,9 +127,13 @@ const submitForm = async () => {
                   setTimeout(() => {
                      storePopup.closePopupNoticeWork();
                   }, 5000);
+                  buttonSubmit.removeAttribute("disabled");
+                  buttonText.textContent = buttonSubmitText;
                } else {
                   formErrors.name = res.error.name || "";
                   formErrors.phone = res.error.phone || "";
+                  buttonSubmit.removeAttribute("disabled");
+                  buttonText.textContent = buttonSubmitText;
                }
             });
       });

@@ -12,7 +12,6 @@ export default async () => {
             withCredentials: true, // required to send auth cookie
          });
          const csrf_token = response.data;
-         console.log(csrf_token);
          singleton = axios.create({
             // mode: 'no-cors',
             baseURL: runtimeConfig.public.apiBase, // every request is relative to this URL

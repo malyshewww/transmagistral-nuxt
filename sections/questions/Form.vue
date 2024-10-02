@@ -1,5 +1,5 @@
 <template lang="pug">
-	form(@submit.prevent="submitForm").main-questions__form.form
+	form(@submit.prevent="submitForm($event)").main-questions__form.form
 		.form__body
 			.form-item(:class="{error: formErrors.name}")
 				.form-item__field
@@ -9,7 +9,7 @@
 				.form-item__field
 					input(type="tel" v-model="formData.phone" name="phone" placeholder="+7 900 000-00-00").form-input 
 				.error-message(v-if="formErrors.phone") {{formErrors.phone}}
-			UiButton(buttonText="Заказать консультацию")
+			UiButton(buttonText="Заказать консультацию" buttonType="submit")
 			.form-text 
 				p Отправляя форму, я подтверждаю #[a(href="#" @click.prevent="openPopupPolitic").text-link своё согласие на обработку персональных данных]
 </template>
@@ -39,7 +39,12 @@ const formErrors = reactive({
 const runtimeConfig = useRuntimeConfig();
 
 // eslint-disable-next-line
-const submitForm = async () => {
+const submitForm = async (e) => {
+   const buttonSubmit = e.target.querySelector('button[type="submit"]');
+   const buttonText = buttonSubmit.querySelector(".btn-text");
+   const buttonSubmitText = buttonText.textContent;
+   buttonSubmit.setAttribute("disabled", "true");
+   buttonText.textContent = "идет отправка...";
    fetch(`${runtimeConfig.public.apiBase}/session/token`)
       .then(function (response) {
          return response.text();
@@ -68,9 +73,13 @@ const submitForm = async () => {
                   setTimeout(() => {
                      storePopup.closePopupNotice();
                   }, 5000);
+                  buttonSubmit.removeAttribute("disabled");
+                  buttonText.textContent = buttonSubmitText;
                } else {
                   formErrors.name = res.error.name || "";
                   formErrors.phone = res.error.phone || "";
+                  buttonSubmit.removeAttribute("disabled");
+                  buttonText.textContent = buttonSubmitText;
                }
             });
       });
