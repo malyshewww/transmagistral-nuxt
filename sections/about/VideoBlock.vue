@@ -41,7 +41,7 @@ onMounted(() => {
    };
    const callbackVideo = (entries) => {
       entries.forEach((entry) => {
-         if (entry.target.dataset.video === "video") {
+         if (entry.target.id === "video") {
             if (entry.isIntersecting) {
                entry.target.play();
             }
