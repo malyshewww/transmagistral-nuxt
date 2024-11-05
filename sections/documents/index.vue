@@ -9,7 +9,7 @@
 						p Мы работаем только по Договору с зафиксированными обязательствами и ответственностью.
 						p #[strong Ознакомьтесь с комплектом документов] для оформления сотрудничества
 					UiButton(buttonText="Скачать документы" classNames="btn-blue" iconName="document" @buttonClick="downloadFile")
-					a(ref="downloadLink" href="transmagistral.zip" download="transmagistral" style="display: none;")
+					a(ref="downloadLink" href="transmagistral-docs.zip" download="transmagistral" style="display: none;")
 			UiSliderDocuments
 		LineDocument
 </template>
