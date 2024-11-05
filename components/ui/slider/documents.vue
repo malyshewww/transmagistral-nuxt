@@ -121,10 +121,12 @@ onMounted(() => {
       }
    }
    & .slider-controls {
-      margin-top: 36px;
-      display: none;
+      margin-top: 64px;
+      justify-content: flex-end;
+      // display: none;
       @media screen and (max-width: $xl) {
          display: flex;
+         margin-top: 36px;
       }
    }
 }
