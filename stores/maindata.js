@@ -143,9 +143,6 @@ export const useMainDataStore = defineStore("maindata", {
          {
             name: "Карточка партнёра",
          },
-         {
-            name: "ЕГРЮЛ",
-         },
       ],
    }),
    actions: {},

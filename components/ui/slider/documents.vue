@@ -9,9 +9,9 @@
 							a(:href="`/images/documents/doc-${index+1}-${index+1}.pdf`" data-fancybox="gallery" class="document-item__link")
 								.document-item__image.ibg
 									picture
-										source(type="image/webp" :srcset="`/images/documents/doc-${index+1}.webp`")
-										source(:srcset="`/images/documents/doc-${index+1}.png`")
-										img(:src="`/images/documents/doc-${index+1}.png`" :alt="item.name")
+										source(type="image/webp" :srcset="`/images/documents/doc-${index+1}-${index+1}.webp`")
+										source(:srcset="`/images/documents/doc-${index+1}-${index+1}.png`")
+										img(:src="`/images/documents/doc-${index+1}-${index+1}.png`" :alt="item.name")
 							.document-item__label {{ item.name }}
 			.slider-controls
 				button(ref="buttonPrev" type="button").slider-button.slider-button-prev 
