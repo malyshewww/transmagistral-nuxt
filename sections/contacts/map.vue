@@ -7,7 +7,7 @@
 <script setup>
 import json from "~/static/theme.json";
 
-const coords = [43.870026, 56.303546];
+const coords = [43.870116, 56.305334];
 
 // const isLoaded = ref(false);
 
