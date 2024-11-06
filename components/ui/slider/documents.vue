@@ -6,12 +6,12 @@
 				.slider-documents__wrapper.swiper-wrapper
 					.swiper-slide(v-for="item, index in documentList" :key="index")
 						.document-item
-							a(:href="`/images/documents/doc-${index+1}-${index+1}.pdf`" data-fancybox="gallery" class="document-item__link")
+							a(:href="`/images/documents/doc-${index+1}-new.png`" data-fancybox="gallery" class="document-item__link")
 								.document-item__image.ibg
 									picture
-										source(type="image/webp" :srcset="`/images/documents/doc-${index+1}-${index+1}.webp`")
-										source(:srcset="`/images/documents/doc-${index+1}-${index+1}.png`")
-										img(:src="`/images/documents/doc-${index+1}-${index+1}.png`" :alt="item.name")
+										source(type="image/webp" :srcset="`/images/documents/doc-${index+1}-new.webp`")
+										source(:srcset="`/images/documents/doc-${index+1}-new.png`")
+										img(:src="`/images/documents/doc-${index+1}-new.png`" :alt="item.name")
 							.document-item__label {{ item.name }}
 			.slider-controls
 				button(ref="buttonPrev" type="button").slider-button.slider-button-prev 
